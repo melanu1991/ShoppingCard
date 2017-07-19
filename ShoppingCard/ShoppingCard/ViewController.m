@@ -1,10 +1,12 @@
 #import "ViewController.h"
 #import "VAKProfileTableViewController.h"
+#import "VAKGoodsTableViewCell.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) VAKProfileTableViewController *profileVC;
 @property (assign, nonatomic) BOOL isProfileVC;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -60,6 +62,19 @@
         [self.profileVC removeFromParentViewController];
         self.isProfileVC = YES;
     }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    VAKGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GoodsCell"];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
