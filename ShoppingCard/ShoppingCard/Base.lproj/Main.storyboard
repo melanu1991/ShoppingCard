@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9By-z9-MRQ">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.90163845490000005" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9By-z9-MRQ" secondAttribute="bottom" id="31N-NN-CoS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9By-z9-MRQ" secondAttribute="trailing" id="hHf-Ko-PV7"/>
+                            <constraint firstItem="9By-z9-MRQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rPV-3o-rmz"/>
+                            <constraint firstItem="9By-z9-MRQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="uAs-ep-gPd"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Goods" id="THc-ji-WZr">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="iJH-Xa-RnW">
@@ -126,18 +139,50 @@
         <!--Basket-->
         <scene sceneID="y2T-J4-sbN">
             <objects>
-                <tableViewController id="Yeh-av-aE0" sceneMemberID="viewController">
+                <tableViewController id="Yeh-av-aE0" customClass="VAKBasketTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="byc-tn-jL7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zJf-38-4Kk">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BasketCell" rowHeight="100" id="zJf-38-4Kk">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJf-38-4Kk" id="Tdg-lT-2iZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ISd-jn-3iV">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="99.5"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="phb-ba-bxe"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3G-74-S0T">
+                                            <rect key="frame" x="100" y="0.0" width="20" height="99.5"/>
+                                            <color key="backgroundColor" white="0.88557942710000004" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="9Qn-9I-ehY"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKv-Sv-Gyj">
+                                            <rect key="frame" x="120" y="0.0" width="255" height="99.5"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="p3G-74-S0T" secondAttribute="bottom" id="2kA-S6-bpd"/>
+                                        <constraint firstItem="ISd-jn-3iV" firstAttribute="leading" secondItem="Tdg-lT-2iZ" secondAttribute="leading" id="3QI-sB-2Xb"/>
+                                        <constraint firstAttribute="bottom" secondItem="ISd-jn-3iV" secondAttribute="bottom" id="3Th-ep-o7k"/>
+                                        <constraint firstItem="bKv-Sv-Gyj" firstAttribute="leading" secondItem="p3G-74-S0T" secondAttribute="trailing" id="5CC-LS-ila"/>
+                                        <constraint firstItem="ISd-jn-3iV" firstAttribute="top" secondItem="Tdg-lT-2iZ" secondAttribute="top" id="83T-bm-NJz"/>
+                                        <constraint firstAttribute="bottom" secondItem="bKv-Sv-Gyj" secondAttribute="bottom" id="B6o-K9-7JT"/>
+                                        <constraint firstItem="p3G-74-S0T" firstAttribute="top" secondItem="Tdg-lT-2iZ" secondAttribute="top" id="QDT-C1-eK6"/>
+                                        <constraint firstAttribute="trailing" secondItem="bKv-Sv-Gyj" secondAttribute="trailing" id="kBD-lQ-xGn"/>
+                                        <constraint firstItem="p3G-74-S0T" firstAttribute="leading" secondItem="ISd-jn-3iV" secondAttribute="trailing" id="mr9-jY-ko2"/>
+                                        <constraint firstItem="bKv-Sv-Gyj" firstAttribute="top" secondItem="Tdg-lT-2iZ" secondAttribute="top" id="wOQ-rv-iao"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

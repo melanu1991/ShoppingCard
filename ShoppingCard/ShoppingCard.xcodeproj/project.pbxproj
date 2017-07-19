@@ -17,6 +17,7 @@
 		58604E0B1F1F696E00073B2D /* VAKProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0A1F1F696E00073B2D /* VAKProfileTableViewCell.m */; };
 		58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */; };
 		58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */; };
+		58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileTableViewController.m; sourceTree = "<group>"; };
 		58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCoreDataManager.h; sourceTree = "<group>"; };
 		58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCoreDataManager.m; sourceTree = "<group>"; };
+		58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKBasketTableViewController.h; sourceTree = "<group>"; };
+		58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKBasketTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				58604E0A1F1F696E00073B2D /* VAKProfileTableViewCell.m */,
 				58604E0C1F1F699100073B2D /* VAKProfileTableViewController.h */,
 				58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */,
+				58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */,
+				58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				58604DF41F1F60F000073B2D /* ViewController.m in Sources */,
 				58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */,
 				58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */,
+				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,
