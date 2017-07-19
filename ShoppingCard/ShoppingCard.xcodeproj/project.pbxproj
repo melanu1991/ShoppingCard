@@ -14,6 +14,8 @@
 		58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */; };
 		58604DFC1F1F60F000073B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFB1F1F60F000073B2D /* Assets.xcassets */; };
 		58604DFF1F1F60F000073B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */; };
+		58604E0B1F1F696E00073B2D /* VAKProfileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0A1F1F696E00073B2D /* VAKProfileTableViewCell.m */; };
+		58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,10 @@
 		58604DFB1F1F60F000073B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58604DFE1F1F60F000073B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58604E001F1F60F000073B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58604E091F1F696E00073B2D /* VAKProfileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKProfileTableViewCell.h; sourceTree = "<group>"; };
+		58604E0A1F1F696E00073B2D /* VAKProfileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileTableViewCell.m; sourceTree = "<group>"; };
+		58604E0C1F1F699100073B2D /* VAKProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKProfileTableViewController.h; sourceTree = "<group>"; };
+		58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +66,11 @@
 		58604DEB1F1F60F000073B2D /* ShoppingCard */ = {
 			isa = PBXGroup;
 			children = (
+				58604E081F1F694D00073B2D /* CoreData */,
+				58604E071F1F694500073B2D /* Models */,
+				58604E061F1F693600073B2D /* Controllers */,
 				58604DEF1F1F60F000073B2D /* AppDelegate.h */,
 				58604DF01F1F60F000073B2D /* AppDelegate.m */,
-				58604DF21F1F60F000073B2D /* ViewController.h */,
-				58604DF31F1F60F000073B2D /* ViewController.m */,
 				58604DF51F1F60F000073B2D /* Main.storyboard */,
 				58604DFB1F1F60F000073B2D /* Assets.xcassets */,
 				58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */,
@@ -80,6 +87,33 @@
 				58604DED1F1F60F000073B2D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58604E061F1F693600073B2D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58604DF21F1F60F000073B2D /* ViewController.h */,
+				58604DF31F1F60F000073B2D /* ViewController.m */,
+				58604E091F1F696E00073B2D /* VAKProfileTableViewCell.h */,
+				58604E0A1F1F696E00073B2D /* VAKProfileTableViewCell.m */,
+				58604E0C1F1F699100073B2D /* VAKProfileTableViewController.h */,
+				58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		58604E071F1F694500073B2D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		58604E081F1F694D00073B2D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +142,7 @@
 		58604DE11F1F60EF00073B2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VAK;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = melanu1991;
 				TargetAttributes = {
@@ -153,7 +188,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58604E0B1F1F696E00073B2D /* VAKProfileTableViewCell.m in Sources */,
 				58604DF41F1F60F000073B2D /* ViewController.m in Sources */,
+				58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,

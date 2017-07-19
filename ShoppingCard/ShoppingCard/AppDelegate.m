@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  ShoppingCard
-//
-//  Created by melanu1991 on 19.07.17.
-//  Copyright © 2017 melanu1991. All rights reserved.
-//
-
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
