@@ -20,11 +20,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Goods" id="THc-ji-WZr">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="iJH-Xa-RnW"/>
-                        <barButtonItem key="rightBarButtonItem" title="Basket" id="qTI-lI-mkl"/>
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="iJH-Xa-RnW">
+                            <connections>
+                                <action selector="profileButtonPressed:" destination="BYZ-38-t0r" id="BI9-gZ-ggs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Basket" id="qTI-lI-mkl">
+                            <connections>
+                                <segue destination="AdK-DB-zLN" kind="show" id="cle-t2-viH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -34,7 +42,7 @@
         <!--Profile-->
         <scene sceneID="bzi-Hr-Rmu">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="ebC-OM-tBr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ebC-OM-tBr" customClass="VAKProfileTableViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8i2-f0-8WR"/>
                         <viewControllerLayoutGuide type="bottom" id="14m-Fg-95o"/>
@@ -44,10 +52,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6TH-8z-rS1">
-                                <rect key="frame" x="0.0" y="20" width="275" height="647"/>
+                                <rect key="frame" x="0.0" y="30" width="275" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" id="dRu-zq-M6e">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageCell" id="dRu-zq-M6e" customClass="VAKProfileTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="275" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dRu-zq-M6e" id="hdY-fv-mAg">
@@ -65,8 +73,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="BuD-Yj-oSS" secondAttribute="trailing" constant="80" id="smA-os-Nqx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImage" destination="BuD-Yj-oSS" id="lAg-Fs-6Ec"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LabelCell" id="i1d-L4-WKb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LabelCell" id="i1d-L4-WKb" customClass="VAKProfileTableViewCell">
                                         <rect key="frame" x="0.0" y="72" width="275" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i1d-L4-WKb" id="kIt-nG-L8B">
@@ -87,16 +98,23 @@
                                                 <constraint firstAttribute="bottom" secondItem="0JE-aS-air" secondAttribute="bottom" id="mh1-Wy-Aon"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="0JE-aS-air" id="TOD-yb-sXs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ebC-OM-tBr" id="ZND-aU-u7Y"/>
+                                    <outlet property="delegate" destination="ebC-OM-tBr" id="4mP-6Q-IUg"/>
+                                </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6TH-8z-rS1" secondAttribute="trailing" constant="100" id="6WM-J8-74C"/>
                             <constraint firstItem="6TH-8z-rS1" firstAttribute="leading" secondItem="XiY-hr-UHP" secondAttribute="leading" id="DtB-Yk-8qm"/>
                             <constraint firstItem="14m-Fg-95o" firstAttribute="top" secondItem="6TH-8z-rS1" secondAttribute="bottom" id="p6m-hU-IcB"/>
-                            <constraint firstItem="6TH-8z-rS1" firstAttribute="top" secondItem="8i2-f0-8WR" secondAttribute="bottom" id="w5V-Bx-QVh"/>
+                            <constraint firstItem="6TH-8z-rS1" firstAttribute="top" secondItem="8i2-f0-8WR" secondAttribute="bottom" constant="10" id="w5V-Bx-QVh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="3jP-wc-fIL"/>
@@ -104,6 +122,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O2l-xe-xmi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2042" y="-815"/>
+        </scene>
+        <!--Basket-->
+        <scene sceneID="y2T-J4-sbN">
+            <objects>
+                <tableViewController id="Yeh-av-aE0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="byc-tn-jL7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zJf-38-4Kk">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zJf-38-4Kk" id="Tdg-lT-2iZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Yeh-av-aE0" id="Ujp-Lr-7QY"/>
+                            <outlet property="delegate" destination="Yeh-av-aE0" id="Zov-Lb-h2k"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Basket" id="Rut-y8-TfD">
+                        <barButtonItem key="backBarButtonItem" title="Goods" id="SFW-ts-dNX"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeM-Ik-etW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2766" y="-134"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YSc-an-GoC">
+            <objects>
+                <navigationController id="AdK-DB-zLN" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AOx-hQ-o1r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Yeh-av-aE0" kind="relationship" relationship="rootViewController" id="0Mf-lg-LUU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIX-GS-Qkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2041" y="-134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JGx-Ps-CAg">

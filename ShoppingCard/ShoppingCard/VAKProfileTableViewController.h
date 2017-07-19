@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface VAKProfileTableViewController : UITableViewController
+@interface VAKProfileTableViewController : UIViewController
 
 @end
