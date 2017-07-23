@@ -7,6 +7,7 @@
 #import "User+CoreDataClass.h"
 #import "Order+CoreDataClass.h"
 #import "Good+CoreDataClass.h"
+#import "VAKNSDate+Formatters.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -36,7 +37,28 @@
             user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"password"]];
         }
     }];
-    [self.tableView registerNib:[UINib nibWithNibName:@"VAKCustomTableViewCell" bundle:nil] forCellReuseIdentifier:@"VAKCustomTableViewCell"];
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
+        if (data) {
+            NSArray *arrayGoods = data;
+            for (id item in arrayGoods) {
+                Good *good = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
+                good.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"name"]];
+                NSString *price = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"price"]];
+                good.price = [NSNumber numberWithInteger:price.integerValue];
+            }
+        }
+    }];
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
+        if (data) {
+            for (id item in data) {
+                Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
+                NSString *stringDate = (NSString *)[VAKNetManager parserValueFromJSONValue:item];
+                order.date = [NSDate dateWithString:stringDate format:DATEFORMAT_RFC3339];
+                
+            }
+        }
+    }];
+    [self.tableView registerNib:[UINib nibWithNibName:VAKTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKTableViewCellIdentifier];
     [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
     NSLog(@"%@", [VAKCoreDataManager allEntitiesWithName:VAKUser]);
 }

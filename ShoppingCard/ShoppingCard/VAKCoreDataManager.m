@@ -14,7 +14,7 @@
     static VAKCoreDataManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[self alloc] init];
+        manager = [[VAKCoreDataManager alloc] init];
     });
     return manager;
 }
@@ -140,19 +140,14 @@
             }
         }
     }
-    NSError *error = nil;
-    [[VAKCoreDataManager sharedManager].managedObjectContext save:&error];
-    if (error) {
-        NSLog(@"error : %@", error);
-    }
+    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
 }
 
 + (NSArray *)allEntitiesWithName:(NSString *)name {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *description = [NSEntityDescription entityForName:name inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
     [request setEntity:description];
-    NSError *error = nil;
-    NSArray *array = [[VAKCoreDataManager sharedManager].managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *array = [[VAKCoreDataManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
     return array;
 }
 

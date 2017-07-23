@@ -14,4 +14,12 @@ static NSString * const VAKUser = @"User";
 static NSString * const VAKGood = @"Good";
 static NSString * const VAKOrder = @"Order";
 
+#pragma mark - TableViewCell
+
+static NSString * const VAKTableViewCellIdentifier = @"VAKCustomTableViewCell";
+
+#pragma mark - Date Format
+
+NSString * const DATEFORMAT_RFC3339 = @"dd.MM.yyyy";
+
 #endif
