@@ -47,7 +47,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_cart" id="qTI-lI-mkl">
                             <connections>
-                                <segue destination="AdK-DB-zLN" kind="show" id="cle-t2-viH"/>
+                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="cle-t2-viH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -278,7 +278,7 @@
                         <barButtonItem key="leftBarButtonItem" title="☜" style="done" id="J75-PJ-9gb">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="eKk-x9-ZKx"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="VAKGoodsIdentifier" id="eKk-x9-ZKx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -346,6 +346,6 @@
         <image name="icon_menu" width="18" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uB6-wv-FJv"/>
+        <segue reference="eKk-x9-ZKx"/>
     </inferredMetricsTieBreakers>
 </document>
