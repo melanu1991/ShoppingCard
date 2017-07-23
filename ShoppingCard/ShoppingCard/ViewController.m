@@ -31,6 +31,10 @@
     }];
 }
 
+- (IBAction)basketButtonPressed:(UIButton *)sender {
+    NSLog(@"Basket button pressed");
+}
+
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
     switch (swipe.direction) {
         case UISwipeGestureRecognizerDirectionRight:
