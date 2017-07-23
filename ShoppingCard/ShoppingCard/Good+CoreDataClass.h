@@ -1,9 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Object+CoreDataClass.h"
 
 @class NSObject, Order;
 
-@interface Good : NSManagedObject
+@interface Good : Object
 
 @property (nonatomic) BOOL avalable;
 @property (nullable, nonatomic, copy) NSNumber *code;

@@ -1,9 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Object+CoreDataClass.h"
 
 @class Good, User;
 
-@interface Order : NSManagedObject
+@interface Order : Object
 
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nullable, nonatomic, copy) NSNumber *orderId;

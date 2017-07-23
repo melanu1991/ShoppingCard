@@ -6,6 +6,7 @@
 @dynamic address;
 @dynamic name;
 @dynamic phoneNumber;
+@dynamic userId;
 @dynamic orders;
 
 @end

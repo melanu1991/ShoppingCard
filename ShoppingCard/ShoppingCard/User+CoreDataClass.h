@@ -1,13 +1,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Object+CoreDataClass.h"
 
 @class Order;
 
-@interface User : NSManagedObject
+@interface User : Object
+
 
 @property (nullable, nonatomic, copy) NSString *address;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
+@property (nullable, nonatomic, copy) NSNumber *userId;
 @property (nullable, nonatomic, retain) NSSet<Order *> *orders;
 
 @end

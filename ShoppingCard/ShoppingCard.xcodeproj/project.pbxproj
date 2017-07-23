@@ -25,6 +25,7 @@
 		58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914651F2517EC009EF5BC /* User+CoreDataClass.m */; };
 		58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */; };
 		58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */; };
+		58F914801F251DA6009EF5BC /* Object+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,8 @@
 		58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Order+CoreDataClass.m"; sourceTree = "<group>"; };
 		58F9146C1F2517EC009EF5BC /* Good+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Good+CoreDataClass.h"; sourceTree = "<group>"; };
 		58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Good+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F9147C1F251DA6009EF5BC /* Object+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Object+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Object+CoreDataClass.m"; sourceTree = "<group>"; };
 		77C764A6DB59B68D8C617AFE /* libPods-ShoppingCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppingCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D822AE3C26B39A6BE5194DFF /* Pods-ShoppingCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +178,8 @@
 		58C482051F24B05800E4D891 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				58F9147C1F251DA6009EF5BC /* Object+CoreDataClass.h */,
+				58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */,
 				58F914641F2517EC009EF5BC /* User+CoreDataClass.h */,
 				58F914651F2517EC009EF5BC /* User+CoreDataClass.m */,
 				58F914681F2517EC009EF5BC /* Order+CoreDataClass.h */,
@@ -328,6 +333,7 @@
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
+				58F914801F251DA6009EF5BC /* Object+CoreDataClass.m in Sources */,
 				58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */,
 				58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,
