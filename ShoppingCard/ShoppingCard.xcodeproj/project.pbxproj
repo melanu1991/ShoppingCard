@@ -106,7 +106,6 @@
 				58604DFB1F1F60F000073B2D /* Assets.xcassets */,
 				58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */,
 				58604E001F1F60F000073B2D /* Info.plist */,
-				58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */,
 				58604DEC1F1F60F000073B2D /* Supporting Files */,
 			);
 			path = ShoppingCard;
@@ -147,6 +146,7 @@
 		58604E081F1F694D00073B2D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */,
 				58C482051F24B05800E4D891 /* Models */,
 				58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */,
 				58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */,
