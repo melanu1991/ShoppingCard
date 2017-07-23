@@ -53,8 +53,12 @@
             for (id item in data) {
                 Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
                 NSString *stringDate = (NSString *)[VAKNetManager parserValueFromJSONValue:item];
-                order.date = [NSDate dateWithString:stringDate format:DATEFORMAT_RFC3339];
-                
+                order.date = [NSDate dateWithString:stringDate format:VAKDateFormat];
+                NSArray *arrayGoodsFromOrder = [item valueForKeyPath:@"catalog"];
+                NSArray *arrayGoodsFromDB = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+                for (id item in arrayGoodsFromOrder) {
+                    
+                }
             }
         }
     }];

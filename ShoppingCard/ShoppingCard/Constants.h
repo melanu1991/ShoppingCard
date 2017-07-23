@@ -20,6 +20,6 @@ static NSString * const VAKTableViewCellIdentifier = @"VAKCustomTableViewCell";
 
 #pragma mark - Date Format
 
-NSString * const DATEFORMAT_RFC3339 = @"dd.MM.yyyy";
+static NSString * const VAKDateFormat = @"dd.MM.yyyy";
 
 #endif

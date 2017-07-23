@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 
-extern NSString* const DATEFORMAT_RFC3339;
-
 @interface NSDate (FMDateFormatters)
 
 + (NSDate*)dateWithString:(NSString*)dateString format:(NSString*)format locale:(NSLocale*)locale timezone:(NSTimeZone*)zone;
