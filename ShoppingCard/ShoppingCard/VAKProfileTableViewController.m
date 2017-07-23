@@ -23,4 +23,14 @@
     self.profileView.layer.shadowOffset = CGSizeMake(1, 1);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self performSelector:@selector(setStyleCircleForImage:) withObject:self.avatarImage afterDelay:0];
+}
+
+- (void)setStyleCircleForImage:(UIImageView *)imageView {
+    imageView.layer.cornerRadius = imageView.frame.size.width / 2.0;
+    imageView.clipsToBounds = YES;
+}
+
 @end

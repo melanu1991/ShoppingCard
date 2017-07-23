@@ -22,6 +22,9 @@
 		58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */; };
 		58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */; };
 		58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E695641F2367FA00E57C7E /* VAKNetManager.m */; };
+		58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914651F2517EC009EF5BC /* User+CoreDataClass.m */; };
+		58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */; };
+		58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,12 @@
 		58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKCustomTableViewCell.xib; sourceTree = "<group>"; };
 		58E695631F2367FA00E57C7E /* VAKNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKNetManager.h; sourceTree = "<group>"; };
 		58E695641F2367FA00E57C7E /* VAKNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKNetManager.m; sourceTree = "<group>"; };
+		58F914641F2517EC009EF5BC /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F914651F2517EC009EF5BC /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F914681F2517EC009EF5BC /* Order+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Order+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Order+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F9146C1F2517EC009EF5BC /* Good+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Good+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Good+CoreDataClass.m"; sourceTree = "<group>"; };
 		77C764A6DB59B68D8C617AFE /* libPods-ShoppingCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppingCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D822AE3C26B39A6BE5194DFF /* Pods-ShoppingCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,9 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */,
-				58C482051F24B05800E4D891 /* Models */,
 				58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */,
 				58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */,
+				58C482051F24B05800E4D891 /* Models */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -166,6 +175,12 @@
 		58C482051F24B05800E4D891 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				58F914641F2517EC009EF5BC /* User+CoreDataClass.h */,
+				58F914651F2517EC009EF5BC /* User+CoreDataClass.m */,
+				58F914681F2517EC009EF5BC /* Order+CoreDataClass.h */,
+				58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */,
+				58F9146C1F2517EC009EF5BC /* Good+CoreDataClass.h */,
+				58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -306,11 +321,14 @@
 				58604DF41F1F60F000073B2D /* ViewController.m in Sources */,
 				58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */,
 				58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */,
+				58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */,
 				58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */,
 				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
 				58C482031F24A98C00E4D891 /* VAKDetailViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
+				58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
+				58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */,
 				58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,
 			);
