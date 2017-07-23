@@ -8,5 +8,6 @@
 @dynamic phoneNumber;
 @dynamic userId;
 @dynamic orders;
+@dynamic password;
 
 @end

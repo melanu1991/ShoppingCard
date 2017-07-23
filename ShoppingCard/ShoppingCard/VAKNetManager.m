@@ -43,4 +43,18 @@
     }] resume];
 }
 
++ (NSObject *)parserValueFromJSONValue:(NSObject *)value {
+    NSObject *result = nil;
+    if ([value isKindOfClass:[NSArray class]]) {
+        NSArray *arr = (NSArray *)value;
+        if ([arr[0] isKindOfClass:[NSString class]]) {
+            result = (NSString *)arr[0];
+        }
+        else if ([arr[0] isKindOfClass:[NSNumber class]]) {
+            result = (NSNumber *)arr[0];
+        }
+    }
+    return result;
+}
+
 @end

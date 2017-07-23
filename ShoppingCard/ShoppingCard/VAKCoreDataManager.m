@@ -2,6 +2,7 @@
 #import "User+CoreDataClass.h"
 #import "Good+CoreDataClass.h"
 #import "Order+CoreDataClass.h"
+#import "Constants.h"
 
 @implementation VAKCoreDataManager
 
@@ -76,15 +77,6 @@
 
 @end
 
-@interface VAKCoreDataManager (WorkWithCoreData)
-
-+ (Object *)createEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
-+ (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
-+ (NSArray *)allEntitiesWithName:(NSString *)name;
-+ (NSNumber *)generateIdentifier;
-
-@end
-
 @implementation VAKCoreDataManager (WorkWithCoreData)
 
 + (NSNumber *)generateIdentifier {
@@ -93,15 +85,15 @@
 }
 
 + (Object *)createEntityWithName:(NSString *)name identifier:(NSNumber *)identifier {
-    if ([name isEqualToString:@"Good"]) {
-        Good *good = [NSEntityDescription insertNewObjectForEntityForName:@"Good" inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
+    if ([name isEqualToString:VAKGood]) {
+        Good *good = [NSEntityDescription insertNewObjectForEntityForName:VAKGood inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
         if (identifier != nil) {
             good.code = identifier;
         }
         return good;
     }
-    else if ([name isEqualToString:@"Order"]) {
-        Order *order = [NSEntityDescription insertNewObjectForEntityForName:@"Order" inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
+    else if ([name isEqualToString:VAKOrder]) {
+        Order *order = [NSEntityDescription insertNewObjectForEntityForName:VAKOrder inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
         if (identifier != nil) {
             order.orderId = identifier;
         }
@@ -110,7 +102,7 @@
         }
         return order;
     }
-    User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
+    User *user = [NSEntityDescription insertNewObjectForEntityForName:VAKUser inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
     if (identifier != nil) {
         user.userId = identifier;
     }
@@ -121,8 +113,8 @@
 }
 
 + (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier {
-    if ([name isEqualToString:@"Good"]) {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:@"Good"];
+    if ([name isEqualToString:VAKGood]) {
+        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKUser];
         for (Good *good in arrayEntity) {
             if ([good.code isEqualToNumber:identifier]) {
                 [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:good];
@@ -130,8 +122,8 @@
             }
         }
     }
-    else if ([name isEqualToString:@"Order"]) {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:@"Order"];
+    else if ([name isEqualToString:VAKOrder]) {
+        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
         for (Order *order in arrayEntity) {
             if ([order.orderId isEqualToNumber:identifier]) {
                 [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:order];
@@ -140,7 +132,7 @@
         }
     }
     else {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:@"User"];
+        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKUser];
         for (User *user in arrayEntity) {
             if ([user.userId isEqualToNumber:identifier]) {
                 [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:user];
@@ -148,7 +140,11 @@
             }
         }
     }
-    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+    NSError *error = nil;
+    [[VAKCoreDataManager sharedManager].managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"error : %@", error);
+    }
 }
 
 + (NSArray *)allEntitiesWithName:(NSString *)name {

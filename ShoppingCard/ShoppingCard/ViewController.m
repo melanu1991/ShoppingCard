@@ -2,6 +2,11 @@
 #import "VAKProfileTableViewController.h"
 #import "VAKCustomTableViewCell.h"
 #import "VAKNetManager.h"
+#import "Constants.h"
+#import "VAKCoreDataManager.h"
+#import "User+CoreDataClass.h"
+#import "Order+CoreDataClass.h"
+#import "Good+CoreDataClass.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,12 +29,16 @@
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
     
-    [[VAKNetManager sharedManager] loadRequestWithPath:@"http://localhost:3000/catalog" completion:^(id data, NSError *error) {
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
         if (data) {
-            NSLog(@"%@", data);
+            User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"id"]]];
+            user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"name"]];
+            user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"password"]];
         }
     }];
     [self.tableView registerNib:[UINib nibWithNibName:@"VAKCustomTableViewCell" bundle:nil] forCellReuseIdentifier:@"VAKCustomTableViewCell"];
+    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+    NSLog(@"%@", [VAKCoreDataManager allEntitiesWithName:VAKUser]);
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {

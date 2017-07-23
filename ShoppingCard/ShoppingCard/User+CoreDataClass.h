@@ -11,6 +11,7 @@
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
 @property (nullable, nonatomic, copy) NSNumber *userId;
+@property (nullable, nonatomic, copy) NSString *password;
 @property (nullable, nonatomic, retain) NSSet<Order *> *orders;
 
 @end
