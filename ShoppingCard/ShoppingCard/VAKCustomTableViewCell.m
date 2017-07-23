@@ -22,7 +22,7 @@
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {
-    
+    NSLog(@"Basket pressed!!!");
 }
 
 @end
