@@ -113,6 +113,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.22288973979999999" green="0.59358120530000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
+                <outlet property="buttonBasket" destination="lXz-oq-OT7" id="OGp-AM-KB0"/>
                 <outlet property="phoneColor" destination="HtK-gr-TxV" id="cMq-iv-jPg"/>
                 <outlet property="phoneId" destination="N52-hJ-VSw" id="u7H-ZF-K5h"/>
                 <outlet property="phoneImage" destination="pqH-H7-zfV" id="Z8K-oY-3E1"/>
