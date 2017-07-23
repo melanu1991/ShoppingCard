@@ -1,6 +1,7 @@
 #import "ViewController.h"
 #import "VAKProfileTableViewController.h"
 #import "VAKGoodsTableViewCell.h"
+#import "VAKNetManager.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -22,6 +23,12 @@
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
+    
+    [[VAKNetManager sharedManager] loadRequestWithPath:@"http://localhost:3000/catalog" completion:^(id data, NSError *error) {
+        if (data) {
+            NSLog(@"%@", data);
+        }
+    }];
 }
 
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {

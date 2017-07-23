@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DE1C9AA00D604B41C5A4677 /* libPods-ShoppingCard.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C764A6DB59B68D8C617AFE /* libPods-ShoppingCard.a */; };
 		58604DEE1F1F60F000073B2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DED1F1F60F000073B2D /* main.m */; };
 		58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF01F1F60F000073B2D /* AppDelegate.m */; };
 		58604DF41F1F60F000073B2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF31F1F60F000073B2D /* ViewController.m */; };
@@ -19,9 +20,11 @@
 		58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */; };
 		58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */; };
 		58604E171F1F7DA300073B2D /* VAKGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E161F1F7DA300073B2D /* VAKGoodsTableViewCell.m */; };
+		58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E695641F2367FA00E57C7E /* VAKNetManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45E1BBD4EF5CF35DEBFA1EFE /* Pods-ShoppingCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard.debug.xcconfig"; sourceTree = "<group>"; };
 		58604DE91F1F60F000073B2D /* ShoppingCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58604DED1F1F60F000073B2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58604DEF1F1F60F000073B2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,6 +46,10 @@
 		58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKBasketTableViewController.m; sourceTree = "<group>"; };
 		58604E151F1F7DA300073B2D /* VAKGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKGoodsTableViewCell.h; sourceTree = "<group>"; };
 		58604E161F1F7DA300073B2D /* VAKGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKGoodsTableViewCell.m; sourceTree = "<group>"; };
+		58E695631F2367FA00E57C7E /* VAKNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKNetManager.h; sourceTree = "<group>"; };
+		58E695641F2367FA00E57C7E /* VAKNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKNetManager.m; sourceTree = "<group>"; };
+		77C764A6DB59B68D8C617AFE /* libPods-ShoppingCard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShoppingCard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D822AE3C26B39A6BE5194DFF /* Pods-ShoppingCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,17 +57,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DE1C9AA00D604B41C5A4677 /* libPods-ShoppingCard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57246634E314EF5E719BA1EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77C764A6DB59B68D8C617AFE /* libPods-ShoppingCard.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		58604DE01F1F60EF00073B2D = {
 			isa = PBXGroup;
 			children = (
 				58604DEB1F1F60F000073B2D /* ShoppingCard */,
 				58604DEA1F1F60F000073B2D /* Products */,
+				DE3A038AA78127F5F31C7A9B /* Pods */,
+				57246634E314EF5E719BA1EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +136,8 @@
 		58604E071F1F694500073B2D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				58E695631F2367FA00E57C7E /* VAKNetManager.h */,
+				58E695641F2367FA00E57C7E /* VAKNetManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -131,6 +151,15 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		DE3A038AA78127F5F31C7A9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45E1BBD4EF5CF35DEBFA1EFE /* Pods-ShoppingCard.debug.xcconfig */,
+				D822AE3C26B39A6BE5194DFF /* Pods-ShoppingCard.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58604E031F1F60F000073B2D /* Build configuration list for PBXNativeTarget "ShoppingCard" */;
 			buildPhases = (
+				31629A8B7091D0F469657DC5 /* [CP] Check Pods Manifest.lock */,
 				58604DE51F1F60EF00073B2D /* Sources */,
 				58604DE61F1F60EF00073B2D /* Frameworks */,
 				58604DE71F1F60EF00073B2D /* Resources */,
+				9A03E0172FB1CEA4E4C73DC7 /* [CP] Embed Pods Frameworks */,
+				3A794449D65CDB6046E80A71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,6 +230,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		31629A8B7091D0F469657DC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3A794449D65CDB6046E80A71 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A03E0172FB1CEA4E4C73DC7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoppingCard/Pods-ShoppingCard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		58604DE51F1F60EF00073B2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -211,6 +291,7 @@
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
 				58604E171F1F7DA300073B2D /* VAKGoodsTableViewCell.m in Sources */,
+				58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,9 +410,11 @@
 		};
 		58604E041F1F60F000073B2D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45E1BBD4EF5CF35DEBFA1EFE /* Pods-ShoppingCard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShoppingCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VAK.ShoppingCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -340,9 +423,11 @@
 		};
 		58604E051F1F60F000073B2D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D822AE3C26B39A6BE5194DFF /* Pods-ShoppingCard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShoppingCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VAK.ShoppingCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +453,7 @@
 				58604E051F1F60F000073B2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

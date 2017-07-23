@@ -1,0 +1,33 @@
+{
+  "catalog": [
+    {
+      "id": 1,
+      "title": "Xiaomi Redmi 4X 16GB Black",
+      "price": "246"
+    },
+    {
+      "id": 2,
+      "title": "Apple iPhone 7 32GB Black",
+      "price": "1400"
+    },
+    {
+      "id": 3,
+      "title": "Samsung Galaxy S8 Dual SIM 64GB",
+      "price": "1590"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "name": "Igor",
+      "psw": "qwe"
+    }
+  ],
+  "order": [
+    {
+      "date":"20.07.2017",
+      "catalog": [{"id":3}, {"id":1}],
+      "id": 1
+    }
+  ]
+}
