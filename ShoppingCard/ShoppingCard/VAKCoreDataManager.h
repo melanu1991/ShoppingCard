@@ -8,8 +8,6 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (VAKCoreDataManager *)sharedManager;
-+ (NSManagedObjectContext *)managedObjectContext;
-+ (void)setupCoreDataStorageName:(NSString *)name;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
