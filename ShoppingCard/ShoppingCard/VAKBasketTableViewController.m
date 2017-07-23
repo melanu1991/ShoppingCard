@@ -1,4 +1,5 @@
 #import "VAKBasketTableViewController.h"
+#import "VAKCustomTableViewCell.h"
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -8,6 +9,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VAKCustomTableViewCell" bundle:nil] forCellReuseIdentifier:@"VAKCustomTableViewCell"];
 }
 
 - (void)backButtonPressed {
@@ -19,14 +21,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NormalCell"];
-        return cell;
-    }
-    else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RemovedCell"];
-        return cell;
-    }
+    VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VAKCustomTableViewCell"];
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

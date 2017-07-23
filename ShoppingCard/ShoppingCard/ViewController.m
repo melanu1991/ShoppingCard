@@ -1,6 +1,6 @@
 #import "ViewController.h"
 #import "VAKProfileTableViewController.h"
-#import "VAKGoodsTableViewCell.h"
+#import "VAKCustomTableViewCell.h"
 #import "VAKNetManager.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -29,6 +29,7 @@
             NSLog(@"%@", data);
         }
     }];
+    [self.tableView registerNib:[UINib nibWithNibName:@"VAKCustomTableViewCell" bundle:nil] forCellReuseIdentifier:@"VAKCustomTableViewCell"];
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {
@@ -59,7 +60,7 @@
 
 - (void)showMenu {
     [UIView animateWithDuration:0.3f animations:^{
-        self.profileVC.view.frame = CGRectMake(0, 60, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        self.profileVC.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         [self addChildViewController:self.profileVC];
         [self.view addSubview:self.profileVC.view];
         self.isProfileVC = NO;
@@ -68,7 +69,7 @@
 
 - (void)hideMenu {
     [UIView animateWithDuration:0.3f animations:^{
-        self.profileVC.view.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 60, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        self.profileVC.view.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     } completion:^(BOOL finished) {
         [self.profileVC removeFromParentViewController];
         self.isProfileVC = YES;
@@ -80,7 +81,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VAKGoodsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GoodsCell"];
+    VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VAKCustomTableViewCell"];
     return cell;
 }
 

@@ -1,6 +1,6 @@
-#import "VAKProfileTableViewCell.h"
+#import "VAKCustomTableViewCell.h"
 
-@implementation VAKProfileTableViewCell
+@implementation VAKCustomTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
