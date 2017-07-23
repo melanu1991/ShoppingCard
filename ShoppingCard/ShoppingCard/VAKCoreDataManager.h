@@ -20,6 +20,7 @@
 
 + (Object *)createEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
 + (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
++ (void)deleteAllEntity;
 + (NSArray *)allEntitiesWithName:(NSString *)name;
 + (NSNumber *)generateIdentifier;
 

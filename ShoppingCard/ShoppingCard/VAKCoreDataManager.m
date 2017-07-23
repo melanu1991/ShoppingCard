@@ -79,6 +79,22 @@
 
 @implementation VAKCoreDataManager (WorkWithCoreData)
 
++ (void)deleteAllEntity {
+    NSArray *goods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+    NSArray *users = [VAKCoreDataManager allEntitiesWithName:VAKUser];
+    NSArray *orders = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+    for (Good *good in goods) {
+        [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:good];
+    }
+    for (Order *order in orders) {
+        [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:order];
+    }
+    for (User *user in users) {
+        [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:user];
+    }
+    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+}
+
 + (NSNumber *)generateIdentifier {
     NSNumber *identifier = [NSNumber numberWithInteger:arc4random_uniform(10000)];
     return identifier;

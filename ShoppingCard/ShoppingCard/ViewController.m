@@ -30,11 +30,16 @@
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
     
+//    [VAKCoreDataManager deleteAllEntity];
+    
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
         if (data) {
             User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"id"]]];
             user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"name"]];
             user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"password"]];
+            user.address = @"";
+            user.phoneNumber = @"";
+            [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
         }
     }];
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
@@ -42,9 +47,12 @@
             NSArray *arrayGoods = data;
             for (id item in arrayGoods) {
                 Good *good = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
-                good.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"name"]];
+                good.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"title"]];
                 NSString *price = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"price"]];
                 good.price = [NSNumber numberWithInteger:price.integerValue];
+                good.discount = @1;
+                good.image = @1;
+                [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
             }
         }
     }];
@@ -58,13 +66,19 @@
                 NSArray *arrayGoodsFromDB = [VAKCoreDataManager allEntitiesWithName:VAKGood];
                 for (id item in arrayGoodsFromOrder) {
                     
+                    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
                 }
             }
         }
     }];
     [self.tableView registerNib:[UINib nibWithNibName:VAKTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKTableViewCellIdentifier];
-    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
-    NSLog(@"%@", [VAKCoreDataManager allEntitiesWithName:VAKUser]);
+    NSArray *arrUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser];
+    User *user = arrUsers[0];
+    NSLog(@"%@", user.name);
+    NSArray *arrGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+    for (Good *good in arrGoods) {
+        NSLog(@"%@", good.name);
+    }
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {
