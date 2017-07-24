@@ -32,4 +32,12 @@ static NSString * const VAKPhoneCode = @"VAKPhoneCode";
 
 #pragma mark - Controllers identifier
 
+static NSString * const VAKProfileTableViewControllerIdentifier = @"VAKProfileTableViewController";
+static NSString * const VAKGoodViewControllerIdentifier = @"ViewController";
+
+#pragma mark - UI identifier
+
+static NSString * const VAKEntryButton = @"Entry";
+static NSString * const VAKRegistrationButton = @"Registration";
+
 #endif

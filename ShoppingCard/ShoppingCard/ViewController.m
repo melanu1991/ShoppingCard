@@ -7,6 +7,7 @@
 #import "Good+CoreDataClass.h"
 #import "VAKNSDate+Formatters.h"
 #import "VAKBasketTableViewController.h"
+#import "VAKUserInfoViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -75,7 +76,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isProfileVC = YES;
-    self.profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileTableViewController"];
+    self.profileVC = [self.storyboard instantiateViewControllerWithIdentifier:VAKProfileTableViewControllerIdentifier];
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
