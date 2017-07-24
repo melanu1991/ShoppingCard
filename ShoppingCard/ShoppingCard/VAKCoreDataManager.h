@@ -22,6 +22,7 @@
 + (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
 + (void)deleteAllEntity;
 + (NSArray *)allEntitiesWithName:(NSString *)name;
++ (NSArray *)allEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate;
 + (NSNumber *)generateIdentifier;
 
 @end

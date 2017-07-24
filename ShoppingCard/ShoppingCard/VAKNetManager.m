@@ -44,7 +44,7 @@
 }
 
 + (NSObject *)parserValueFromJSONValue:(NSObject *)value {
-    NSObject *result = nil;
+    NSObject *result = value;
     if ([value isKindOfClass:[NSArray class]]) {
         NSArray *arr = (NSArray *)value;
         if ([arr[0] isKindOfClass:[NSString class]]) {

@@ -79,6 +79,15 @@
 
 @implementation VAKCoreDataManager (WorkWithCoreData)
 
++ (NSArray *)allEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *description = [NSEntityDescription entityForName:name inManagedObjectContext:[VAKCoreDataManager sharedManager].managedObjectContext];
+    [request setEntity:description];
+    [request setPredicate:predicate];
+    NSArray *arrayEntities = [[VAKCoreDataManager sharedManager].managedObjectContext executeFetchRequest:request error:nil];
+    return arrayEntities;
+}
+
 + (void)deleteAllEntity {
     NSArray *goods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
     NSArray *users = [VAKCoreDataManager allEntitiesWithName:VAKUser];

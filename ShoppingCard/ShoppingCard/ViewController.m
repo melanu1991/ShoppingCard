@@ -30,13 +30,13 @@
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
     
-//    [VAKCoreDataManager deleteAllEntity];
+    [VAKCoreDataManager deleteAllEntity];
     
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
         if (data) {
             User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"id"]]];
             user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"name"]];
-            user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"password"]];
+            user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"psw"]];
             user.address = @"";
             user.phoneNumber = @"";
             [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
@@ -52,33 +52,28 @@
                 good.price = [NSNumber numberWithInteger:price.integerValue];
                 good.discount = @1;
                 good.image = @1;
-                [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
             }
+            [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
         }
     }];
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
         if (data) {
             for (id item in data) {
                 Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
-                NSString *stringDate = (NSString *)[VAKNetManager parserValueFromJSONValue:item];
-                order.date = [NSDate dateWithString:stringDate format:VAKDateFormat];
+                order.date = [NSDate dateWithString:item[@"date"] format:VAKDateFormat];
                 NSArray *arrayGoodsFromOrder = [item valueForKeyPath:@"catalog"];
                 NSArray *arrayGoodsFromDB = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-                for (id item in arrayGoodsFromOrder) {
-                    
-                    [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+                for (NSDictionary *goodFromOrder in arrayGoodsFromOrder) {
+                    NSNumber *number = goodFromOrder[@"id"];
+                    NSLog(@"%ld", number.integerValue);
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"code.integerValue == %ld", number.integerValue];
+                    arrayGoodsFromDB = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:predicate];
                 }
             }
+            [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
         }
     }];
     [self.tableView registerNib:[UINib nibWithNibName:VAKTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKTableViewCellIdentifier];
-    NSArray *arrUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser];
-    User *user = arrUsers[0];
-    NSLog(@"%@", user.name);
-    NSArray *arrGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-    for (Good *good in arrGoods) {
-        NSLog(@"%@", good.name);
-    }
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {
