@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="VAKCustomTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VAKGoodCellIdentifier" rowHeight="140" id="KGk-i7-Jjw" customClass="VAKCustomTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="435" height="142"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -114,7 +114,6 @@
             <color key="backgroundColor" red="0.22288973979999999" green="0.59358120530000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="basketButton" destination="lXz-oq-OT7" id="oIa-SB-oOV"/>
-                <outlet property="buttonBasket" destination="lXz-oq-OT7" id="OGp-AM-KB0"/>
                 <outlet property="phoneColor" destination="HtK-gr-TxV" id="cMq-iv-jPg"/>
                 <outlet property="phoneId" destination="N52-hJ-VSw" id="u7H-ZF-K5h"/>
                 <outlet property="phoneImage" destination="pqH-H7-zfV" id="Z8K-oY-3E1"/>

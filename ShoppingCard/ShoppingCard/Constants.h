@@ -16,7 +16,10 @@ static NSString * const VAKOrder = @"Order";
 
 #pragma mark - TableViewCell
 
-static NSString * const VAKTableViewCellIdentifier = @"VAKCustomTableViewCell";
+static NSString * const VAKGoodCellIdentifier = @"VAKGoodCellIdentifier";
+static NSString * const VAKBasketCellIdentifier = @"VAKBasketCellIdentifier";
+static NSString * const VAKGoodTableViewCellIdentifier = @"VAKCustomTableViewCell";
+static NSString * const VAKBasketTableViewCellIdentifier = @"VAKBasketTableViewCell";
 
 #pragma mark - Date Format
 
@@ -26,5 +29,7 @@ static NSString * const VAKDateFormat = @"dd.MM.yyyy";
 
 static NSString * const VAKBasketButtonPressed = @"VAKBasketButtonPressed";
 static NSString * const VAKPhoneCode = @"VAKPhoneCode";
+
+#pragma mark - Controllers identifier
 
 #endif

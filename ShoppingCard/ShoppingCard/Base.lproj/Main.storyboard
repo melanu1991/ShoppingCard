@@ -24,7 +24,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="9By-z9-MRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="ZvN-b5-CrF"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="cRw-7f-XCN"/>
@@ -268,7 +268,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="byc-tn-jL7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="Yeh-av-aE0" id="Ujp-Lr-7QY"/>
                             <outlet property="delegate" destination="Yeh-av-aE0" id="Zov-Lb-h2k"/>
@@ -441,7 +441,6 @@
         <!--Navigation Controller-->
         <scene sceneID="hnN-Ga-fNf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IvP-Cy-gNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JoG-Fz-OGR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="lvU-0s-LmD">
@@ -453,6 +452,7 @@
                         <segue destination="tMz-36-nsm" kind="relationship" relationship="rootViewController" id="ogK-7I-k5g"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IvP-Cy-gNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3512" y="-135"/>
         </scene>
