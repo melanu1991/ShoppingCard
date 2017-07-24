@@ -19,19 +19,15 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.isProfileVC = YES;
-    self.profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileTableViewController"];
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:swipeLeft];
-    [self.view addGestureRecognizer:swipeRight];
-    
+#pragma mark - Notification
+
+
+
+#pragma mark - life cicle view
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [VAKCoreDataManager deleteAllEntity];
-    
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
         if (data) {
             User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"id"]]];
@@ -73,6 +69,18 @@
             [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
         }
     }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.isProfileVC = YES;
+    self.profileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProfileTableViewController"];
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
+    [self.view addGestureRecognizer:swipeRight];
     [self.tableView registerNib:[UINib nibWithNibName:VAKTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKTableViewCellIdentifier];
 }
 
@@ -121,17 +129,26 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+//    return allGoods.count;
     return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VAKCustomTableViewCell"];
+//    NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+//    Good *currentGood = allGoods[indexPath.row];
+//    cell.phoneId.text = currentGood.code.stringValue;
+//    cell.phoneName.text = currentGood.name;
+//    cell.phoneColor.text = @"Black";
+//    cell.phoneImage.backgroundColor = [UIColor redColor];
+//    cell.phonePrice.text = currentGood.price.stringValue;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"Did select row!!!");
+    
 }
 
 @end

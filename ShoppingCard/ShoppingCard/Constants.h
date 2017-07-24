@@ -22,4 +22,9 @@ static NSString * const VAKTableViewCellIdentifier = @"VAKCustomTableViewCell";
 
 static NSString * const VAKDateFormat = @"dd.MM.yyyy";
 
+#pragma mark - Notification
+
+static NSString * const VAKBasketButtonPressed = @"VAKBasketButtonPressed";
+static NSString * const VAKPhoneCode = @"VAKPhoneCode";
+
 #endif

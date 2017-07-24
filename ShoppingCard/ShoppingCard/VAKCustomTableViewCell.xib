@@ -72,7 +72,7 @@
                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                         </state>
                         <connections>
-                            <action selector="basketButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Wie-4V-5CZ"/>
+                            <action selector="basketButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="geP-Sj-XHs"/>
                         </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="pa8-r9-zmJ">
@@ -113,6 +113,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.22288973979999999" green="0.59358120530000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
+                <outlet property="basketButton" destination="lXz-oq-OT7" id="oIa-SB-oOV"/>
                 <outlet property="buttonBasket" destination="lXz-oq-OT7" id="OGp-AM-KB0"/>
                 <outlet property="phoneColor" destination="HtK-gr-TxV" id="cMq-iv-jPg"/>
                 <outlet property="phoneId" destination="N52-hJ-VSw" id="u7H-ZF-K5h"/>
