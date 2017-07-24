@@ -46,6 +46,7 @@
                         user.password = self.paswordField.text;
                         user.address = @"";
                         user.phoneNumber = @"";
+                        
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                     else {
