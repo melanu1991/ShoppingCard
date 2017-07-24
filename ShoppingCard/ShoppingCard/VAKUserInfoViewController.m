@@ -2,7 +2,7 @@
 #import "ViewController.h"
 #import "Constants.h"
 #import "User+CoreDataClass.h"
-#import "VAKCoreDataManager.m"
+#import "VAKCoreDataManager.h"
 #import "VAKNetManager.h"
 
 @interface VAKUserInfoViewController () <UITextFieldDelegate>
@@ -26,26 +26,62 @@
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
     if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && [self.paswordField.text isEqualToString:self.confirmationPasswordField.text]) {
         [VAKCoreDataManager deleteAllEntity];
-        if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
-            
-        }
         [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
             if (data) {
-                User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"id"]]];
-                user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"name"]];
-                user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[data valueForKeyPath:@"psw"]];
-                user.address = @"";
-                user.phoneNumber = @"";
-                [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
                 ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
-                [self.navigationController pushViewController:vc animated:YES];
+                NSArray *arrayUsers = data;
+                for (id item in arrayUsers) {
+                    User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
+                    user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"name"]];
+                    user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"psw"]];
+                    user.address = @"";
+                    user.phoneNumber = @"";
+                }
+                if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.loginField.text];
+                    NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
+                    if (arrayUsers.count == 0) {
+                        User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:nil];
+                        user.name = self.loginField.text;
+                        user.password = self.paswordField.text;
+                        user.address = @"";
+                        user.phoneNumber = @"";
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    else {
+                        [self alertActionWithTitle:@"Error" message:@"Such user is registered"];
+                    }
+                }
+                else {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND password == %@", self.loginField.text, self.paswordField.text];
+                    NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
+                    if (arrayUsers.count > 0) {
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                    else {
+                        [self alertActionWithTitle:@"Error" message:@"Incorrect data entered"];
+                    }
+                }
+                [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
             }
         }];
+    }
+    else {
+        [self alertActionWithTitle:@"Error" message:@"Incorrect data entered"];
     }
 }
 - (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {
     ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - helpers method
+
+- (void)alertActionWithTitle:(NSString *)title message:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UIResponder

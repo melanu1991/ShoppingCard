@@ -7,7 +7,6 @@
 #import "Good+CoreDataClass.h"
 #import "VAKNSDate+Formatters.h"
 #import "VAKBasketTableViewController.h"
-#import "VAKUserInfoViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
