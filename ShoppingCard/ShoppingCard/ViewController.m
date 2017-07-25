@@ -10,9 +10,9 @@
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) VAKProfileTableViewController *profileVC;
 @property (assign, nonatomic) BOOL isProfileVC;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -22,7 +22,7 @@
 
 
 
-#pragma mark - life cicle view
+#pragma mark - life cycle view
 
 //- (void)viewWillAppear:(BOOL)animated {
 //    [super viewWillAppear:animated];

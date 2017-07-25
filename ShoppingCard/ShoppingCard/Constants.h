@@ -29,6 +29,7 @@ static NSString * const VAKDateFormat = @"dd.MM.yyyy";
 
 static NSString * const VAKBasketButtonPressed = @"VAKBasketButtonPressed";
 static NSString * const VAKPhoneCode = @"VAKPhoneCode";
+static NSString * const VAKUserAuthorization = @"VAKUserAuthorization";
 
 #pragma mark - Controllers identifier
 

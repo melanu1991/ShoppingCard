@@ -24,7 +24,7 @@
 }
 
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
-    if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && [self.paswordField.text isEqualToString:self.confirmationPasswordField.text]) {
+    if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && ([self.paswordField.text isEqualToString:self.confirmationPasswordField.text] || self.registrationOrEntryController.selectedSegmentIndex == 1)) {
         [VAKCoreDataManager deleteAllEntity];
         [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
             if (data) {
@@ -46,7 +46,7 @@
                         user.password = self.paswordField.text;
                         user.address = @"";
                         user.phoneNumber = @"";
-                        
+                        //Тут нада данные отправить на сервер!!! Пост запросом!!!
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                     else {
@@ -57,6 +57,8 @@
                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND password == %@", self.loginField.text, self.paswordField.text];
                     NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
                     if (arrayUsers.count > 0) {
+//                        NSDictionary *dic = [NSDictionary dictionaryWithObject:arrayUsers[0] forKey:VAKUser];
+//                        [[NSNotificationCenter defaultCenter] postNotificationName:VAKUserAuthorization object:dic];
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                     else {
