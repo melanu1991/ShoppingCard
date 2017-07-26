@@ -32,9 +32,13 @@
         Order *currentOrder = selectedGood[0];
         [currentOrder addGoodsObject:good];
         NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, currentOrder.orderId];
-        //Тут нада сначала с ордера извлекать все заказы а потом формировать полный перечень!
-        NSDictionary *info = @{ @"id" : currentOrder.orderId,
-                                @"catalog" : @[ @{ @"id" : good.code } ] };
+        //Тут нада сначала с ордера извлекать все заказы а потом формировать полный перечень! И видимо нада перечислять заного все поля, потому что дата и статус затираются иначе (непонятная логика почему так!)
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentOrder.date];
+        NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
+        NSDictionary *info = @{ VAKID : currentOrder.orderId,
+                                VAKCatalog : @[ @{ @"id" : good.code } ],
+                                VAKDate : dateString,
+                                VAKStatus : currentOrder.status };
         [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
     }
     else {
