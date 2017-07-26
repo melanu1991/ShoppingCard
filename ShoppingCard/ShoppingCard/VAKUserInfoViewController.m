@@ -26,8 +26,8 @@
 
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
     User *user = nil;
+    ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
     if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && ([self.paswordField.text isEqualToString:self.confirmationPasswordField.text] || self.registrationOrEntryController.selectedSegmentIndex == 1)) {
-            ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
         if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.loginField.text];
             NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
@@ -66,6 +66,7 @@
         [self alertActionWithTitle:VAKError message:VAKErrorMessage];
     }
     [VAKProfileViewController sharedProfile].user = user;
+    vc.user = user;
 }
 
 - (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {

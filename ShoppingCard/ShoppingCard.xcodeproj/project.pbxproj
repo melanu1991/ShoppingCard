@@ -149,14 +149,14 @@
 			children = (
 				58604DF21F1F60F000073B2D /* ViewController.h */,
 				58604DF31F1F60F000073B2D /* ViewController.m */,
-				58604E0C1F1F699100073B2D /* VAKProfileViewController.h */,
-				58604E0D1F1F699100073B2D /* VAKProfileViewController.m */,
 				58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */,
 				58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */,
 				58C482011F24A98C00E4D891 /* VAKDetailViewController.h */,
 				58C482021F24A98C00E4D891 /* VAKDetailViewController.m */,
 				589E270C1F261EAB00C3D42D /* VAKUserInfoViewController.h */,
 				589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */,
+				58604E0C1F1F699100073B2D /* VAKProfileViewController.h */,
+				58604E0D1F1F699100073B2D /* VAKProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

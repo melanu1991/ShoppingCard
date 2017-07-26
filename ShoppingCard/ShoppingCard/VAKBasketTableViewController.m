@@ -5,6 +5,8 @@
 #import "VAKNSDate+Formatters.h"
 #import "VAKCoreDataManager.h"
 #import "Order+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Good+CoreDataClass.h"
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -17,16 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:VAKBasketTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKBasketCellIdentifier];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodAddToBasket:) name:VAKBasketButtonPressed object:nil];
-}
-
-#pragma mark - Notification
-
-- (void)goodAddToBasket:(NSNotification *)notification {
-    NSNumber *codeGood = notification.userInfo[VAKPhoneCode];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"code.integerValue == %ld", codeGood.integerValue];
-    NSArray *selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:predicate];
-    
 }
 
 #pragma mark - action
@@ -48,7 +40,7 @@
     Order *order = arrayOrders[indexPath.row];
     cell.numberOfOrder.text = order.orderId.stringValue;
     cell.dateOfOrder.text = [order.date formattedString:VAKDateFormat];
-    cell.statusOfOrder.text = @"Unknow";
+    cell.statusOfOrder.text = order.status.stringValue;
     cell.priceOfOrder.text = @"Unknow";
     return cell;
 }

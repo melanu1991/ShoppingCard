@@ -59,17 +59,17 @@
     self.request = [NSMutableURLRequest requestWithURL:self.url];
     self.request.HTTPMethod = @"GET";
     [[self.session dataTaskWithRequest:self.request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(nil, error);
-            });
-        }
-        else {
-            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(json, nil);
-            });
-        }
+    if (error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(nil, error);
+    });
+    }
+    else {
+        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(json, nil);
+        });
+    }
     }] resume];
 }
 

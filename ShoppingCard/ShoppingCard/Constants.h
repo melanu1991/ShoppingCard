@@ -40,6 +40,7 @@ static NSString * const VAKGoodViewControllerIdentifier = @"ViewController";
 
 static NSString * const VAKEntryButton = @"Entry";
 static NSString * const VAKRegistrationButton = @"Registration";
+static NSString * const VAKUnregistredUser = @"UnregistredUser";
 
 #pragma mark - For works JSON
 

@@ -4,6 +4,8 @@
 #import "Constants.h"
 #import "VAKCoreDataManager.h"
 #import "Good+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Order+CoreDataClass.h"
 #import "VAKNSDate+Formatters.h"
 #import "VAKBasketTableViewController.h"
 #import "VAKProfileViewController.h"
@@ -18,7 +20,40 @@
 
 #pragma mark - Notification
 
-
+- (void)goodAddToBasket:(NSNotification *)notification {
+    NSLog(@"Notification: %@", notification.userInfo[VAKPhoneCode]);
+    NSString *codeGood = notification.userInfo[VAKPhoneCode];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"code.integerValue == %ld", codeGood.integerValue];
+    NSArray *selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:predicate];
+    Good *good = selectedGood[0];
+    predicate = [NSPredicate predicateWithFormat:@"orderId.integerValue == %ld AND status == 0", self.user.userId.integerValue];
+    selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
+    if (selectedGood.count > 0) {
+        Order *currentOrder = selectedGood[0];
+        [currentOrder addGoodsObject:good];
+        NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, currentOrder.orderId];
+        //Тут нада сначала с ордера извлекать все заказы а потом формировать полный перечень!
+        NSDictionary *info = @{ @"id" : currentOrder.orderId,
+                                @"catalog" : @[ @{ @"id" : good.code } ] };
+        [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
+    }
+    else {
+        Order *openOrder = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:self.user.userId];
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+        NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
+        openOrder.date = [NSDate dateWithString:dateString format:VAKDateFormat];
+        NSLog(@"%@", openOrder.date);
+        openOrder.status = @0;
+        [openOrder addGoodsObject:good];
+        NSString *path = [NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier];
+        NSDictionary *info = @{ VAKDate : dateString,
+                                VAKStatus : @0,
+                                VAKCatalog : @[ @{VAKID : good.code} ],
+                                VAKID : self.user.userId };
+        [[VAKNetManager sharedManager] uploadRequestWithPath:path info:info completion:nil];
+    }
+    [[VAKCoreDataManager sharedManager] saveContext];
+}
 
 #pragma mark - life cycle view
 
@@ -31,6 +66,7 @@
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodAddToBasket:) name:VAKBasketButtonPressed object:nil];
 }
 
 #pragma mark - action
@@ -103,6 +139,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - deallocate
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

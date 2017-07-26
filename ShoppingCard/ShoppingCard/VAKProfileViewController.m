@@ -39,7 +39,12 @@
     self.profileView.layer.shadowPath = CGPathCreateWithRect(CGRectMake(0, 0, 50, 50), NULL);
     self.profileView.layer.shadowOpacity = 1.0f;
     self.profileView.layer.shadowOffset = CGSizeMake(1, 1);
-    self.nameLabel.text = self.user.name;
+    if (self.user) {
+        self.nameLabel.text = self.user.name;
+    }
+    else {
+        self.nameLabel.text = VAKUnregistredUser;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

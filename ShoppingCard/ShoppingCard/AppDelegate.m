@@ -51,6 +51,7 @@
                 user.phoneNumber = userInfo[VAKPhoneNumber];
             }
             [[VAKCoreDataManager sharedManager] saveContext];
+            
         }
     }];
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
@@ -73,6 +74,7 @@
                 phone.price = phoneInfo[VAKPrice];
                 phone.color = phoneInfo[VAKColor];
                 phone.discount = phoneInfo[VAKDiscount];
+                //Если нужно картинку хранить в базе, добавить сюда выполнение!!!
             }
             [[VAKCoreDataManager sharedManager] saveContext];
         }

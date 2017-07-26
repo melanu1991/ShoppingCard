@@ -21,8 +21,8 @@
 }
 
 - (IBAction)basketButtonPressed:(UIButton *)sender {
-    NSDictionary *dic = [NSDictionary dictionaryWithObject:self.phoneId forKey:VAKPhoneCode];
-    [[NSNotificationCenter defaultCenter] postNotificationName:VAKBasketButtonPressed object:dic];
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:self.phoneId.text forKey:VAKPhoneCode];
+    [[NSNotificationCenter defaultCenter] postNotificationName:VAKBasketButtonPressed object:nil userInfo:dic];
 }
 
 @end
