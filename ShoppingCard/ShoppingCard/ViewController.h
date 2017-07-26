@@ -4,5 +4,7 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) VAKProfileTableViewController *profileVC;
+
 @end
 

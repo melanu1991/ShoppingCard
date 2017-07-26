@@ -1,17 +1,29 @@
-#import "VAKProfileTableViewController.h"
+#import "VAKProfileViewController.h"
 #import "Constants.h"
 #import "User+CoreDataClass.h"
 
-@interface VAKProfileTableViewController ()
+@interface VAKProfileViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *profileView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) User *user;
 
 @end
 
-@implementation VAKProfileTableViewController
+@implementation VAKProfileViewController
+
+#pragma mark - Singleton
+
++ (instancetype)sharedProfile {
+    static VAKProfileViewController *sharedProfile = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:VAKStoryboardName bundle:nil];
+        sharedProfile = [storyboard instantiateViewControllerWithIdentifier:VAKProfileViewControllerIdentifier];
+        sharedProfile.profileVC = YES;
+    });
+    return sharedProfile;
+}
 
 #pragma mark - life cycle uiviewcontroller
 
@@ -27,20 +39,12 @@
     self.profileView.layer.shadowPath = CGPathCreateWithRect(CGRectMake(0, 0, 50, 50), NULL);
     self.profileView.layer.shadowOpacity = 1.0f;
     self.profileView.layer.shadowOffset = CGSizeMake(1, 1);
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userAuthorization:) name:VAKUserAuthorization object:nil];
+    self.nameLabel.text = self.user.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self performSelector:@selector(setStyleCircleForImage:) withObject:self.avatarImage afterDelay:0];
-}
-
-#pragma mark - Notification
-
-- (void)userAuthorization:(NSNotification *)notification {
-    self.user = notification.userInfo[VAKUser];
-    self.nameLabel.text = self.user.name;
-    self.avatarImage.backgroundColor = [UIColor blueColor];
 }
 
 #pragma mark - Helpers
@@ -50,10 +54,22 @@
     imageView.clipsToBounds = YES;
 }
 
-#pragma mark - deallocate
+- (void)showMenu:(UIViewController *)viewController {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [viewController addChildViewController:self];
+        [viewController.view addSubview:self.view];
+        self.profileVC = NO;
+    }];
+}
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)hideMenu {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.view.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    } completion:^(BOOL finished) {
+        [self removeFromParentViewController];
+        self.profileVC = YES;
+    }];
 }
 
 @end

@@ -15,7 +15,7 @@
 		58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */; };
 		58604DFC1F1F60F000073B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFB1F1F60F000073B2D /* Assets.xcassets */; };
 		58604DFF1F1F60F000073B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */; };
-		58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */; };
+		58604E0E1F1F699100073B2D /* VAKProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0D1F1F699100073B2D /* VAKProfileViewController.m */; };
 		58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */; };
 		58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */; };
 		589E270E1F261EAB00C3D42D /* VAKUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */; };
@@ -45,8 +45,8 @@
 		58604DFB1F1F60F000073B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58604DFE1F1F60F000073B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58604E001F1F60F000073B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		58604E0C1F1F699100073B2D /* VAKProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKProfileTableViewController.h; sourceTree = "<group>"; };
-		58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileTableViewController.m; sourceTree = "<group>"; };
+		58604E0C1F1F699100073B2D /* VAKProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKProfileViewController.h; sourceTree = "<group>"; };
+		58604E0D1F1F699100073B2D /* VAKProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileViewController.m; sourceTree = "<group>"; };
 		58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCoreDataManager.h; sourceTree = "<group>"; };
 		58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCoreDataManager.m; sourceTree = "<group>"; };
 		58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKBasketTableViewController.h; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 			children = (
 				58604DF21F1F60F000073B2D /* ViewController.h */,
 				58604DF31F1F60F000073B2D /* ViewController.m */,
-				58604E0C1F1F699100073B2D /* VAKProfileTableViewController.h */,
-				58604E0D1F1F699100073B2D /* VAKProfileTableViewController.m */,
+				58604E0C1F1F699100073B2D /* VAKProfileViewController.h */,
+				58604E0D1F1F699100073B2D /* VAKProfileViewController.m */,
 				58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */,
 				58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */,
 				58C482011F24A98C00E4D891 /* VAKDetailViewController.h */,
@@ -366,7 +366,7 @@
 				58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */,
 				58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */,
 				58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */,
-				58604E0E1F1F699100073B2D /* VAKProfileTableViewController.m in Sources */,
+				58604E0E1F1F699100073B2D /* VAKProfileViewController.m in Sources */,
 				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
 				58C482031F24A98C00E4D891 /* VAKDetailViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,

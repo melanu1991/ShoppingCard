@@ -4,6 +4,7 @@
 #import "User+CoreDataClass.h"
 #import "VAKCoreDataManager.h"
 #import "VAKNetManager.h"
+#import "VAKProfileViewController.h"
 
 @interface VAKUserInfoViewController () <UITextFieldDelegate>
 
@@ -24,13 +25,14 @@
 }
 
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
+    User *user = nil;
     if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && ([self.paswordField.text isEqualToString:self.confirmationPasswordField.text] || self.registrationOrEntryController.selectedSegmentIndex == 1)) {
             ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
         if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"VAKName == %@", self.loginField.text];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.loginField.text];
             NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
             if (arrayUsers.count == 0) {
-                User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:nil];
+                user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:nil];
                 user.name = self.loginField.text;
                 user.password = self.paswordField.text;
                 NSDictionary *info = @{ VAKID : user.userId,
@@ -49,10 +51,10 @@
             }
         }
         else {
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"VAKName == %@ AND VAKPasswordFull == %@", self.loginField.text, self.paswordField.text];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND password == %@", self.loginField.text, self.paswordField.text];
             NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
             if (arrayUsers.count > 0) {
-                NSLog(@"%@", arrayUsers[0]);
+                
                 [self.navigationController pushViewController:vc animated:YES];
             }
             else {
@@ -63,6 +65,7 @@
     else {
         [self alertActionWithTitle:VAKError message:VAKErrorMessage];
     }
+    [VAKProfileViewController sharedProfile].user = user;
 }
 
 - (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {

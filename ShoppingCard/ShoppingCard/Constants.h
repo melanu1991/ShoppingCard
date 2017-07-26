@@ -33,7 +33,7 @@ static NSString * const VAKUserAuthorization = @"VAKUserAuthorization";
 
 #pragma mark - Controllers identifier
 
-static NSString * const VAKProfileTableViewControllerIdentifier = @"VAKProfileTableViewController";
+static NSString * const VAKProfileViewControllerIdentifier = @"VAKProfileViewController";
 static NSString * const VAKGoodViewControllerIdentifier = @"ViewController";
 
 #pragma mark - UI identifier
@@ -67,5 +67,9 @@ static NSString * const VAKError = @"Error";
 static NSString * const VAKOK = @"OK";
 static NSString * const VAKErrorMessage = @"Incorrect data entered";
 static NSString * const VAKUserIsRegistrationMessage = @"Such user is registered";
+
+#pragma mark - UIStoryboard identifier
+
+static NSString * const VAKStoryboardName = @"Main";
 
 #endif
