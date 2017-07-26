@@ -75,9 +75,11 @@
 
 #pragma mark - action
 
-- (IBAction)basketButtonPressed:(UIButton *)sender {
-    VAKBasketTableViewController *vc = [[VAKBasketTableViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:VAKBasketTableViewControllerIdentifier]) {
+        VAKBasketTableViewController *vc = [[VAKBasketTableViewController alloc] init];
+        vc.user = self.user;
+    }
 }
 
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {

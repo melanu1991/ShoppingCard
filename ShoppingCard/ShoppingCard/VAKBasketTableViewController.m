@@ -30,7 +30,8 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orderId == %@", self.user.userId];
+    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
     return arrayOrders.count;
 }
 

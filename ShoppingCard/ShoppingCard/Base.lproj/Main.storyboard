@@ -47,7 +47,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_cart" id="qTI-lI-mkl">
                             <connections>
-                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="cle-t2-viH"/>
+                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketTableViewControllerIdentifier" id="cle-t2-viH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -522,6 +522,6 @@
         <image name="icon_menu" width="18" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uB6-wv-FJv"/>
+        <segue reference="eKk-x9-ZKx"/>
     </inferredMetricsTieBreakers>
 </document>
