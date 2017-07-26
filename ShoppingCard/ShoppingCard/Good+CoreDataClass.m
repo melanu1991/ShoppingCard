@@ -10,5 +10,6 @@
 @dynamic name;
 @dynamic price;
 @dynamic order;
+@dynamic color;
 
 @end

@@ -8,6 +8,7 @@
 
 @property (nullable, nonatomic, copy) NSDate *date;
 @property (nullable, nonatomic, copy) NSNumber *orderId;
+@property (nullable, nonatomic, copy) NSNumber *status;
 @property (nullable, nonatomic, retain) NSSet<Good *> *goods;
 @property (nullable, nonatomic, retain) User *user;
 

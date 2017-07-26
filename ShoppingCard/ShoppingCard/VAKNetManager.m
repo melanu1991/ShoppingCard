@@ -97,20 +97,8 @@
     }] resume];
 }
 
-#pragma mark - helpers
-
-+ (NSObject *)parserValueFromJSONValue:(NSObject *)value {
-    NSObject *result = value;
-    if ([value isKindOfClass:[NSArray class]]) {
-        NSArray *arr = (NSArray *)value;
-        if ([arr[0] isKindOfClass:[NSString class]]) {
-            result = (NSString *)arr[0];
-        }
-        else if ([arr[0] isKindOfClass:[NSNumber class]]) {
-            result = (NSNumber *)arr[0];
-        }
-    }
-    return result;
+- (void)downloadImageWithPath:(NSString *)path completion:(void(^)(id data, NSError *error))completion {
+    
 }
 
 @end

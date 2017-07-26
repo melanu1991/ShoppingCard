@@ -60,6 +60,12 @@ static NSString * const VAKPassword =@"psw";
 static NSString * const VAKDate = @"date";
 static NSString * const VAKCatalog =@"catalog";
 static NSString * const VAKPasswordFull = @"password";
+static NSString * const VAKDiscount = @"discount";
+static NSString * const VAKAddress = @"address";
+static NSString * const VAKPhoneNumber = @"phoneNumber";
+static NSString * const VAKStatus = @"status";
+static NSString * const VAKColor = @"color";
+static NSString * const VAKImage = @"image";
 
 #pragma mark - UIAlertAction and UIAlertController
 

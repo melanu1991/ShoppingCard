@@ -12,6 +12,7 @@
 @property (nullable, nonatomic, retain) NSObject *image;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSNumber *price;
+@property (nullable, nonatomic, copy) NSString *color;
 @property (nullable, nonatomic, retain) NSSet<Order *> *order;
 
 @end

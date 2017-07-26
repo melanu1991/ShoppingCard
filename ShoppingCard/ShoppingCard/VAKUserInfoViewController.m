@@ -54,7 +54,7 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND password == %@", self.loginField.text, self.paswordField.text];
             NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
             if (arrayUsers.count > 0) {
-                
+                user = arrayUsers[0];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             else {
@@ -70,6 +70,7 @@
 
 - (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {
     ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
+    [VAKProfileViewController sharedProfile].user = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -47,13 +47,10 @@
                 User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:userInfo[VAKID]];
                 user.name = userInfo[VAKName];
                 user.password = userInfo[VAKPassword];
+                user.address = userInfo[VAKAddress];
+                user.phoneNumber = userInfo[VAKPhoneNumber];
             }
             [[VAKCoreDataManager sharedManager] saveContext];
-//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKUser];
-//            for (User *user in allUser) {
-//                NSLog(@"%@", user.name);
-//            }
-//            NSLog(@"%@", allUser);
         }
     }];
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
@@ -62,14 +59,9 @@
             for (NSDictionary *orderInfo in arrayOrders) {
                 Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:orderInfo[VAKID]];
                 order.date = [NSDate dateWithString:orderInfo[VAKDate] format:VAKDateFormat];
-                //тут еще нада будет связывать телефоны с заказом!!!
+                order.status = orderInfo[VAKStatus];
             }
             [[VAKCoreDataManager sharedManager] saveContext];
-//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
-//            for (Order *user in allUser) {
-//                NSLog(@"%@", user.date);
-//            }
-//            NSLog(@"%@", allUser);
         }
     }];
     [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
@@ -79,13 +71,10 @@
                 Good *phone = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:phoneInfo[VAKID]];
                 phone.name = phoneInfo[VAKTitle];
                 phone.price = phoneInfo[VAKPrice];
+                phone.color = phoneInfo[VAKColor];
+                phone.discount = phoneInfo[VAKDiscount];
             }
             [[VAKCoreDataManager sharedManager] saveContext];
-//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-//            for (Good *user in allUser) {
-//                NSLog(@"%@", user.name);
-//            }
-//            NSLog(@"%@", allUser);
         }
     }];
 }

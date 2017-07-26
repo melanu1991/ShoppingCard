@@ -9,5 +9,6 @@
 @dynamic orderId;
 @dynamic goods;
 @dynamic user;
+@dynamic status;
 
 @end
