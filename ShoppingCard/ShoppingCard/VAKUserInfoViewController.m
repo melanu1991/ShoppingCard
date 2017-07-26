@@ -25,54 +25,46 @@
 
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
     if (self.loginField.text.length > 0 && self.paswordField.text.length > 0 && ([self.paswordField.text isEqualToString:self.confirmationPasswordField.text] || self.registrationOrEntryController.selectedSegmentIndex == 1)) {
-        [VAKCoreDataManager deleteAllEntity];
-        [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
-            if (data) {
-                ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
-                NSArray *arrayUsers = data;
-                for (id item in arrayUsers) {
-                    User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
-                    user.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"name"]];
-                    user.password = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"psw"]];
-                    user.address = @"";
-                    user.phoneNumber = @"";
-                }
-                if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
-                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.loginField.text];
-                    NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
-                    if (arrayUsers.count == 0) {
-                        User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:nil];
-                        user.name = self.loginField.text;
-                        user.password = self.paswordField.text;
-                        user.address = @"";
-                        user.phoneNumber = @"";
-                        //Тут нада данные отправить на сервер!!! Пост запросом!!!
-                        [self.navigationController pushViewController:vc animated:YES];
+            ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
+        if (self.registrationOrEntryController.selectedSegmentIndex == 0) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"VAKName == %@", self.loginField.text];
+            NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
+            if (arrayUsers.count == 0) {
+                User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:nil];
+                user.name = self.loginField.text;
+                user.password = self.paswordField.text;
+                NSDictionary *info = @{ VAKID : user.userId,
+                                        VAKName : user.name,
+                                        VAKPassword : user.password };
+                [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] info:info completion:^(id data, NSError *error) {
+                    if (error) {
+                        NSLog(@"%@", error);
                     }
-                    else {
-                        [self alertActionWithTitle:@"Error" message:@"Such user is registered"];
-                    }
-                }
-                else {
-                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@ AND password == %@", self.loginField.text, self.paswordField.text];
-                    NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
-                    if (arrayUsers.count > 0) {
-//                        NSDictionary *dic = [NSDictionary dictionaryWithObject:arrayUsers[0] forKey:VAKUser];
-//                        [[NSNotificationCenter defaultCenter] postNotificationName:VAKUserAuthorization object:dic];
-                        [self.navigationController pushViewController:vc animated:YES];
-                    }
-                    else {
-                        [self alertActionWithTitle:@"Error" message:@"Incorrect data entered"];
-                    }
-                }
-                [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+                }];
+                [[VAKCoreDataManager sharedManager] saveContext];
+                [self.navigationController pushViewController:vc animated:YES];
             }
-        }];
+            else {
+                [self alertActionWithTitle:VAKError message:VAKUserIsRegistrationMessage];
+            }
+        }
+        else {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"VAKName == %@ AND VAKPasswordFull == %@", self.loginField.text, self.paswordField.text];
+            NSArray *arrayUsers = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:predicate];
+            if (arrayUsers.count > 0) {
+                NSLog(@"%@", arrayUsers[0]);
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else {
+                [self alertActionWithTitle:VAKError message:VAKErrorMessage];
+            }
+        }
     }
     else {
-        [self alertActionWithTitle:@"Error" message:@"Incorrect data entered"];
+        [self alertActionWithTitle:VAKError message:VAKErrorMessage];
     }
 }
+
 - (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {
     ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
     [self.navigationController pushViewController:vc animated:YES];
@@ -82,7 +74,7 @@
 
 - (void)alertActionWithTitle:(NSString *)title message:(NSString *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:VAKOK style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
 }
@@ -96,14 +88,19 @@
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if ([textField isEqual:self.loginField]) {
+    if ([textField isEqual:self.loginField] && self.registrationOrEntryController.selectedSegmentIndex == 0) {
         [self.paswordField becomeFirstResponder];
     }
-    else if ([textField isEqual:self.paswordField]) {
+    else if ([textField isEqual:self.loginField] && self.registrationOrEntryController.selectedSegmentIndex == 1) {
+        self.paswordField.returnKeyType = UIReturnKeyDone;
+        [self.paswordField becomeFirstResponder];
+    }
+    else if ([textField isEqual:self.paswordField] && self.registrationOrEntryController.selectedSegmentIndex == 0) {
         [self.confirmationPasswordField becomeFirstResponder];
     }
     else {
         [self.confirmationPasswordField resignFirstResponder];
+        [self.paswordField resignFirstResponder];
     }
     return YES;
 }

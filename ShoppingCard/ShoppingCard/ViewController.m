@@ -82,22 +82,22 @@
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.view addGestureRecognizer:swipeLeft];
     [self.view addGestureRecognizer:swipeRight];
-    [VAKCoreDataManager deleteAllEntity];
-    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
-        if (data) {
-            NSArray *arrayGoods = data;
-            for (id item in arrayGoods) {
-                Good *good = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
-                good.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"title"]];
-                NSString *price = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"price"]];
-                good.price = [NSNumber numberWithInteger:price.integerValue];
-                good.discount = @1;
-                good.image = @1;
-            }
-            [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
-            [self.tableView reloadData];
-        }
-    }];
+//    [VAKCoreDataManager deleteAllEntity];
+//    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
+//        if (data) {
+//            NSArray *arrayGoods = data;
+//            for (id item in arrayGoods) {
+//                Good *good = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:(NSNumber *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"id"]]];
+//                good.name = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"title"]];
+//                NSString *price = (NSString *)[VAKNetManager parserValueFromJSONValue:[item valueForKeyPath:@"price"]];
+//                good.price = [NSNumber numberWithInteger:price.integerValue];
+//                good.discount = @1;
+//                good.image = @1;
+//            }
+//            [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
+//            [self.tableView reloadData];
+//        }
+//    }];
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
 }
 

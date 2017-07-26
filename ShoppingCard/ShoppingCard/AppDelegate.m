@@ -1,4 +1,11 @@
 #import "AppDelegate.h"
+#import "VAKCoreDataManager.h"
+#import "VAKNetManager.h"
+#import "Constants.h"
+#import "User+CoreDataClass.h"
+#import "Order+CoreDataClass.h"
+#import "Good+CoreDataClass.h"
+#import "VAKNSDate+Formatters.h"
 
 @interface AppDelegate ()
 
@@ -32,6 +39,55 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [VAKCoreDataManager deleteAllEntity];
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] completion:^(id data, NSError *error) {
+        if (data) {
+            NSArray *arrayUsers = data;
+            for (NSDictionary *userInfo in arrayUsers) {
+                User *user = (User *)[VAKCoreDataManager createEntityWithName:VAKUser identifier:userInfo[VAKID]];
+                user.name = userInfo[VAKName];
+                user.password = userInfo[VAKPassword];
+            }
+            [[VAKCoreDataManager sharedManager] saveContext];
+//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKUser];
+//            for (User *user in allUser) {
+//                NSLog(@"%@", user.name);
+//            }
+//            NSLog(@"%@", allUser);
+        }
+    }];
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
+        if (data) {
+            NSArray *arrayOrders = data;
+            for (NSDictionary *orderInfo in arrayOrders) {
+                Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:orderInfo[VAKID]];
+                order.date = [NSDate dateWithString:orderInfo[VAKDate] format:VAKDateFormat];
+                //тут еще нада будет связывать телефоны с заказом!!!
+            }
+            [[VAKCoreDataManager sharedManager] saveContext];
+//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+//            for (Order *user in allUser) {
+//                NSLog(@"%@", user.date);
+//            }
+//            NSLog(@"%@", allUser);
+        }
+    }];
+    [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
+        if (data) {
+            NSArray *arrayPhones = data;
+            for (NSDictionary *phoneInfo in arrayPhones) {
+                Good *phone = (Good *)[VAKCoreDataManager createEntityWithName:VAKGood identifier:phoneInfo[VAKID]];
+                phone.name = phoneInfo[VAKTitle];
+                phone.price = phoneInfo[VAKPrice];
+            }
+            [[VAKCoreDataManager sharedManager] saveContext];
+//            NSArray *allUser = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+//            for (Good *user in allUser) {
+//                NSLog(@"%@", user.name);
+//            }
+//            NSLog(@"%@", allUser);
+        }
+    }];
 }
 
 

@@ -41,4 +41,31 @@ static NSString * const VAKGoodViewControllerIdentifier = @"ViewController";
 static NSString * const VAKEntryButton = @"Entry";
 static NSString * const VAKRegistrationButton = @"Registration";
 
+#pragma mark - For works JSON
+
+static NSString * const VAKApplicationJSON = @"application/json";
+static NSString * const VAKContentType = @"Content-Type";
+
+#pragma mark - default value for core data
+
+static NSString * const VAKDefaultString = @"VAKDefaultString";
+
+#pragma mark - constantf for parse from JSON in core data
+
+static NSString * const VAKID = @"id";
+static NSString * const VAKName =@"name";
+static NSString * const VAKTitle =@"title";
+static NSString * const VAKPrice =@"price";
+static NSString * const VAKPassword =@"psw";
+static NSString * const VAKDate = @"date";
+static NSString * const VAKCatalog =@"catalog";
+static NSString * const VAKPasswordFull = @"password";
+
+#pragma mark - UIAlertAction and UIAlertController
+
+static NSString * const VAKError = @"Error";
+static NSString * const VAKOK = @"OK";
+static NSString * const VAKErrorMessage = @"Incorrect data entered";
+static NSString * const VAKUserIsRegistrationMessage = @"Such user is registered";
+
 #endif
