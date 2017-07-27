@@ -1,6 +1,7 @@
 #import "VAKProfileViewController.h"
 #import "Constants.h"
 #import "User+CoreDataClass.h"
+#import "VAKBasketTableViewController.h"
 
 @interface VAKProfileViewController ()
 
@@ -11,6 +12,16 @@
 @end
 
 @implementation VAKProfileViewController
+
+#pragma mark - action
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:VAKBasketTableViewControllerIdentifier]) {
+        UINavigationController *nc = [segue destinationViewController];
+        VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
+        vc.user = self.user;
+    }
+}
 
 #pragma mark - Singleton
 

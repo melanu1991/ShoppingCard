@@ -48,6 +48,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+    Order *order = arrayOrders[indexPath.row];
+    //тут у ордера извлекаем NSSet телефонов и отображаем их на вкладке товары!
 }
 
 @end
