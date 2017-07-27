@@ -77,7 +77,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:VAKBasketTableViewControllerIdentifier]) {
-        VAKBasketTableViewController *vc = [[VAKBasketTableViewController alloc] init];
+        UINavigationController *nc = [segue destinationViewController];
+        VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
         vc.user = self.user;
     }
 }

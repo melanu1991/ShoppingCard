@@ -47,7 +47,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_cart" id="qTI-lI-mkl">
                             <connections>
-                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketTableViewControllerIdentifier" id="cle-t2-viH"/>
+                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketTableViewControllerIdentifier" id="1ih-XN-osi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -134,9 +134,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5dy-l5-JP9">
                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="70.333333333333314"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AjB-LR-cYA">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_home" translatesAutoresizingMaskIntoConstraints="NO" id="AjB-LR-cYA">
                                                         <rect key="frame" x="0.0" y="0.0" width="78" height="70.333333333333314"/>
-                                                        <color key="backgroundColor" red="1" green="0.35120005059999998" blue="0.3680657188" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4j-yF-Pyv">
                                                         <rect key="frame" x="93" y="0.0" width="216" height="70.333333333333314"/>
@@ -153,9 +152,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Be5-2B-gDx">
                                                 <rect key="frame" x="0.0" y="80.333333333333314" width="309" height="70"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FuT-he-O0C">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_order" translatesAutoresizingMaskIntoConstraints="NO" id="FuT-he-O0C">
                                                         <rect key="frame" x="0.0" y="0.0" width="78" height="70"/>
-                                                        <color key="backgroundColor" red="1" green="0.35120005059999998" blue="0.3680657188" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAj-Wz-eVh">
                                                         <rect key="frame" x="93" y="0.0" width="216" height="70"/>
@@ -172,7 +170,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hku-yD-VaU">
                                                 <rect key="frame" x="0.0" y="160.33333333333331" width="309" height="70.333333333333314"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cart" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-w3-uVf">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_cart" translatesAutoresizingMaskIntoConstraints="NO" id="lEy-w3-uVf">
                                                         <rect key="frame" x="0.0" y="0.0" width="78" height="70.333333333333314"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4P-VJ-60r">
@@ -190,9 +188,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="W6n-MQ-awW">
                                                 <rect key="frame" x="0.0" y="240.66666666666663" width="309" height="70"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1fx-R3-pr1">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_settings" translatesAutoresizingMaskIntoConstraints="NO" id="1fx-R3-pr1">
                                                         <rect key="frame" x="0.0" y="0.0" width="78" height="70"/>
-                                                        <color key="backgroundColor" red="1" green="0.35120005059999998" blue="0.3680657188" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HT-t0-Gc2">
                                                         <rect key="frame" x="93" y="0.0" width="216" height="70"/>
@@ -209,9 +206,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="a9p-JP-eZt">
                                                 <rect key="frame" x="0.0" y="320.66666666666663" width="309" height="70.333333333333371"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HNK-Kf-3uv">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_signOut" translatesAutoresizingMaskIntoConstraints="NO" id="HNK-Kf-3uv">
                                                         <rect key="frame" x="0.0" y="0.0" width="78" height="70.333333333333371"/>
-                                                        <color key="backgroundColor" red="1" green="0.35120005059999998" blue="0.3680657188" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EoO-B8-Rda">
                                                         <rect key="frame" x="93" y="0.0" width="216" height="70.333333333333371"/>
@@ -459,7 +455,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIX-GS-Qkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="-134"/>
+            <point key="canvasLocation" x="1959" y="-135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JGx-Ps-CAg">
@@ -520,6 +516,11 @@
     <resources>
         <image name="icon_cart" width="21" height="25"/>
         <image name="icon_menu" width="18" height="12"/>
+        <image name="menu_cart" width="14" height="18"/>
+        <image name="menu_home" width="22" height="19"/>
+        <image name="menu_order" width="20" height="20"/>
+        <image name="menu_settings" width="20" height="20"/>
+        <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eKk-x9-ZKx"/>
