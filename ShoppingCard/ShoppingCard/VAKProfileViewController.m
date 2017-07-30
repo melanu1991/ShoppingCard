@@ -40,16 +40,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:(UIRectCornerTopRight | UIRectCornerBottomRight) cornerRadii:CGSizeMake(100.f, 100.f)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.view.bounds;
-    maskLayer.path  = maskPath.CGPath;
-    self.profileView.layer.mask = maskLayer;
-    self.profileView.layer.shadowColor = [UIColor colorWithWhite:.5 alpha:1].CGColor;
-    self.profileView.layer.shadowRadius = 4.0f;
-    self.profileView.layer.shadowPath = CGPathCreateWithRect(CGRectMake(0, 0, 50, 50), NULL);
-    self.profileView.layer.shadowOpacity = 1.0f;
-    self.profileView.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    self.avatarImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.avatarImage.layer.borderWidth = 10.f;
+    self.avatarImage.layer.contents = (__bridge id)[UIImage imageNamed:@"avatar.png"].CGImage;
+    self.avatarImage.layer.masksToBounds = YES;
+    self.avatarImage.layer.cornerRadius = 75.f;
+    
+    UIRectCorner corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(150.f, 150.f)];
+    CAShapeLayer *cornerLayer = [CAShapeLayer layer];
+    cornerLayer.frame = self.profileView.bounds;
+    cornerLayer.path = path.CGPath;
+    self.profileView.layer.mask = cornerLayer;
+    
+    
+    
     if (self.user) {
         self.nameLabel.text = self.user.name;
     }
@@ -58,17 +64,7 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self performSelector:@selector(setStyleCircleForImage:) withObject:self.avatarImage afterDelay:0];
-}
-
 #pragma mark - Helpers
-
-- (void)setStyleCircleForImage:(UIImageView *)imageView {
-    imageView.layer.cornerRadius = imageView.frame.size.width / 2.0;
-    imageView.clipsToBounds = YES;
-}
 
 - (void)showMenu:(UIViewController *)viewController {
     [UIView animateWithDuration:0.3f animations:^{
