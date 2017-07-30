@@ -112,6 +112,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9r3-SF-NHb">
                                 <rect key="frame" x="0.0" y="0.0" width="339" height="736"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ral-fx-TFT">
+                                        <rect key="frame" x="0.0" y="0.0" width="169.66666666666666" height="736"/>
+                                        <color key="backgroundColor" red="0.21579572559999999" green="0.43955786120000001" blue="0.93835263319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MH0-lF-2NK">
                                         <rect key="frame" x="30" y="240" width="279" height="30"/>
                                         <constraints>
@@ -234,13 +238,17 @@
                                 <constraints>
                                     <constraint firstItem="MH0-lF-2NK" firstAttribute="top" secondItem="FGx-ZO-CL6" secondAttribute="bottom" constant="45" id="7hI-52-j5k"/>
                                     <constraint firstItem="MH0-lF-2NK" firstAttribute="leading" secondItem="9r3-SF-NHb" secondAttribute="leading" constant="30" id="Ihi-5A-OxN"/>
+                                    <constraint firstItem="Ral-fx-TFT" firstAttribute="top" secondItem="9r3-SF-NHb" secondAttribute="top" id="M0o-QK-yZS"/>
+                                    <constraint firstItem="Ral-fx-TFT" firstAttribute="leading" secondItem="9r3-SF-NHb" secondAttribute="leading" id="Sht-Ld-5AC"/>
                                     <constraint firstItem="CbG-NE-prZ" firstAttribute="top" secondItem="MH0-lF-2NK" secondAttribute="bottom" constant="75" id="T7o-8d-Uxm"/>
                                     <constraint firstAttribute="bottom" secondItem="CbG-NE-prZ" secondAttribute="bottom" constant="75" id="U6t-wl-2YJ"/>
                                     <constraint firstItem="FGx-ZO-CL6" firstAttribute="centerX" secondItem="9r3-SF-NHb" secondAttribute="centerX" id="hcL-fK-cgf"/>
                                     <constraint firstAttribute="trailing" secondItem="MH0-lF-2NK" secondAttribute="trailing" constant="30" id="jTk-Ul-MWu"/>
                                     <constraint firstAttribute="trailing" secondItem="CbG-NE-prZ" secondAttribute="trailing" id="ksK-DL-lJr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ral-fx-TFT" secondAttribute="bottom" id="pS5-BJ-48c"/>
                                     <constraint firstItem="FGx-ZO-CL6" firstAttribute="top" secondItem="9r3-SF-NHb" secondAttribute="top" constant="45" id="vo0-GN-rtX"/>
                                     <constraint firstItem="CbG-NE-prZ" firstAttribute="leading" secondItem="9r3-SF-NHb" secondAttribute="leading" constant="30" id="vyk-qg-EcF"/>
+                                    <constraint firstItem="Ral-fx-TFT" firstAttribute="width" secondItem="9r3-SF-NHb" secondAttribute="width" multiplier="0.5" id="wXh-Mv-c0f"/>
                                 </constraints>
                             </view>
                         </subviews>

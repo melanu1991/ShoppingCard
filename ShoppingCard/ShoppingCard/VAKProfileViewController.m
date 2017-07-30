@@ -47,14 +47,19 @@
     self.avatarImage.layer.masksToBounds = YES;
     self.avatarImage.layer.cornerRadius = 75.f;
     
-    UIRectCorner corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(150.f, 150.f)];
-    CAShapeLayer *cornerLayer = [CAShapeLayer layer];
-    cornerLayer.frame = self.profileView.bounds;
-    cornerLayer.path = path.CGPath;
-    self.profileView.layer.mask = cornerLayer;
+    self.profileView.layer.cornerRadius = 100.f;
     
+    self.profileView.layer.shadowColor = [UIColor cyanColor].CGColor;
+    self.profileView.layer.shadowRadius = 13.f;
+    self.profileView.layer.shadowOpacity = 0.1f;
+    self.profileView.layer.shadowOffset = CGSizeMake(30.f, 0.f);
     
+//    UIRectCorner corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+//    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(150.f, 150.f)];
+//    CAShapeLayer *cornerLayer = [CAShapeLayer layer];
+//    cornerLayer.frame = self.profileView.bounds;
+//    cornerLayer.path = path.CGPath;
+//    self.profileView.layer.mask = cornerLayer;
     
     if (self.user) {
         self.nameLabel.text = self.user.name;
@@ -66,9 +71,15 @@
 
 #pragma mark - Helpers
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self hideMenu];
+}
+
 - (void)showMenu:(UIViewController *)viewController {
     [UIView animateWithDuration:0.3f animations:^{
         self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+//        UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+//        [window addSubview:self.view];
         [viewController addChildViewController:self];
         [viewController.view addSubview:self.view];
         self.profileVC = NO;
@@ -79,6 +90,7 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.view.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     } completion:^(BOOL finished) {
+//        [self.view removeFromSuperview];
         [self removeFromParentViewController];
         self.profileVC = YES;
     }];
