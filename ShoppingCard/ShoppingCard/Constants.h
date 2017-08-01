@@ -68,6 +68,8 @@ static NSString * const VAKPhoneNumber = @"phoneNumber";
 static NSString * const VAKStatus = @"status";
 static NSString * const VAKColor = @"color";
 static NSString * const VAKImage = @"image";
+static NSString * const VAKUserId = @"userId";
+static NSString * const VAKCount = @"count";
 
 #pragma mark - UIAlertAction and UIAlertController
 

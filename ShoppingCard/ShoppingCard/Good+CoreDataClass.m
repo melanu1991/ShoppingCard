@@ -3,7 +3,6 @@
 
 @implementation Good
 
-@dynamic avalable;
 @dynamic code;
 @dynamic discount;
 @dynamic image;
@@ -11,5 +10,6 @@
 @dynamic price;
 @dynamic order;
 @dynamic color;
+@dynamic count;
 
 @end

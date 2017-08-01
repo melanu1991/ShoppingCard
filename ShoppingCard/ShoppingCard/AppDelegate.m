@@ -59,20 +59,6 @@
         }];
         dispatch_group_wait(downloadGroup, DISPATCH_TIME_FOREVER);
         dispatch_group_enter(downloadGroup);
-        [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
-            if (data) {
-                NSArray *arrayOrders = data;
-                for (NSDictionary *orderInfo in arrayOrders) {
-                    Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:orderInfo[VAKID]];
-                    order.date = [NSDate dateWithString:orderInfo[VAKDate] format:VAKDateFormat];
-                    order.status = orderInfo[VAKStatus];
-                }
-                [[VAKCoreDataManager sharedManager] saveContext];
-                dispatch_group_leave(downloadGroup);
-            }
-        }];
-        dispatch_group_wait(downloadGroup, DISPATCH_TIME_FOREVER);
-        dispatch_group_enter(downloadGroup);
         [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKCatalogIdentifier] completion:^(id data, NSError *error) {
             if (data) {
                 NSArray *arrayPhones = data;
@@ -82,6 +68,34 @@
                     phone.price = phoneInfo[VAKPrice];
                     phone.color = phoneInfo[VAKColor];
                     phone.discount = phoneInfo[VAKDiscount];
+                    phone.count = phoneInfo[VAKCount];
+                    phone.image = phoneInfo[VAKImage];
+                }
+                [[VAKCoreDataManager sharedManager] saveContext];
+                dispatch_group_leave(downloadGroup);
+            }
+        }];
+        dispatch_group_wait(downloadGroup, DISPATCH_TIME_FOREVER);
+        dispatch_group_enter(downloadGroup);
+        [[VAKNetManager sharedManager] loadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] completion:^(id data, NSError *error) {
+            if (data) {
+                NSArray *arrayOrders = data;
+                for (NSDictionary *orderInfo in arrayOrders) {
+                    Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:orderInfo[VAKID]];
+                    order.date = [NSDate dateWithString:orderInfo[VAKDate] format:VAKDateFormat];
+                    order.status = orderInfo[VAKStatus];
+                    NSNumber *userIdOfOrder = orderInfo[VAKUserId];
+                    NSArray *currentUser = [VAKCoreDataManager allEntitiesWithName:VAKUser predicate:[NSPredicate predicateWithFormat:@"userId == %@", userIdOfOrder]];
+                    User *user = (User *)currentUser[0];
+                    order.user = user;
+                    [user addOrdersObject:order];
+                    NSArray *phones = orderInfo[VAKCatalog];
+                    for (NSDictionary *goodInfo in phones) {
+                        NSArray *arrayOfPhone = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:[NSPredicate predicateWithFormat:@"code == %@", goodInfo[VAKID]]];
+                        Good *currentPhone = (Good *)arrayOfPhone[0];
+                        [order addGoodsObject:currentPhone];
+                        [currentPhone addOrderObject:order];
+                    }
                 }
                 [[VAKCoreDataManager sharedManager] saveContext];
                 dispatch_group_leave(downloadGroup);

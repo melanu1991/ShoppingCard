@@ -6,10 +6,10 @@
 
 @interface Good : Object
 
-@property (nonatomic) BOOL avalable;
 @property (nullable, nonatomic, copy) NSNumber *code;
 @property (nullable, nonatomic, copy) NSNumber *discount;
-@property (nullable, nonatomic, retain) NSObject *image;
+@property (nullable, nonatomic, retain) NSString *image;
+@property (nullable, nonatomic, retain) NSNumber *count;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSNumber *price;
 @property (nullable, nonatomic, copy) NSString *color;
