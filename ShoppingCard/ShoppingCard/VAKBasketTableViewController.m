@@ -1,5 +1,6 @@
 #import "VAKBasketTableViewController.h"
 #import "VAKBasketTableViewCell.h"
+#import "VAKCustomTableViewCell.h"
 #import "Constants.h"
 #import "VAKNetManager.h"
 #import "VAKNSDate+Formatters.h"
@@ -36,18 +37,54 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VAKBasketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
-    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
-    Order *order = arrayOrders[indexPath.row];
-    cell.numberOfOrder.text = order.orderId.stringValue;
-    cell.dateOfOrder.text = [order.date formattedString:VAKDateFormat];
-    cell.statusOfOrder.text = order.status.stringValue;
-    NSUInteger priceOfOrder = 0;
-    for (Good *good in order.goods) {
-        priceOfOrder += good.price.integerValue;
+    if (self.order) {
+        VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
+        NSArray *arrayGoods = self.order.goods.allObjects;
+        Good *currentGood = arrayGoods[indexPath.row];
+        if (currentGood.count == 0) {
+            cell.backgroundImage.image = [UIImage imageNamed:@"cell_background_removed"];
+        }
+        cell.phoneId.text = currentGood.code.stringValue;
+        cell.phoneName.text = currentGood.name;
+        cell.phoneColor.text = currentGood.color;
+        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
+        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
+            if (data) {
+                __block UIImage *image = nil;
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                dispatch_async(queue, ^{
+                    NSDictionary *json = data;
+                    NSString *pathToImage = json[VAKImage];
+                    NSURL *url = [NSURL URLWithString:pathToImage];
+                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        dispatch_sync(queue, ^{
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                        });
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            cell.phoneImage.image = image;
+                        });
+                    }];
+                    [task resume];
+                });
+            }
+        }];
+        cell.phonePrice.text = currentGood.price.stringValue;
+        return cell;
     }
-    cell.priceOfOrder.text = [NSString stringWithFormat:@"%ld", priceOfOrder];
-    return cell;
+    else {
+        VAKBasketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
+        NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
+        Order *order = arrayOrders[indexPath.row];
+        cell.numberOfOrder.text = order.orderId.stringValue;
+        cell.dateOfOrder.text = [order.date formattedString:VAKDateFormat];
+        cell.statusOfOrder.text = order.status.stringValue;
+        NSUInteger priceOfOrder = 0;
+        for (Good *good in order.goods) {
+            priceOfOrder += good.price.integerValue;
+        }
+        cell.priceOfOrder.text = [NSString stringWithFormat:@"%ld", priceOfOrder];
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

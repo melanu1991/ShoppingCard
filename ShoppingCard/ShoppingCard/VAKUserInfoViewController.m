@@ -69,12 +69,6 @@
     vc.user = user;
 }
 
-- (IBAction)continueWithoutRegistrationButtonPressed:(UIButton *)sender {
-    ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKGoodViewControllerIdentifier];
-    [VAKProfileViewController sharedProfile].user = nil;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark - helpers method
 
 - (void)alertActionWithTitle:(NSString *)title message:(NSString *)message {

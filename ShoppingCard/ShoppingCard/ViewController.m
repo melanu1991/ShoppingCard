@@ -80,6 +80,7 @@
         UINavigationController *nc = [segue destinationViewController];
         VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
         vc.user = self.user;
+        vc.order = self.order;
     }
 }
 
@@ -125,18 +126,18 @@
             __block UIImage *image = nil;
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_async(queue, ^{
-                    NSDictionary *json = data;
-                    NSString *pathToImage = json[VAKImage];
-                    NSURL *url = [NSURL URLWithString:pathToImage];
-                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        dispatch_sync(queue, ^{
-                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-                        });
-                        dispatch_sync(dispatch_get_main_queue(), ^{
-                            cell.phoneImage.image = image;
-                        });
-                    }];
-                    [task resume];
+                NSDictionary *json = data;
+                NSString *pathToImage = json[VAKImage];
+                NSURL *url = [NSURL URLWithString:pathToImage];
+                NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    dispatch_sync(queue, ^{
+                        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                    });
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        cell.phoneImage.image = image;
+                    });
+                }];
+                [task resume];
             });
         }
     }];
