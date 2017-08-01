@@ -34,6 +34,7 @@ static NSString * const VAKUserAuthorization = @"VAKUserAuthorization";
 #pragma mark - Controllers identifier
 
 static NSString * const VAKProfileViewControllerIdentifier = @"VAKProfileViewController";
+static NSString * const VAKDetailViewControllerIdentifier = @"VAKDetailViewController";
 static NSString * const VAKGoodViewControllerIdentifier = @"ViewController";
 static NSString * const VAKBasketTableViewControllerIdentifier = @"VAKBasketTableViewControllerIdentifier";
 

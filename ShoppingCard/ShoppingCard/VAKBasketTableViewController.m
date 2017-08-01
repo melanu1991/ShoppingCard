@@ -1,5 +1,6 @@
 #import "VAKBasketTableViewController.h"
 #import "VAKBasketTableViewCell.h"
+#import "VAKDetailViewController.h"
 #import "Constants.h"
 #import "VAKNetManager.h"
 #import "VAKNSDate+Formatters.h"
@@ -24,7 +25,7 @@
 #pragma mark - action
 
 - (void)backButtonPressed {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -37,20 +38,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VAKBasketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
-    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
     Order *order = arrayOrders[indexPath.row];
     cell.numberOfOrder.text = order.orderId.stringValue;
     cell.dateOfOrder.text = [order.date formattedString:VAKDateFormat];
     cell.statusOfOrder.text = order.status.stringValue;
-    cell.priceOfOrder.text = @"Unknow";
+    NSUInteger priceOfOrder = 0;
+    for (Good *good in order.goods) {
+        priceOfOrder += good.price.integerValue;
+    }
+    cell.priceOfOrder.text = [NSString stringWithFormat:@"%ld", priceOfOrder];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
+    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
     Order *order = arrayOrders[indexPath.row];
-    //тут у ордера извлекаем NSSet телефонов и отображаем их на вкладке товары!
+    VAKDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:VAKDetailViewControllerIdentifier];
+    detailVC.order = order;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 @end

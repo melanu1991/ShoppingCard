@@ -62,7 +62,7 @@
         <!--#42342-->
         <scene sceneID="HUY-zY-QG4">
             <objects>
-                <viewController id="wfR-1w-xzC" customClass="VAKDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VAKDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wfR-1w-xzC" customClass="VAKDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4vV-Al-1Lo"/>
                         <viewControllerLayoutGuide type="bottom" id="Mcp-th-mIO"/>

@@ -1,4 +1,6 @@
 #import "VAKDetailViewController.h"
+#import "Order+CoreDataClass.h"
+#import "Good+CoreDataClass.h"
 
 @interface VAKDetailViewController ()
 
@@ -11,7 +13,7 @@
 }
 
 - (IBAction)backButtonPressed:(UIBarButtonItem *)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
