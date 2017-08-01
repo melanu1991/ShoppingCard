@@ -80,7 +80,8 @@
         UINavigationController *nc = [segue destinationViewController];
         VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
         vc.user = self.user;
-        vc.order = self.order;
+        NSArray *orderOfUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", self.user]];
+        vc.order = (Order *)orderOfUser[0];
     }
 }
 

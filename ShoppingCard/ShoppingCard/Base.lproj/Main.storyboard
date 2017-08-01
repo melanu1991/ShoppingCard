@@ -237,7 +237,7 @@
         <scene sceneID="y2T-J4-sbN">
             <objects>
                 <tableViewController id="Yeh-av-aE0" customClass="VAKBasketTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="byc-tn-jL7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="byc-tn-jL7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -462,7 +462,7 @@
         <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9hK-e4-MkJ"/>
+        <segue reference="1ih-XN-osi"/>
         <segue reference="eKk-x9-ZKx"/>
     </inferredMetricsTieBreakers>
 </document>

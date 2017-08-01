@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:VAKBasketTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKBasketCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
 }
 
 #pragma mark - action
@@ -38,7 +39,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.order) {
-        VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
+        VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
         NSArray *arrayGoods = self.order.goods.allObjects;
         Good *currentGood = arrayGoods[indexPath.row];
         if (currentGood.count == 0) {
@@ -47,8 +48,7 @@
         cell.phoneId.text = currentGood.code.stringValue;
         cell.phoneName.text = currentGood.name;
         cell.phoneColor.text = currentGood.color;
-        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
-        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
+        [[VAKNetManager sharedManager] loadRequestWithPath:currentGood.image completion:^(id data, NSError *error) {
             if (data) {
                 __block UIImage *image = nil;
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
