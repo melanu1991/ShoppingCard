@@ -66,7 +66,6 @@
         [self alertActionWithTitle:VAKError message:VAKErrorMessage];
     }
     [VAKProfileViewController sharedProfile].user = user;
-    vc.user = user;
 }
 
 #pragma mark - helpers method

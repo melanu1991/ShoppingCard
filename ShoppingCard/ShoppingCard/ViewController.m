@@ -21,12 +21,12 @@
 #pragma mark - Notification
 
 - (void)goodAddToBasket:(NSNotification *)notification {
-    NSLog(@"Notification: %@", notification.userInfo[VAKPhoneCode]);
+    User *user = [VAKProfileViewController sharedProfile].user;
     NSString *codeGood = notification.userInfo[VAKPhoneCode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"code.integerValue == %ld", codeGood.integerValue];
     NSArray *selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:predicate];
     Good *good = selectedGood[0];
-    predicate = [NSPredicate predicateWithFormat:@"orderId.integerValue == %ld AND status == 0", self.user.userId.integerValue];
+    predicate = [NSPredicate predicateWithFormat:@"orderId.integerValue == %ld AND status == 0", user.userId.integerValue];
     selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
     if (selectedGood.count > 0) {
         Order *currentOrder = selectedGood[0];
@@ -42,7 +42,7 @@
         [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
     }
     else {
-        Order *openOrder = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:self.user.userId];
+        Order *openOrder = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:user.userId];
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
         NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
         openOrder.date = [NSDate dateWithString:dateString format:VAKDateFormat];
@@ -53,7 +53,7 @@
         NSDictionary *info = @{ VAKDate : dateString,
                                 VAKStatus : @0,
                                 VAKCatalog : @[ @{VAKID : good.code} ],
-                                VAKID : self.user.userId };
+                                VAKID : user.userId };
         [[VAKNetManager sharedManager] uploadRequestWithPath:path info:info completion:nil];
     }
     [[VAKCoreDataManager sharedManager] saveContext];
@@ -79,8 +79,8 @@
     if ([segue.identifier isEqualToString:VAKBasketTableViewControllerIdentifier]) {
         UINavigationController *nc = [segue destinationViewController];
         VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
-        vc.user = self.user;
-        NSArray *orderOfUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", self.user]];
+        User *user = [VAKProfileViewController sharedProfile].user;
+        NSArray *orderOfUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user]];
         vc.order = (Order *)orderOfUser[0];
     }
 }

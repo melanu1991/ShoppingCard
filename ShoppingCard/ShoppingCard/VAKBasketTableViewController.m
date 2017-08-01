@@ -1,4 +1,5 @@
 #import "VAKBasketTableViewController.h"
+#import "VAKProfileViewController.h"
 #import "VAKBasketTableViewCell.h"
 #import "VAKCustomTableViewCell.h"
 #import "Constants.h"
@@ -32,7 +33,8 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orderId == %@", self.user.userId];
+    User *user = [VAKProfileViewController sharedProfile].user;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orderId == %@", user.userId];
     NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
     return arrayOrders.count;
 }
@@ -48,6 +50,7 @@
         cell.phoneId.text = currentGood.code.stringValue;
         cell.phoneName.text = currentGood.name;
         cell.phoneColor.text = currentGood.color;
+        cell.basketButton.hidden = YES;
         [[VAKNetManager sharedManager] loadRequestWithPath:currentGood.image completion:^(id data, NSError *error) {
             if (data) {
                 __block UIImage *image = nil;
@@ -72,8 +75,9 @@
         return cell;
     }
     else {
+        User *user = [VAKProfileViewController sharedProfile].user;
         VAKBasketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKBasketCellIdentifier];
-        NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
+        NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", user]];
         Order *order = arrayOrders[indexPath.row];
         cell.numberOfOrder.text = order.orderId.stringValue;
         cell.dateOfOrder.text = [order.date formattedString:VAKDateFormat];
@@ -89,7 +93,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
+    User *user = [VAKProfileViewController sharedProfile].user;
+    NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", user]];
     Order *order = arrayOrders[indexPath.row];
 
 }
