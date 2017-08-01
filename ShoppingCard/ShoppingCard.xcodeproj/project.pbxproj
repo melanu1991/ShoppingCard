@@ -21,7 +21,6 @@
 		589E270E1F261EAB00C3D42D /* VAKUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */; };
 		58A17C9E1F26632C004BD1DB /* VAKBasketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */; };
 		58A17C9F1F26632C004BD1DB /* VAKBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */; };
-		58C482031F24A98C00E4D891 /* VAKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C482021F24A98C00E4D891 /* VAKDetailViewController.m */; };
 		58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */; };
 		58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */; };
 		58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E695641F2367FA00E57C7E /* VAKNetManager.m */; };
@@ -56,8 +55,6 @@
 		58A17C9B1F26632C004BD1DB /* VAKBasketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKBasketTableViewCell.h; sourceTree = "<group>"; };
 		58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKBasketTableViewCell.m; sourceTree = "<group>"; };
 		58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKBasketTableViewCell.xib; sourceTree = "<group>"; };
-		58C482011F24A98C00E4D891 /* VAKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKDetailViewController.h; sourceTree = "<group>"; };
-		58C482021F24A98C00E4D891 /* VAKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKDetailViewController.m; sourceTree = "<group>"; };
 		58C482061F24D26B00E4D891 /* VAKCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCustomTableViewCell.h; sourceTree = "<group>"; };
 		58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCustomTableViewCell.m; sourceTree = "<group>"; };
 		58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKCustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -151,8 +148,6 @@
 				58604DF31F1F60F000073B2D /* ViewController.m */,
 				58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */,
 				58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */,
-				58C482011F24A98C00E4D891 /* VAKDetailViewController.h */,
-				58C482021F24A98C00E4D891 /* VAKDetailViewController.m */,
 				589E270C1F261EAB00C3D42D /* VAKUserInfoViewController.h */,
 				589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */,
 				58604E0C1F1F699100073B2D /* VAKProfileViewController.h */,
@@ -368,7 +363,6 @@
 				58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */,
 				58604E0E1F1F699100073B2D /* VAKProfileViewController.m in Sources */,
 				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
-				58C482031F24A98C00E4D891 /* VAKDetailViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58A17C9E1F26632C004BD1DB /* VAKBasketTableViewCell.m in Sources */,
 				58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */,

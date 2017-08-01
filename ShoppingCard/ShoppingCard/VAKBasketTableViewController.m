@@ -1,6 +1,5 @@
 #import "VAKBasketTableViewController.h"
 #import "VAKBasketTableViewCell.h"
-#import "VAKDetailViewController.h"
 #import "Constants.h"
 #import "VAKNetManager.h"
 #import "VAKNSDate+Formatters.h"
@@ -55,9 +54,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", self.user]];
     Order *order = arrayOrders[indexPath.row];
-    VAKDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:VAKDetailViewControllerIdentifier];
-    detailVC.order = order;
-    [self.navigationController pushViewController:detailVC animated:YES];
+
 }
 
 @end
