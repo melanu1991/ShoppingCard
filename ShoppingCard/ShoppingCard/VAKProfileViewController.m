@@ -54,13 +54,6 @@
     self.profileView.layer.shadowOpacity = 0.1f;
     self.profileView.layer.shadowOffset = CGSizeMake(30.f, 0.f);
     
-//    UIRectCorner corners = UIRectCornerTopRight | UIRectCornerBottomRight;
-//    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(150.f, 150.f)];
-//    CAShapeLayer *cornerLayer = [CAShapeLayer layer];
-//    cornerLayer.frame = self.profileView.bounds;
-//    cornerLayer.path = path.CGPath;
-//    self.profileView.layer.mask = cornerLayer;
-    
     if (self.user) {
         self.nameLabel.text = self.user.name;
     }
