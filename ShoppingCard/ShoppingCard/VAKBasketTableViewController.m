@@ -3,7 +3,6 @@
 #import "VAKCustomTableViewCell.h"
 #import "Constants.h"
 #import "VAKCoreDataManager.h"
-#import "VAKNetManager.h"
 #import "Order+CoreDataClass.h"
 #import "User+CoreDataClass.h"
 #import "Good+CoreDataClass.h"

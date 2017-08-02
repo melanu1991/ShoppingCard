@@ -15,18 +15,6 @@
 
 @implementation VAKProfileViewController
 
-#pragma mark - actions
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:VAKBasketIdentifier]) {
-        UINavigationController *nc = segue.destinationViewController;
-        VAKBasketTableViewController *basketVC = (VAKBasketTableViewController *)nc.topViewController;
-        NSArray *orders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", self.user]];
-        Order *currentOrder = (Order *)orders[0];
-//        basketVC.order = currentOrder;
-    }
-}
-
 #pragma mark - Singleton
 
 + (instancetype)sharedProfile {

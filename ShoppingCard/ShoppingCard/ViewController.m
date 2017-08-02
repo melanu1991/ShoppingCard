@@ -1,13 +1,12 @@
 #import "ViewController.h"
 #import "VAKCustomTableViewCell.h"
-#import "VAKNetManager.h"
 #import "Constants.h"
 #import "VAKCoreDataManager.h"
+#import "VAKNetManager.h"
 #import "Good+CoreDataClass.h"
 #import "User+CoreDataClass.h"
 #import "Order+CoreDataClass.h"
 #import "VAKNSDate+Formatters.h"
-#import "VAKBasketTableViewController.h"
 #import "VAKProfileViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -51,7 +50,6 @@
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
         NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
         openOrder.date = [NSDate dateWithString:dateString format:VAKDateFormat];
-        NSLog(@"%@", openOrder.date);
         openOrder.status = @0;
         [openOrder addGoodsObject:good];
         NSString *path = [NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier];
@@ -80,16 +78,6 @@
 
 #pragma mark - action
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:VAKBasketIdentifier]) {
-        UINavigationController *nc = [segue destinationViewController];
-        VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
-        User *user = [VAKProfileViewController sharedProfile].user;
-        NSArray *orderOfUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user]];
-//        vc.order = (Order *)orderOfUser[0];
-    }
-}
-
 - (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
     switch (swipe.direction) {
         case UISwipeGestureRecognizerDirectionRight:
@@ -115,27 +103,14 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *allGoods = nil;
-    if (self.order) {
-        allGoods = [self.order.goods allObjects];
-        return allGoods.count;
-    }
-    allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+    NSArray *allGoods = allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
     return allGoods.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
-    Good *currentGood = nil;
-    NSArray *allGoods = nil;
-    if (self.order) {
-        allGoods = [self.order.goods allObjects];
-        currentGood = allGoods[indexPath.row];
-    }
-    else {
-        allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-        currentGood = allGoods[indexPath.row];
-    }
+    NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+    Good *currentGood = allGoods[indexPath.row];
     cell.phoneId.text = currentGood.code.stringValue;
     cell.phoneName.text = currentGood.name;
     cell.phoneColor.text = currentGood.color;

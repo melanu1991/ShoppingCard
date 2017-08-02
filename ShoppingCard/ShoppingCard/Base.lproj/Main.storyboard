@@ -124,7 +124,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="AdK-DB-zLN" kind="show" identifier="VAKOrdersIdentifier" id="gHq-5X-1aK"/>
+                                                            <segue destination="XS7-FK-dZS" kind="show" identifier="VAKOrdersIdentifier" id="NdC-eE-6Gx"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -261,6 +261,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeM-Ik-etW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2766" y="-134"/>
+        </scene>
+        <!--Заказы-->
+        <scene sceneID="wKm-0G-7Vx">
+            <objects>
+                <tableViewController id="YhU-qE-fPV" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="0fj-bQ-tUL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="YhU-qE-fPV" id="dM8-fa-MI7"/>
+                            <outlet property="delegate" destination="YhU-qE-fPV" id="7VT-Mh-dhT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Заказы" id="Ljb-5K-OwP">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="kgH-5P-0Pj"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WTA-xd-Brh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3830" y="-911"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1sL-rG-5hX">
+            <objects>
+                <navigationController id="XS7-FK-dZS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2m8-Jk-SmJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YhU-qE-fPV" kind="relationship" relationship="rootViewController" id="NLL-Xd-dik"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXo-mE-HTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2914" y="-911"/>
         </scene>
         <!--Welcome to Shopping Card-->
         <scene sceneID="eVq-gN-Bn5">
@@ -465,7 +502,7 @@
         <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1ih-XN-osi"/>
+        <segue reference="9hK-e4-MkJ"/>
         <segue reference="eKk-x9-ZKx"/>
     </inferredMetricsTieBreakers>
 </document>
