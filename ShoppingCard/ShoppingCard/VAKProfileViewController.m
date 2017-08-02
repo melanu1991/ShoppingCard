@@ -51,6 +51,10 @@
 
 #pragma mark - Helpers
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self hideMenu];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self hideMenu];
 }

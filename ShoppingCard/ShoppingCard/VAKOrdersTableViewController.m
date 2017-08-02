@@ -17,9 +17,22 @@
 
 @implementation VAKOrdersTableViewController
 
+#pragma mark - life cycle view controller
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:VAKBasketTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKBasketCellIdentifier];
+}
+
+#pragma mark - action
+
+- (IBAction)profileButtonPressed:(UIBarButtonItem *)sender {
+    if ([VAKProfileViewController sharedProfile].isProfileVC) {
+        [[VAKProfileViewController sharedProfile] showMenu];
+    }
+    else {
+        [[VAKProfileViewController sharedProfile] hideMenu];
+    }
 }
 
 #pragma mark - Table view data source

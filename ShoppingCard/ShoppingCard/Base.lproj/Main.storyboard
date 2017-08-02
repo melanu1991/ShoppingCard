@@ -278,7 +278,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Заказы" id="Ljb-5K-OwP">
-                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="kgH-5P-0Pj"/>
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu" id="kgH-5P-0Pj">
+                            <connections>
+                                <action selector="profileButtonPressed:" destination="YhU-qE-fPV" id="KST-ln-dDU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTA-xd-Brh" userLabel="First Responder" sceneMemberID="firstResponder"/>
