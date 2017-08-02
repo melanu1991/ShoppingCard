@@ -32,13 +32,18 @@
         Order *currentOrder = selectedGood[0];
         [currentOrder addGoodsObject:good];
         NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, currentOrder.orderId];
-        //Тут нада сначала с ордера извлекать все заказы а потом формировать полный перечень! И видимо нада перечислять заного все поля, потому что дата и статус затираются иначе (непонятная логика почему так!)
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentOrder.date];
         NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
+        NSArray *goods = currentOrder.goods.allObjects;
+        NSMutableArray *arr = [NSMutableArray array];
+        for (Good *good in goods) {
+            [arr addObject:@{ @"id" : good.code }];
+        }
         NSDictionary *info = @{ VAKID : currentOrder.orderId,
-                                VAKCatalog : @[ @{ @"id" : good.code } ],
+                                VAKCatalog : [arr copy],
                                 VAKDate : dateString,
-                                VAKStatus : currentOrder.status };
+                                VAKStatus : currentOrder.status,
+                                VAKUserId : currentOrder.user.userId };
         [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
     }
     else {
@@ -81,7 +86,7 @@
         VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
         User *user = [VAKProfileViewController sharedProfile].user;
         NSArray *orderOfUser = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user]];
-        vc.order = (Order *)orderOfUser[0];
+//        vc.order = (Order *)orderOfUser[0];
     }
 }
 
@@ -110,79 +115,57 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSArray *allGoods = nil;
     if (self.order) {
-        NSArray *arrayGoodsOfOrder = [self.order.goods allObjects];
-        return arrayGoodsOfOrder.count;
+        allGoods = [self.order.goods allObjects];
+        return allGoods.count;
     }
-    NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+    allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
     return allGoods.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
+    Good *currentGood = nil;
+    NSArray *allGoods = nil;
     if (self.order) {
-        NSArray *arrayGoodsOfOrder = [self.order.goods allObjects];
-        Good *currentGood = arrayGoodsOfOrder[indexPath.row];
-        cell.phoneId.text = currentGood.code.stringValue;
-        cell.phoneName.text = currentGood.name;
-        cell.phoneColor.text = currentGood.color;
-        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
-        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
-            if (data) {
-                __block UIImage *image = nil;
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                dispatch_async(queue, ^{
-                    NSDictionary *json = data;
-                    NSString *pathToImage = json[VAKImage];
-                    NSURL *url = [NSURL URLWithString:pathToImage];
-                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        dispatch_sync(queue, ^{
-                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-                        });
-                        dispatch_sync(dispatch_get_main_queue(), ^{
-                            cell.phoneImage.image = image;
-                        });
-                    }];
-                    [task resume];
-                });
-            }
-        }];
-        cell.phonePrice.text = currentGood.price.stringValue;
+        allGoods = [self.order.goods allObjects];
+        currentGood = allGoods[indexPath.row];
     }
     else {
-        NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-        Good *currentGood = allGoods[indexPath.row];
-        cell.phoneId.text = currentGood.code.stringValue;
-        cell.phoneName.text = currentGood.name;
-        cell.phoneColor.text = currentGood.color;
-        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
-        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
-            if (data) {
-                __block UIImage *image = nil;
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                dispatch_async(queue, ^{
-                    NSDictionary *json = data;
-                    NSString *pathToImage = json[VAKImage];
-                    NSURL *url = [NSURL URLWithString:pathToImage];
-                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        dispatch_sync(queue, ^{
-                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-                        });
-                        dispatch_sync(dispatch_get_main_queue(), ^{
-                            cell.phoneImage.image = image;
-                        });
-                    }];
-                    [task resume];
-                });
-            }
-        }];
-        cell.phonePrice.text = currentGood.price.stringValue;
+        allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+        currentGood = allGoods[indexPath.row];
     }
+    cell.phoneId.text = currentGood.code.stringValue;
+    cell.phoneName.text = currentGood.name;
+    cell.phoneColor.text = currentGood.color;
+    cell.phonePrice.text = currentGood.price.stringValue;
+    [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - load and set image
+
+- (void)loadAndSetImageForIndexPath:(NSIndexPath *)indexPath path:(NSString *)path {
+    __block UIImage *image = nil;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSURL *url = [NSURL URLWithString:path];
+        NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            dispatch_sync(queue, ^{
+                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+            });
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                VAKCustomTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+                cell.phoneImage.image = image;
+            });
+        }];
+        [task resume];
+    });
 }
 
 #pragma mark - deallocate

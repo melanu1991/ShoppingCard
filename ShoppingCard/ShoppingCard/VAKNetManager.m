@@ -97,8 +97,4 @@
     }] resume];
 }
 
-- (void)downloadImageWithPath:(NSString *)path completion:(void(^)(id data, NSError *error))completion {
-    
-}
-
 @end

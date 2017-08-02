@@ -23,7 +23,7 @@
         VAKBasketTableViewController *basketVC = (VAKBasketTableViewController *)nc.topViewController;
         NSArray *orders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", self.user]];
         Order *currentOrder = (Order *)orders[0];
-        basketVC.order = currentOrder;
+//        basketVC.order = currentOrder;
     }
 }
 
