@@ -76,7 +76,7 @@
 #pragma mark - action
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:VAKBasketTableViewControllerIdentifier]) {
+    if ([segue.identifier isEqualToString:VAKBasketIdentifier]) {
         UINavigationController *nc = [segue destinationViewController];
         VAKBasketTableViewController *vc = (VAKBasketTableViewController *)nc.topViewController;
         User *user = [VAKProfileViewController sharedProfile].user;
@@ -110,39 +110,74 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.order) {
+        NSArray *arrayGoodsOfOrder = [self.order.goods allObjects];
+        return arrayGoodsOfOrder.count;
+    }
     NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
     return allGoods.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
-    NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
-    Good *currentGood = allGoods[indexPath.row];
-    cell.phoneId.text = currentGood.code.stringValue;
-    cell.phoneName.text = currentGood.name;
-    cell.phoneColor.text = currentGood.color;
-    NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
-    [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
-        if (data) {
-            __block UIImage *image = nil;
-            dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            dispatch_async(queue, ^{
-                NSDictionary *json = data;
-                NSString *pathToImage = json[VAKImage];
-                NSURL *url = [NSURL URLWithString:pathToImage];
-                NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    dispatch_sync(queue, ^{
-                        image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-                    });
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        cell.phoneImage.image = image;
-                    });
-                }];
-                [task resume];
-            });
-        }
-    }];
-    cell.phonePrice.text = currentGood.price.stringValue;
+    if (self.order) {
+        NSArray *arrayGoodsOfOrder = [self.order.goods allObjects];
+        Good *currentGood = arrayGoodsOfOrder[indexPath.row];
+        cell.phoneId.text = currentGood.code.stringValue;
+        cell.phoneName.text = currentGood.name;
+        cell.phoneColor.text = currentGood.color;
+        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
+        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
+            if (data) {
+                __block UIImage *image = nil;
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                dispatch_async(queue, ^{
+                    NSDictionary *json = data;
+                    NSString *pathToImage = json[VAKImage];
+                    NSURL *url = [NSURL URLWithString:pathToImage];
+                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        dispatch_sync(queue, ^{
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                        });
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            cell.phoneImage.image = image;
+                        });
+                    }];
+                    [task resume];
+                });
+            }
+        }];
+        cell.phonePrice.text = currentGood.price.stringValue;
+    }
+    else {
+        NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
+        Good *currentGood = allGoods[indexPath.row];
+        cell.phoneId.text = currentGood.code.stringValue;
+        cell.phoneName.text = currentGood.name;
+        cell.phoneColor.text = currentGood.color;
+        NSString *path = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKCatalog, currentGood.code];
+        [[VAKNetManager sharedManager] loadRequestWithPath:path completion:^(id data, NSError *error) {
+            if (data) {
+                __block UIImage *image = nil;
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                dispatch_async(queue, ^{
+                    NSDictionary *json = data;
+                    NSString *pathToImage = json[VAKImage];
+                    NSURL *url = [NSURL URLWithString:pathToImage];
+                    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        dispatch_sync(queue, ^{
+                            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+                        });
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            cell.phoneImage.image = image;
+                        });
+                    }];
+                    [task resume];
+                });
+            }
+        }];
+        cell.phonePrice.text = currentGood.price.stringValue;
+    }
     return cell;
 }
 

@@ -1,5 +1,6 @@
 #import "VAKBasketTableViewController.h"
 #import "VAKProfileViewController.h"
+#import "ViewController.h"
 #import "VAKBasketTableViewCell.h"
 #import "VAKCustomTableViewCell.h"
 #import "Constants.h"
@@ -96,7 +97,9 @@
     User *user = [VAKProfileViewController sharedProfile].user;
     NSArray *arrayOrders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@", user]];
     Order *order = arrayOrders[indexPath.row];
-
+    ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKViewControllerIdentifier];
+    vc.order = order;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

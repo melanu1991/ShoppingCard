@@ -1,7 +1,9 @@
 #import "VAKProfileViewController.h"
 #import "Constants.h"
 #import "User+CoreDataClass.h"
+#import "Order+CoreDataClass.h"
 #import "VAKBasketTableViewController.h"
+#import "VAKCoreDataManager.h"
 
 @interface VAKProfileViewController ()
 
@@ -13,8 +15,17 @@
 
 @implementation VAKProfileViewController
 
-#pragma mark - action
+#pragma mark - actions
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:VAKBasketIdentifier]) {
+        UINavigationController *nc = segue.destinationViewController;
+        VAKBasketTableViewController *basketVC = (VAKBasketTableViewController *)nc.topViewController;
+        NSArray *orders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"user == %@ AND status == 0", self.user]];
+        Order *currentOrder = (Order *)orders[0];
+        basketVC.order = currentOrder;
+    }
+}
 
 #pragma mark - Singleton
 
@@ -66,8 +77,6 @@
         self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         [window addSubview:self.view];
-//        [viewController addChildViewController:self];
-//        [viewController.view addSubview:self.view];
         self.profileVC = NO;
     }];
 }
@@ -77,7 +86,6 @@
         self.view.frame = CGRectMake(-[UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
-//        [self removeFromParentViewController];
         self.profileVC = YES;
     }];
 }

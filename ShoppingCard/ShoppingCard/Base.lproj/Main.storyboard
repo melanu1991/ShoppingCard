@@ -13,7 +13,7 @@
         <!--Товары-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -47,7 +47,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_cart" id="qTI-lI-mkl">
                             <connections>
-                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketTableViewControllerIdentifier" id="1ih-XN-osi"/>
+                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="1ih-XN-osi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -123,6 +123,9 @@
                                                         <state key="normal" title="Заказы">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="AdK-DB-zLN" kind="show" identifier="VAKOrdersIdentifier" id="gHq-5X-1aK"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -142,7 +145,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketTableViewControllerIdentifier" id="9hK-e4-MkJ"/>
+                                                            <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="9hK-e4-MkJ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
