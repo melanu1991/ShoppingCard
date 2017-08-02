@@ -52,6 +52,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="basketItem" destination="qTI-lI-mkl" id="hqx-CI-KlC"/>
+                        <outlet property="menuItem" destination="iJH-Xa-RnW" id="gPR-rG-oFR"/>
                         <outlet property="tableView" destination="9By-z9-MRQ" id="ydu-pW-FSl"/>
                     </connections>
                 </viewController>
@@ -265,14 +267,14 @@
         <!--Заказы-->
         <scene sceneID="wKm-0G-7Vx">
             <objects>
-                <tableViewController id="YhU-qE-fPV" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="0fj-bQ-tUL">
+                <tableViewController id="YhU-qE-fPV" customClass="VAKOrdersTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="0fj-bQ-tUL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.22288973979999999" green="0.59358120530000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
-                            <outlet property="dataSource" destination="YhU-qE-fPV" id="dM8-fa-MI7"/>
-                            <outlet property="delegate" destination="YhU-qE-fPV" id="7VT-Mh-dhT"/>
+                            <outlet property="dataSource" destination="YhU-qE-fPV" id="vE2-ZW-BWO"/>
+                            <outlet property="delegate" destination="YhU-qE-fPV" id="oR6-Z4-e79"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Заказы" id="Ljb-5K-OwP">
@@ -502,7 +504,7 @@
         <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9hK-e4-MkJ"/>
         <segue reference="eKk-x9-ZKx"/>
+        <segue reference="1ih-XN-osi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 
 + (instancetype)sharedProfile;
 
-- (void)showMenu:(UIViewController *)viewController;
+- (void)showMenu;
 - (void)hideMenu;
 
 @end

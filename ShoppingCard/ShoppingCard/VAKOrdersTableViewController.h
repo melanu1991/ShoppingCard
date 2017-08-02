@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface VAKOrdersTableViewController : UITableViewController
+@interface VAKOrdersTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

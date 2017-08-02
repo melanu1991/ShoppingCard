@@ -46,12 +46,7 @@
     self.profileView.layer.shadowOpacity = 0.1f;
     self.profileView.layer.shadowOffset = CGSizeMake(30.f, 0.f);
     
-    if (self.user) {
-        self.nameLabel.text = self.user.name;
-    }
-    else {
-        self.nameLabel.text = VAKUnregistredUser;
-    }
+    self.nameLabel.text = self.user.name;
 }
 
 #pragma mark - Helpers
@@ -60,7 +55,7 @@
     [self hideMenu];
 }
 
-- (void)showMenu:(UIViewController *)viewController {
+- (void)showMenu {
     [UIView animateWithDuration:0.3f animations:^{
         self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
