@@ -19,10 +19,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
+    
+    User *user = [VAKProfileViewController sharedProfile].user;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user];
+    NSArray *currentOrder = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
+    self.order = currentOrder[0];
+    
+    UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    CGFloat pointX = self.view.bounds.size.width / 2.f;
+    CGFloat pointY = self.view.bounds.size.height - 64.f - 9.f - 29.f;
+    checkoutButton.frame = CGRectMake(0.f, 0.f, 278.f, 58.f);
+    checkoutButton.center = CGPointMake(pointX, pointY);
+    checkoutButton.backgroundColor = [UIColor colorWithRed:184.f/255.f green:233.f/255.f blue:134.f/255.f alpha:1.f];
+    [checkoutButton setTitle:@"Оформить заказ" forState:UIControlStateNormal];
+    [checkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [checkoutButton setFont:[UIFont systemFontOfSize:20.f]];
+    checkoutButton.layer.cornerRadius = 6.f;
+    checkoutButton.layer.shadowOffset = CGSizeMake(5.f, 5.f);
+    checkoutButton.layer.shadowOpacity = 0.7f;
+    checkoutButton.layer.shadowRadius = 6.f;
+    checkoutButton.layer.shadowColor = [UIColor grayColor].CGColor;
+    [checkoutButton addTarget:self action:@selector(checkoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:checkoutButton];
 }
 
 #pragma mark - action
+
+- (void)checkoutButtonPressed:(UIButton *)sender {
+//    NSLog(@"Checkout!");
+    
+}
 
 - (void)backButtonPressed {
     [self.navigationController popViewControllerAnimated:YES];
@@ -31,10 +59,6 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    User *user = [VAKProfileViewController sharedProfile].user;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user];
-    NSArray *currentOrder = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
-    self.order = currentOrder[0];
     return self.order.goods.count;
 }
 

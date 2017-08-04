@@ -51,6 +51,7 @@
                         <state key="normal" image="arrow"/>
                     </button>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="HMQ-q6-dhd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="BbK-zC-jZv"/>
                     <constraint firstAttribute="trailing" secondItem="pmq-aJ-d1P" secondAttribute="trailing" constant="65" id="Bgt-9I-ZNY"/>
@@ -73,7 +74,7 @@
                 <outlet property="priceOfOrder" destination="HMQ-q6-dhd" id="xXU-5r-yqn"/>
                 <outlet property="statusOfOrder" destination="8ow-eM-c2T" id="v8P-oR-Qps"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="146"/>
+            <point key="canvasLocation" x="-145" y="148"/>
         </tableViewCell>
     </objects>
     <resources>
