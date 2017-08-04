@@ -103,17 +103,17 @@
       "userId": 3
     },
     {
-      "status": 0,
+      "status": 1,
       "id": 1,
       "catalog": [
-        {
-          "id": 4
-        },
         {
           "id": 1
         },
         {
           "id": 5
+        },
+        {
+          "id": 4
         }
       ],
       "userId": 1,

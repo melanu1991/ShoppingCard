@@ -6,6 +6,7 @@
 #import "Order+CoreDataClass.h"
 #import "User+CoreDataClass.h"
 #import "Good+CoreDataClass.h"
+#import "VAKNetManager.h"
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -48,8 +49,20 @@
 #pragma mark - action
 
 - (void)checkoutButtonPressed:(UIButton *)sender {
-//    NSLog(@"Checkout!");
-    
+    NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.order.date];
+    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
+    NSArray *goods = self.order.goods.allObjects;
+    NSMutableArray *arr = [NSMutableArray array];
+    for (Good *good in goods) {
+        [arr addObject:@{ @"id" : good.code }];
+    }
+    NSDictionary *info = @{ VAKID : self.order.orderId,
+                            VAKCatalog : [arr copy],
+                            VAKDate : dateString,
+                            VAKStatus : @1,
+                            VAKUserId : self.order.user.userId };
+    [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
 }
 
 - (void)backButtonPressed {
