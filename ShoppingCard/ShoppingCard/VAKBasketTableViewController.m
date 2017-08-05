@@ -120,7 +120,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //тут нужно определять есть ли товар и тогда выбирать нужный прототип ячейки
     NSArray *arrayGoods = self.order.goods.allObjects;
     Good *currentGood = arrayGoods[indexPath.row];
     if (currentGood.count.integerValue > 0) {
@@ -138,8 +137,16 @@
         cell.phoneId.text = currentGood.code.stringValue;
         cell.phoneName.text = currentGood.name;
         cell.phoneColor.text = currentGood.color;
+        cell.phonePrice.text = @"Товар отсутствует на складе";
         [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
-        cell.phonePrice.text = currentGood.price.stringValue;
+//        cell.phonePrice.layer.anchorPoint = CGPointMake(0.f, 0.f);
+//        cell.phoneId.layer.anchorPoint = CGPointMake(0.f, 0.f);
+//        cell.phoneColor.layer.anchorPoint = CGPointMake(0.f, 0.f);
+//        cell.phoneName.layer.anchorPoint = CGPointMake(0.f, 0.f);
+//        cell.phoneColor.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
+//        cell.phoneName.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
+//        cell.phoneId.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
+//        cell.phonePrice.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
         return cell;
     }
 }
