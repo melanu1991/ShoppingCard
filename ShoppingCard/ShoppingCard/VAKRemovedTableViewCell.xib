@@ -43,23 +43,28 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m8R-Er-eAL">
                         <rect key="frame" x="26" y="8" width="49.5" height="107"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cross" translatesAutoresizingMaskIntoConstraints="NO" id="JGG-F9-1Qy">
-                        <rect key="frame" x="371" y="45" width="35" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="Rug-HG-rzN"/>
-                            <constraint firstAttribute="height" constant="35" id="fg1-B4-1Yy"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="U98-92-MXb">
                         <rect key="frame" x="126" y="20" width="238" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Noi-dh-db9">
+                        <rect key="frame" x="374" y="56" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Cj8-PL-Pga"/>
+                            <constraint firstAttribute="width" constant="30" id="o0r-dJ-W5p"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="cross"/>
+                        <connections>
+                            <action selector="removeButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PMm-EE-SEp"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JGG-F9-1Qy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="45" id="5Ib-W6-Ybd"/>
+                    <constraint firstItem="Noi-dh-db9" firstAttribute="top" secondItem="U98-92-MXb" secondAttribute="bottom" constant="10" id="1z9-ot-GBM"/>
                     <constraint firstItem="U98-92-MXb" firstAttribute="leading" secondItem="m8R-Er-eAL" secondAttribute="trailing" constant="50" id="5kw-bb-oGd"/>
+                    <constraint firstAttribute="trailing" secondItem="Noi-dh-db9" secondAttribute="trailing" constant="10" id="97R-Yk-MtX"/>
                     <constraint firstAttribute="bottom" secondItem="Lim-gg-bA3" secondAttribute="bottom" constant="23" id="9rs-uo-bkl"/>
                     <constraint firstItem="Lim-gg-bA3" firstAttribute="top" secondItem="ZDQ-rX-Xj4" secondAttribute="bottom" constant="8.5" id="Bik-PW-dhi"/>
                     <constraint firstAttribute="bottom" secondItem="6UF-O4-xb3" secondAttribute="bottom" id="CJ7-uX-GVl"/>
@@ -75,7 +80,6 @@
                     <constraint firstAttribute="trailing" secondItem="Lim-gg-bA3" secondAttribute="trailing" constant="20" id="XWi-zn-Oly"/>
                     <constraint firstItem="m8R-Er-eAL" firstAttribute="width" secondItem="6UF-O4-xb3" secondAttribute="width" multiplier="0.12" id="eH1-dN-sRB"/>
                     <constraint firstItem="m8R-Er-eAL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fZw-vN-pbR"/>
-                    <constraint firstAttribute="trailing" secondItem="JGG-F9-1Qy" secondAttribute="trailing" constant="8" id="g6B-cB-miL"/>
                     <constraint firstItem="ZDQ-rX-Xj4" firstAttribute="leading" secondItem="m8R-Er-eAL" secondAttribute="trailing" constant="50" id="lmf-7w-99S"/>
                     <constraint firstAttribute="trailing" secondItem="U98-92-MXb" secondAttribute="trailing" constant="50" id="mLZ-x9-hLs"/>
                     <constraint firstItem="m8R-Er-eAL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="26" id="n4o-jc-9bc"/>
@@ -86,12 +90,12 @@
             <color key="backgroundColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="backgroundImage" destination="6UF-O4-xb3" id="a7y-ae-6IM"/>
-                <outlet property="disclosureIndicator" destination="JGG-F9-1Qy" id="MoJ-MD-VKx"/>
                 <outlet property="phoneColor" destination="qjY-1Q-hJU" id="ZTT-Mc-okB"/>
                 <outlet property="phoneId" destination="ZDQ-rX-Xj4" id="UAa-iD-4pz"/>
                 <outlet property="phoneImage" destination="m8R-Er-eAL" id="zxl-Mi-xzm"/>
                 <outlet property="phoneName" destination="U98-92-MXb" id="AbP-So-b0S"/>
                 <outlet property="phonePrice" destination="Lim-gg-bA3" id="r9C-56-3wq"/>
+                <outlet property="removeButton" destination="Noi-dh-db9" id="QFZ-s9-5Bc"/>
             </connections>
         </tableViewCell>
     </objects>

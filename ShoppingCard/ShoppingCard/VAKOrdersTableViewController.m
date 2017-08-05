@@ -7,7 +7,7 @@
 #import "VAKBasketTableViewCell.h"
 #import "VAKProfileViewController.h"
 #import "VAKNSDate+Formatters.h"
-#import "ViewController.h"
+#import "VAKBasketTableViewController.h"
 
 @interface VAKOrdersTableViewController ()
 
@@ -85,7 +85,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     Order *order = self.orders[indexPath.row];
-    ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKViewControllerIdentifier];
+    VAKBasketTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:VAKBasketTableViewControllerIdentifier];
     vc.order = order;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -70,20 +70,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.order) {
-        self.menuItem.image = [UIImage imageNamed:@"arrowLeft.png"];
-        self.title = [NSString stringWithFormat:@"№%@", self.order.orderId];
-        [self.navigationItem setRightBarButtonItem:nil animated:YES];
-    }
-    else {
-        UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-        swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-        UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-        swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-        [self.view addGestureRecognizer:swipeLeft];
-        [self.view addGestureRecognizer:swipeRight];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodAddToBasket:) name:VAKBasketButtonPressed object:nil];
-    }
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
+    [self.view addGestureRecognizer:swipeRight];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goodAddToBasket:) name:VAKBasketButtonPressed object:nil];
+    
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
 }
 
@@ -103,16 +99,11 @@
 }
 
 - (IBAction)profileButtonPressed:(UIBarButtonItem *)sender {
-    if (self.order) {
-        [self.navigationController popViewControllerAnimated:YES];
+    if ([VAKProfileViewController sharedProfile].isProfileVC) {
+        [[VAKProfileViewController sharedProfile] showMenu];
     }
     else {
-        if ([VAKProfileViewController sharedProfile].isProfileVC) {
-            [[VAKProfileViewController sharedProfile] showMenu];
-        }
-        else {
-            [[VAKProfileViewController sharedProfile] hideMenu];
-        }
+        [[VAKProfileViewController sharedProfile] hideMenu];
     }
 }
 
@@ -127,10 +118,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.order) {
-        self.goodsSelectedOrder = [self.order.goods allObjects];
-        return self.goodsSelectedOrder.count;
-    }
     NSArray *allGoods = [VAKCoreDataManager allEntitiesWithName:VAKGood];
     return allGoods.count;
 }
@@ -144,9 +131,6 @@
     cell.phoneColor.text = currentGood.color;
     cell.phonePrice.text = currentGood.price.stringValue;
     [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
-    if (self.order) {
-        cell.basketButton.hidden = YES;
-    }
     return cell;
 }
 

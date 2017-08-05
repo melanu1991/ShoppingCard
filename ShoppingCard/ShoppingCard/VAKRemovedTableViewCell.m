@@ -12,11 +12,15 @@
     self.phoneName.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
     self.phoneId.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
     self.phonePrice.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
-    self.disclosureIndicator.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
+    self.removeButton.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
+
+- (IBAction)removeButtonPressed:(UIButton *)sender {
+    NSLog(@"remove button pressed!!!");
 }
 
 @end

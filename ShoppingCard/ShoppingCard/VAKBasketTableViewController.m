@@ -12,8 +12,6 @@
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) Order *order;
-
 @end
 
 @implementation VAKBasketTableViewController
@@ -42,39 +40,40 @@
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:VAKRemovedTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKRemovedCellIdentifier];
     
-    User *user = [VAKProfileViewController sharedProfile].user;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status.integerValue == %ld", user, 0];
-    NSArray *currentOrder = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
-    if (currentOrder.count == 0) {
-        Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:nil];
-        order.status = @0;
-        order.user = [VAKProfileViewController sharedProfile].user;
-        NSString *date = [[NSDate date] formattedString:VAKDateFormat];
-        order.date = [NSDate dateWithString:date format:VAKDateFormat];
-        self.order = order;
-        [[VAKCoreDataManager sharedManager] saveContext];
-        [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] info:[self formattedDictionaryWithOrder:order] completion:nil];
+    if (!self.order) {
+        User *user = [VAKProfileViewController sharedProfile].user;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status.integerValue == %ld", user, 0];
+        NSArray *currentOrder = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
+        if (currentOrder.count == 0) {
+            Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:nil];
+            order.status = @0;
+            order.user = [VAKProfileViewController sharedProfile].user;
+            NSString *date = [[NSDate date] formattedString:VAKDateFormat];
+            order.date = [NSDate dateWithString:date format:VAKDateFormat];
+            self.order = order;
+            [[VAKCoreDataManager sharedManager] saveContext];
+            [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] info:[self formattedDictionaryWithOrder:order] completion:nil];
+        }
+        else {
+            self.order = currentOrder[0];
+        }
+        UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        CGFloat pointX = self.view.bounds.size.width / 2.f;
+        CGFloat pointY = self.view.bounds.size.height - 64.f - 9.f - 29.f;
+        checkoutButton.frame = CGRectMake(0.f, 0.f, 278.f, 58.f);
+        checkoutButton.center = CGPointMake(pointX, pointY);
+        checkoutButton.backgroundColor = [UIColor colorWithRed:184.f/255.f green:233.f/255.f blue:134.f/255.f alpha:1.f];
+        [checkoutButton setTitle:@"Оформить заказ" forState:UIControlStateNormal];
+        [checkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [checkoutButton setFont:[UIFont systemFontOfSize:20.f]];
+        checkoutButton.layer.cornerRadius = 6.f;
+        checkoutButton.layer.shadowOffset = CGSizeMake(5.f, 5.f);
+        checkoutButton.layer.shadowOpacity = 0.7f;
+        checkoutButton.layer.shadowRadius = 6.f;
+        checkoutButton.layer.shadowColor = [UIColor grayColor].CGColor;
+        [checkoutButton addTarget:self action:@selector(checkoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:checkoutButton];
     }
-    else {
-        self.order = currentOrder[0];
-    }
-    
-    UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    CGFloat pointX = self.view.bounds.size.width / 2.f;
-    CGFloat pointY = self.view.bounds.size.height - 64.f - 9.f - 29.f;
-    checkoutButton.frame = CGRectMake(0.f, 0.f, 278.f, 58.f);
-    checkoutButton.center = CGPointMake(pointX, pointY);
-    checkoutButton.backgroundColor = [UIColor colorWithRed:184.f/255.f green:233.f/255.f blue:134.f/255.f alpha:1.f];
-    [checkoutButton setTitle:@"Оформить заказ" forState:UIControlStateNormal];
-    [checkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [checkoutButton setFont:[UIFont systemFontOfSize:20.f]];
-    checkoutButton.layer.cornerRadius = 6.f;
-    checkoutButton.layer.shadowOffset = CGSizeMake(5.f, 5.f);
-    checkoutButton.layer.shadowOpacity = 0.7f;
-    checkoutButton.layer.shadowRadius = 6.f;
-    checkoutButton.layer.shadowColor = [UIColor grayColor].CGColor;
-    [checkoutButton addTarget:self action:@selector(checkoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:checkoutButton];
 }
 
 #pragma mark - action
@@ -97,8 +96,14 @@
     [[VAKCoreDataManager sharedManager] saveContext];
 }
 
-- (void)backButtonPressed {
-    [self.navigationController popViewControllerAnimated:YES];
+- (IBAction)backButtonPressed:(UIBarButtonItem *)sender {
+    NSArray *arr = self.navigationController.viewControllers;
+    if (arr.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - UITableViewDataSource
