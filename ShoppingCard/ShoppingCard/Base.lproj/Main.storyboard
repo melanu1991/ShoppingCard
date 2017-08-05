@@ -24,19 +24,21 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="9By-z9-MRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.22352941176470587" green="0.59215686274509804" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.21579572559999999" green="0.43955786120000001" blue="0.93835263319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.21579572559999999" green="0.43955786120000001" blue="0.93835263319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="ZvN-b5-CrF"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="cRw-7f-XCN"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.90163845490000005" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.22352941176470587" green="0.59215686274509804" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9By-z9-MRQ" secondAttribute="trailing" id="N1d-59-yF2"/>
                             <constraint firstItem="9By-z9-MRQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hq8-VR-uHy"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9By-z9-MRQ" secondAttribute="bottom" id="qyv-Ol-qK0"/>
-                            <constraint firstItem="9By-z9-MRQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="sMA-a7-3Wo"/>
+                            <constraint firstItem="9By-z9-MRQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vFm-LA-ALR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Товары" id="THc-ji-WZr">
@@ -243,11 +245,11 @@
         <scene sceneID="y2T-J4-sbN">
             <objects>
                 <tableViewController id="Yeh-av-aE0" customClass="VAKBasketTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" id="byc-tn-jL7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" id="byc-tn-jL7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.32355668970000001" green="0.74246746109999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="Yeh-av-aE0" id="Ujp-Lr-7QY"/>
                             <outlet property="delegate" destination="Yeh-av-aE0" id="Zov-Lb-h2k"/>
@@ -510,7 +512,8 @@
         <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9hK-e4-MkJ"/>
+        <segue reference="1ih-XN-osi"/>
         <segue reference="eKk-x9-ZKx"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.21579572559999999" green="0.43955786120000001" blue="0.93835263319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

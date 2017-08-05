@@ -99,6 +99,14 @@
 
 #pragma mark - UITableViewDataSource
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30.f;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    view.tintColor = [UIColor colorWithRed:57.f/255.f green:151.f/255.f blue:255.f/255.f alpha:1.f];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.order.goods.count;
 }
