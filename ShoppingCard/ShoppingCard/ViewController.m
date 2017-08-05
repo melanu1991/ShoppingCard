@@ -28,7 +28,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"code.integerValue == %ld", codeGood.integerValue];
     NSArray *selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:predicate];
     Good *good = selectedGood[0];
-    predicate = [NSPredicate predicateWithFormat:@"orderId.integerValue == %ld AND status == 0", user.userId.integerValue];
+    predicate = [NSPredicate predicateWithFormat:@"user.userId.integerValue == %ld AND status == 0", user.userId.integerValue];
     selectedGood = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
     if (selectedGood.count > 0) {
         Order *currentOrder = selectedGood[0];

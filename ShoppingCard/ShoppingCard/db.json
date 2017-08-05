@@ -103,7 +103,7 @@
       "userId": 3
     },
     {
-      "status": 0,
+      "status": 1,
       "id": 1,
       "catalog": [
         {
@@ -111,6 +111,17 @@
         },
         {
           "id": 5
+        }
+      ],
+      "userId": 1,
+      "date": "5.8.2017"
+    },
+    {
+      "status": 1,
+      "id": 8692,
+      "catalog": [
+        {
+          "id": 4
         }
       ],
       "userId": 1,

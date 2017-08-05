@@ -55,8 +55,13 @@
     gradientLayer.startPoint = CGPointMake(0.f, 0.f);
     gradientLayer.endPoint = CGPointMake(1.f, 1.f);
     gradientLayer.cornerRadius = 100.f;
-    [self.helperView.layer addSublayer:gradientLayer];
     [self.profileView.layer insertSublayer:gradientLayer atIndex:0];
+//    CAGradientLayer *gradientHelperLayer = [CAGradientLayer layer];
+//    gradientHelperLayer.frame = self.helperView.bounds;
+//    gradientHelperLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
+//    gradientHelperLayer.startPoint = CGPointMake(0.f, 0.f);
+//    gradientHelperLayer.endPoint = CGPointMake(1.f, 1.f);
+//    [self.helperView.layer insertSublayer:gradientHelperLayer atIndex:0];
     
     self.nameLabel.text = self.user.name;
 }
