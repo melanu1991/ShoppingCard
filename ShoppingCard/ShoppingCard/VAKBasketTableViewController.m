@@ -1,6 +1,7 @@
 #import "VAKBasketTableViewController.h"
 #import "VAKProfileViewController.h"
 #import "VAKCustomTableViewCell.h"
+#import "VAKRemovedTableViewCell.h"
 #import "Constants.h"
 #import "VAKCoreDataManager.h"
 #import "Order+CoreDataClass.h"
@@ -18,6 +19,10 @@
 @implementation VAKBasketTableViewController
 
 #pragma mark - helpers
+
+- (CGFloat)degreesToRadians:(CGFloat)degrees {
+    return degrees * M_PI / 180;
+};
 
 - (NSDictionary *)formattedDictionaryWithOrder:(Order *)order {
     NSArray *goods = order.goods.allObjects;
@@ -39,6 +44,7 @@
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:VAKRemovedTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKRemovedCellIdentifier];
     
     User *user = [VAKProfileViewController sharedProfile].user;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status.integerValue == %ld", user, 0];
@@ -114,22 +120,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
+    //тут нужно определять есть ли товар и тогда выбирать нужный прототип ячейки
     NSArray *arrayGoods = self.order.goods.allObjects;
     Good *currentGood = arrayGoods[indexPath.row];
-    if ([currentGood.count  isEqual: @0]) {
-        cell.backgroundImage.image = [UIImage imageNamed:@"cell_background_removed"];
-        
-//        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
-//        cell.phoneId.layer.affineTransform = transform;
+    if (currentGood.count.integerValue > 0) {
+        VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
+        cell.phoneId.text = currentGood.code.stringValue;
+        cell.phoneName.text = currentGood.name;
+        cell.phoneColor.text = currentGood.color;
+        cell.basketButton.hidden = YES;
+        [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
+        cell.phonePrice.text = currentGood.price.stringValue;
+        return cell;
     }
-    cell.phoneId.text = currentGood.code.stringValue;
-    cell.phoneName.text = currentGood.name;
-    cell.phoneColor.text = currentGood.color;
-    cell.basketButton.hidden = YES;
-    [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
-    cell.phonePrice.text = currentGood.price.stringValue;
-    return cell;
+    else {
+        VAKRemovedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKRemovedCellIdentifier];
+        cell.phoneId.text = currentGood.code.stringValue;
+        cell.phoneName.text = currentGood.name;
+        cell.phoneColor.text = currentGood.color;
+        [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
+        cell.phonePrice.text = currentGood.price.stringValue;
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

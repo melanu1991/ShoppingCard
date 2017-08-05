@@ -82,7 +82,7 @@
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         [window addSubview:self.view];
         self.profileVC = NO;
-        [UIApplication sharedApplication].statusBarHidden = YES;
+        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     }];
 }
 
@@ -92,7 +92,7 @@
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
         self.profileVC = YES;
-        [UIApplication sharedApplication].statusBarHidden = NO;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
     }];
 }
 

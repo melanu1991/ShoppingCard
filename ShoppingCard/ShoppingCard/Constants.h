@@ -20,6 +20,8 @@ static NSString * const VAKGoodCellIdentifier = @"VAKGoodCellIdentifier";
 static NSString * const VAKBasketCellIdentifier = @"VAKBasketCellIdentifier";
 static NSString * const VAKGoodTableViewCellIdentifier = @"VAKCustomTableViewCell";
 static NSString * const VAKBasketTableViewCellIdentifier = @"VAKBasketTableViewCell";
+static NSString * const VAKRemovedTableViewCellIdentifier = @"VAKRemovedTableViewCell";
+static NSString * const VAKRemovedCellIdentifier = @"VAKRemovedCellIdentifier";
 
 #pragma mark - Date Format
 
