@@ -46,11 +46,7 @@
                 NSDictionary *info = @{ VAKID : user.userId,
                                         VAKName : user.name,
                                         VAKPassword : user.password };
-                [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] info:info completion:^(id data, NSError *error) {
-                    if (error) {
-                        NSLog(@"%@", error);
-                    }
-                }];
+                [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKProfileIdentifier] info:info completion:nil];
                 [[VAKCoreDataManager sharedManager] saveContext];
                 [self.navigationController pushViewController:vc animated:YES];
             }

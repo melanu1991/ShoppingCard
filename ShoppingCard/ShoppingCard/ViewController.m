@@ -20,6 +20,28 @@
 
 @implementation ViewController
 
+#pragma mark - helpers
+
+- (NSString *)formattedStringWithOrder:(Order *)order {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:order.date];
+    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
+    return dateString;
+}
+
+- (NSDictionary *)formattedDictionaryWithOrder:(Order *)order {
+    NSArray *goods = order.goods.allObjects;
+    NSMutableArray *arr = [NSMutableArray array];
+    for (Good *good in goods) {
+        [arr addObject:@{ @"id" : good.code }];
+    }
+    NSDictionary *info = @{ VAKID : order.orderId,
+                            VAKCatalog : [arr copy],
+                            VAKDate : [self formattedStringWithOrder:order],
+                            VAKStatus : order.status,
+                            VAKUserId : order.user.userId };
+    return info;
+}
+
 #pragma mark - Notification
 
 - (void)goodAddToBasket:(NSNotification *)notification {
@@ -34,36 +56,17 @@
         Order *currentOrder = selectedGood[0];
         [currentOrder addGoodsObject:good];
         NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, currentOrder.orderId];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:currentOrder.date];
-        NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
-        NSArray *goods = currentOrder.goods.allObjects;
-        NSMutableArray *arr = [NSMutableArray array];
-        for (Good *good in goods) {
-            [arr addObject:@{ @"id" : good.code }];
-        }
-        NSDictionary *info = @{ VAKID : currentOrder.orderId,
-                                VAKCatalog : [arr copy],
-                                VAKDate : dateString,
-                                VAKStatus : currentOrder.status,
-                                VAKUserId : currentOrder.user.userId };
-        [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
+        [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:[self formattedDictionaryWithOrder:currentOrder] completion:nil];
     }
     else {
         Order *openOrder = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:user.userId];
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-        NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
-        openOrder.date = [NSDate dateWithString:dateString format:VAKDateFormat];
+        openOrder.date = [NSDate dateWithString:[self formattedStringWithOrder:openOrder] format:VAKDateFormat];
         openOrder.status = @0;
         [openOrder addGoodsObject:good];
         openOrder.user = user;
         [user addOrdersObject:openOrder];
         NSString *path = [NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier];
-        NSDictionary *info = @{ VAKID : openOrder.orderId,
-                                VAKCatalog : @[],
-                                VAKDate : dateString,
-                                VAKStatus : openOrder.status,
-                                VAKUserId : openOrder.user.userId };
-        [[VAKNetManager sharedManager] uploadRequestWithPath:path info:info completion:nil];
+        [[VAKNetManager sharedManager] uploadRequestWithPath:path info:[self formattedDictionaryWithOrder:openOrder] completion:nil];
     }
     [[VAKCoreDataManager sharedManager] saveContext];
 }
