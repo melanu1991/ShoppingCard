@@ -9,5 +9,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneId;
 @property (weak, nonatomic) IBOutlet UILabel *phonePrice;
 @property (weak, nonatomic) IBOutlet UIButton *basketButton;
+@property (weak, nonatomic) IBOutlet UIImageView *disclosureIndicator;
 
 @end

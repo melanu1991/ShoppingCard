@@ -17,6 +17,22 @@
 
 @implementation VAKBasketTableViewController
 
+#pragma mark - helpers
+
+- (NSDictionary *)formattedDictionaryWithOrder:(Order *)order {
+    NSArray *goods = order.goods.allObjects;
+    NSMutableArray *arr = [NSMutableArray array];
+    for (Good *good in goods) {
+        [arr addObject:@{ @"id" : good.code }];
+    }
+    NSDictionary *info = @{ VAKID : order.orderId,
+                            VAKCatalog : [arr copy],
+                            VAKDate : [order.date formattedString:VAKDateFormat],
+                            VAKStatus : order.status,
+                            VAKUserId : order.user.userId };
+    return info;
+}
+
 #pragma mark - life cycle uiviewcontroller
 
 - (void)viewDidLoad {
@@ -35,12 +51,7 @@
         order.date = [NSDate dateWithString:date format:VAKDateFormat];
         self.order = order;
         [[VAKCoreDataManager sharedManager] saveContext];
-        NSDictionary *dic = @{ VAKID : self.order.orderId,
-                                VAKCatalog : @[],
-                                VAKDate : date,
-                                VAKStatus : @0,
-                                VAKUserId : self.order.user.userId };
-        [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] info:dic completion:nil];
+        [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] info:[self formattedDictionaryWithOrder:order] completion:nil];
     }
     else {
         self.order = currentOrder[0];
@@ -76,20 +87,11 @@
         return;
     }
     NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
-    NSMutableArray *arr = [NSMutableArray array];
-    for (Good *good in goods) {
-        [arr addObject:@{ @"id" : good.code }];
-    }
-    NSDictionary *info = @{ VAKID : self.order.orderId,
-                            VAKCatalog : [arr copy],
-                            VAKDate : dateString,
-                            VAKStatus : @1,
-                            VAKUserId : self.order.user.userId };
-    [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
-    self.order.date = [NSDate dateWithString:dateString format:VAKDateFormat];
+    NSString *date = [[NSDate date] formattedString:VAKDateFormat];
+    self.order.date = [NSDate dateWithString:date format:VAKDateFormat];
     self.order.status = @1;
+    
+    [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:[self formattedDictionaryWithOrder:self.order] completion:nil];
     [[VAKCoreDataManager sharedManager] saveContext];
 }
 
@@ -115,8 +117,11 @@
     VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
     NSArray *arrayGoods = self.order.goods.allObjects;
     Good *currentGood = arrayGoods[indexPath.row];
-    if (currentGood.count == 0) {
+    if ([currentGood.count  isEqual: @0]) {
         cell.backgroundImage.image = [UIImage imageNamed:@"cell_background_removed"];
+        
+//        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
+//        cell.phoneId.layer.affineTransform = transform;
     }
     cell.phoneId.text = currentGood.code.stringValue;
     cell.phoneName.text = currentGood.name;

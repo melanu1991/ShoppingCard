@@ -24,6 +24,8 @@
 		58B371A91F323CF700CF944E /* VAKOrdersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B371A81F323CF700CF944E /* VAKOrdersTableViewController.m */; };
 		58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */; };
 		58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */; };
+		58DF237F1F3647B0000FC161 /* VAKRemovedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */; };
+		58DF23801F3647B0000FC161 /* VAKRemovedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */; };
 		58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E695641F2367FA00E57C7E /* VAKNetManager.m */; };
 		58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914651F2517EC009EF5BC /* User+CoreDataClass.m */; };
 		58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */; };
@@ -61,6 +63,9 @@
 		58C482061F24D26B00E4D891 /* VAKCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCustomTableViewCell.h; sourceTree = "<group>"; };
 		58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCustomTableViewCell.m; sourceTree = "<group>"; };
 		58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKCustomTableViewCell.xib; sourceTree = "<group>"; };
+		58DF237C1F3647B0000FC161 /* VAKRemovedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKRemovedTableViewCell.h; sourceTree = "<group>"; };
+		58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKRemovedTableViewCell.m; sourceTree = "<group>"; };
+		58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKRemovedTableViewCell.xib; sourceTree = "<group>"; };
 		58E695631F2367FA00E57C7E /* VAKNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKNetManager.h; sourceTree = "<group>"; };
 		58E695641F2367FA00E57C7E /* VAKNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKNetManager.m; sourceTree = "<group>"; };
 		58F914641F2517EC009EF5BC /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -190,6 +195,9 @@
 				58A17C9B1F26632C004BD1DB /* VAKBasketTableViewCell.h */,
 				58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */,
 				58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */,
+				58DF237C1F3647B0000FC161 /* VAKRemovedTableViewCell.h */,
+				58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */,
+				58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 				58604DFF1F1F60F000073B2D /* LaunchScreen.storyboard in Resources */,
 				58604DFC1F1F60F000073B2D /* Assets.xcassets in Resources */,
 				58604DF71F1F60F000073B2D /* Main.storyboard in Resources */,
+				58DF23801F3647B0000FC161 /* VAKRemovedTableViewCell.xib in Resources */,
 				58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */,
 				58A17C9F1F26632C004BD1DB /* VAKBasketTableViewCell.xib in Resources */,
 			);
@@ -371,6 +380,7 @@
 				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
 				58A17C9E1F26632C004BD1DB /* VAKBasketTableViewCell.m in Sources */,
+				58DF237F1F3647B0000FC161 /* VAKRemovedTableViewCell.m in Sources */,
 				58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
 				58F914801F251DA6009EF5BC /* Object+CoreDataClass.m in Sources */,

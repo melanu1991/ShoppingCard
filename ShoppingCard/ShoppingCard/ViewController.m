@@ -22,12 +22,6 @@
 
 #pragma mark - helpers
 
-- (NSString *)formattedStringWithOrder:(Order *)order {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:order.date];
-    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
-    return dateString;
-}
-
 - (NSDictionary *)formattedDictionaryWithOrder:(Order *)order {
     NSArray *goods = order.goods.allObjects;
     NSMutableArray *arr = [NSMutableArray array];
@@ -36,7 +30,7 @@
     }
     NSDictionary *info = @{ VAKID : order.orderId,
                             VAKCatalog : [arr copy],
-                            VAKDate : [self formattedStringWithOrder:order],
+                            VAKDate : [order.date formattedString:VAKDateFormat],
                             VAKStatus : order.status,
                             VAKUserId : order.user.userId };
     return info;
@@ -60,7 +54,8 @@
     }
     else {
         Order *openOrder = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:user.userId];
-        openOrder.date = [NSDate dateWithString:[self formattedStringWithOrder:openOrder] format:VAKDateFormat];
+        NSString *date = [[NSDate date] formattedString:VAKDateFormat];
+        openOrder.date = [NSDate dateWithString:date format:VAKDateFormat];
         openOrder.status = @0;
         [openOrder addGoodsObject:good];
         openOrder.user = user;
