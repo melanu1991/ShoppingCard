@@ -20,10 +20,6 @@
 
 #pragma mark - helpers
 
-- (CGFloat)degreesToRadians:(CGFloat)degrees {
-    return degrees * M_PI / 180;
-};
-
 - (NSDictionary *)formattedDictionaryWithOrder:(Order *)order {
     NSArray *goods = order.goods.allObjects;
     NSMutableArray *arr = [NSMutableArray array];
@@ -139,14 +135,6 @@
         cell.phoneColor.text = currentGood.color;
         cell.phonePrice.text = @"Товар отсутствует на складе";
         [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
-//        cell.phonePrice.layer.anchorPoint = CGPointMake(0.f, 0.f);
-//        cell.phoneId.layer.anchorPoint = CGPointMake(0.f, 0.f);
-//        cell.phoneColor.layer.anchorPoint = CGPointMake(0.f, 0.f);
-//        cell.phoneName.layer.anchorPoint = CGPointMake(0.f, 0.f);
-//        cell.phoneColor.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
-//        cell.phoneName.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
-//        cell.phoneId.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
-//        cell.phonePrice.transform = CGAffineTransformMakeRotation([self degreesToRadians:3.f]);
         return cell;
     }
 }
