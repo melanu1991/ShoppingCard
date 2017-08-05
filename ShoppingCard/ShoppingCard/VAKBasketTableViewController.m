@@ -7,6 +7,7 @@
 #import "User+CoreDataClass.h"
 #import "Good+CoreDataClass.h"
 #import "VAKNetManager.h"
+#import "VAKNSDate+Formatters.h"
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -24,9 +25,26 @@
     [self.tableView registerNib:[UINib nibWithNibName:VAKGoodTableViewCellIdentifier bundle:nil] forCellReuseIdentifier:VAKGoodCellIdentifier];
     
     User *user = [VAKProfileViewController sharedProfile].user;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status == 0", user];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user == %@ AND status.integerValue == %ld", user, 0];
     NSArray *currentOrder = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:predicate];
-    self.order = currentOrder[0];
+    if (currentOrder.count == 0) {
+        Order *order = (Order *)[VAKCoreDataManager createEntityWithName:VAKOrder identifier:nil];
+        order.status = @0;
+        order.user = [VAKProfileViewController sharedProfile].user;
+        NSString *date = [[NSDate date] formattedString:VAKDateFormat];
+        order.date = [NSDate dateWithString:date format:VAKDateFormat];
+        self.order = order;
+        [[VAKCoreDataManager sharedManager] saveContext];
+        NSDictionary *dic = @{ VAKID : self.order.orderId,
+                                VAKCatalog : @[],
+                                VAKDate : date,
+                                VAKStatus : @0,
+                                VAKUserId : self.order.user.userId };
+        [[VAKNetManager sharedManager] uploadRequestWithPath:[NSString stringWithFormat:@"%@%@", VAKLocalHostIdentifier, VAKOrderIdentifier] info:dic completion:nil];
+    }
+    else {
+        self.order = currentOrder[0];
+    }
     
     UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     CGFloat pointX = self.view.bounds.size.width / 2.f;
@@ -49,10 +67,17 @@
 #pragma mark - action
 
 - (void)checkoutButtonPressed:(UIButton *)sender {
-    NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.order.date];
-    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
     NSArray *goods = self.order.goods.allObjects;
+    if (goods.count < 1) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ошибка" message:@"Нельзя оформить заказ без наличия хотя бы одного товара!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSString *dateString = [NSString stringWithFormat:@"%ld.%ld.%ld", [components day], [components month], [components year]];
     NSMutableArray *arr = [NSMutableArray array];
     for (Good *good in goods) {
         [arr addObject:@{ @"id" : good.code }];
@@ -63,6 +88,9 @@
                             VAKStatus : @1,
                             VAKUserId : self.order.user.userId };
     [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:info completion:nil];
+    self.order.date = [NSDate dateWithString:dateString format:VAKDateFormat];
+    self.order.status = @1;
+    [[VAKCoreDataManager sharedManager] saveContext];
 }
 
 - (void)backButtonPressed {

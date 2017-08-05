@@ -22,6 +22,14 @@
 
 - (IBAction)entryOrRegistrationButtonPressed:(UISegmentedControl *)sender {
     self.confirmationPasswordStackView.hidden = !self.confirmationPasswordStackView.hidden;
+    if (self.registrationOrEntryController.selectedSegmentIndex == 1) {
+        self.loginField.text = @"Igor";
+        self.paswordField.text = @"qwe";
+    }
+    else {
+        self.loginField.text = @"";
+        self.paswordField.text = @"";
+    }
 }
 
 - (IBAction)registrationOrEntryButtonPressed:(UIButton *)sender {
