@@ -155,6 +155,7 @@
         Good *good = self.goodsOfOrder[indexPath.row];
         [VAKCoreDataManager deleteGoodWithIdentifier:good.code orderId:self.order.orderId];
         self.goodsOfOrder = [self.order.goods allObjects];
+        [[VAKNetManager sharedManager] updateRequestWithPath:[NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId] info:[self formattedDictionaryWithOrder:self.order] completion:nil];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
 }

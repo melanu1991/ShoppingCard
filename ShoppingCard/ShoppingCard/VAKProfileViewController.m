@@ -56,12 +56,12 @@
     gradientLayer.endPoint = CGPointMake(1.f, 1.f);
     gradientLayer.cornerRadius = 100.f;
     [self.profileView.layer insertSublayer:gradientLayer atIndex:0];
-    CAGradientLayer *gradientHelperLayer = [CAGradientLayer layer];
-    gradientHelperLayer.frame = self.helperView.bounds;
-    gradientHelperLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
-    gradientHelperLayer.startPoint = CGPointMake(0.f, 0.f);
-    gradientHelperLayer.endPoint = CGPointMake(1.f, 1.f);
-    [self.helperView.layer addSublayer:gradientHelperLayer];
+//    CAGradientLayer *gradientHelperLayer = [CAGradientLayer layer];
+//    gradientHelperLayer.frame = self.helperView.bounds;
+//    gradientHelperLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
+//    gradientHelperLayer.startPoint = CGPointMake(0.f, 0.f);
+//    gradientHelperLayer.endPoint = CGPointMake(1.f, 1.f);
+//    [self.helperView.layer addSublayer:gradientHelperLayer];
     
     self.nameLabel.text = self.user.name;
 }
@@ -82,7 +82,6 @@
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         [window addSubview:self.view];
         self.profileVC = NO;
-        [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
     }];
 }
 
@@ -92,7 +91,6 @@
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
         self.profileVC = YES;
-        [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
     }];
 }
 
