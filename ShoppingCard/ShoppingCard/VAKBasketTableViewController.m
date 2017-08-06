@@ -12,6 +12,8 @@
 
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) NSArray *goodsOfOrder;
+
 @end
 
 @implementation VAKBasketTableViewController
@@ -74,13 +76,13 @@
         [checkoutButton addTarget:self action:@selector(checkoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:checkoutButton];
     }
+    self.goodsOfOrder = [self.order.goods allObjects];
 }
 
 #pragma mark - action
 
 - (void)checkoutButtonPressed:(UIButton *)sender {
-    NSArray *goods = self.order.goods.allObjects;
-    if (goods.count < 1) {
+    if (self.goodsOfOrder.count < 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ошибка" message:@"Нельзя оформить заказ без наличия хотя бы одного товара!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
@@ -117,18 +119,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.order.goods.count;
+    return self.goodsOfOrder.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray *arrayGoods = self.order.goods.allObjects;
-    Good *currentGood = arrayGoods[indexPath.row];
+    Good *currentGood = self.goodsOfOrder[indexPath.row];
     if (currentGood.count.integerValue > 0) {
         VAKCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:VAKGoodCellIdentifier];
         cell.phoneId.text = currentGood.code.stringValue;
         cell.phoneName.text = currentGood.name;
         cell.phoneColor.text = currentGood.color;
         cell.basketButton.hidden = YES;
+        cell.topConstraintIndicator.constant = cell.bounds.size.height / 2.f - cell.topConstraintIndicator.constant;
         [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
         cell.phonePrice.text = currentGood.price.stringValue;
         return cell;
@@ -146,6 +148,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Good *good = self.goodsOfOrder[indexPath.row];
+        [VAKCoreDataManager deleteGoodWithIdentifier:good.code orderId:self.order.orderId];
+        self.goodsOfOrder = [self.order.goods allObjects];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
 }
 
 #pragma mark - load and set image

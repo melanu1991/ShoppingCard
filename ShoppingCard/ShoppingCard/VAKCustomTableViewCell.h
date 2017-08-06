@@ -10,5 +10,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phonePrice;
 @property (weak, nonatomic) IBOutlet UIButton *basketButton;
 @property (weak, nonatomic) IBOutlet UIImageView *disclosureIndicator;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topConstraintIndicator;
 
 @end

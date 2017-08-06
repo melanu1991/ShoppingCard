@@ -137,34 +137,19 @@
     return user;
 }
 
-+ (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier {
-    if ([name isEqualToString:VAKGood]) {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKUser];
-        for (Good *good in arrayEntity) {
-            if ([good.code isEqualToNumber:identifier]) {
-                [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:good];
-                break;
-            }
++ (void)deleteGoodWithIdentifier:(NSNumber *)identifier orderId:(NSNumber *)orderId {
+    NSArray *goods = [VAKCoreDataManager allEntitiesWithName:VAKGood predicate:[NSPredicate predicateWithFormat:@"code == %@", identifier]];
+    Good *good = goods[0];
+    NSArray *orders = [VAKCoreDataManager allEntitiesWithName:VAKOrder predicate:[NSPredicate predicateWithFormat:@"orderId == %@", orderId]];
+    Order *order = orders[0];
+    goods = [order.goods allObjects];
+    NSMutableSet *newSetGoodsForOrder = [NSMutableSet set];
+    for (Good *goodInOrder in goods) {
+        if (![goodInOrder.code isEqualToNumber:good.code]) {
+            [newSetGoodsForOrder addObject:goodInOrder];
         }
     }
-    else if ([name isEqualToString:VAKOrder]) {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKOrder];
-        for (Order *order in arrayEntity) {
-            if ([order.orderId isEqualToNumber:identifier]) {
-                [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:order];
-                break;
-            }
-        }
-    }
-    else {
-        NSArray *arrayEntity = [VAKCoreDataManager allEntitiesWithName:VAKUser];
-        for (User *user in arrayEntity) {
-            if ([user.userId isEqualToNumber:identifier]) {
-                [[VAKCoreDataManager sharedManager].managedObjectContext deleteObject:user];
-                break;
-            }
-        }
-    }
+    order.goods = [newSetGoodsForOrder copy];
     [[VAKCoreDataManager sharedManager].managedObjectContext save:nil];
 }
 

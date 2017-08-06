@@ -121,6 +121,7 @@
                 <outlet property="phoneImage" destination="pqH-H7-zfV" id="Z8K-oY-3E1"/>
                 <outlet property="phoneName" destination="GhK-od-DdW" id="aHa-OT-WbT"/>
                 <outlet property="phonePrice" destination="qX8-RU-z2o" id="ege-AX-HWW"/>
+                <outlet property="topConstraintIndicator" destination="Dom-MF-Wwb" id="VfC-ra-aL0"/>
             </connections>
             <point key="canvasLocation" x="91" y="5"/>
         </tableViewCell>

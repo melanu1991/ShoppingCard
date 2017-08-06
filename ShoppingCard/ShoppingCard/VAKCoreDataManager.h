@@ -19,7 +19,7 @@
 @interface VAKCoreDataManager (WorkWithCoreData)
 
 + (Object *)createEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
-+ (void)deleteEntityWithName:(NSString *)name identifier:(NSNumber *)identifier;
++ (void)deleteGoodWithIdentifier:(NSNumber *)identifier orderId:(NSNumber *)orderId;
 + (void)deleteAllEntity;
 + (NSArray *)allEntitiesWithName:(NSString *)name;
 + (NSArray *)allEntitiesWithName:(NSString *)name predicate:(NSPredicate *)predicate;
