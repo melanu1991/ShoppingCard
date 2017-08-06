@@ -40,6 +40,32 @@
     self.avatarImage.layer.masksToBounds = YES;
     self.avatarImage.layer.cornerRadius = 75.f;
     
+//    UIRectCorner corners = UIRectCornerTopRight | UIRectCornerBottomRight;
+//    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.profileView.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(150.f, 150.f)];
+//    
+//    CALayer* containerLayer = [CALayer layer];
+//    containerLayer.shadowColor = [UIColor blackColor].CGColor;
+//    containerLayer.shadowRadius = 10.f;
+//    containerLayer.shadowOffset = CGSizeMake(30.f, 0.f);
+//    containerLayer.shadowOpacity = 1.f;
+//    
+//    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+//    maskLayer.fillColor = [UIColor clearColor].CGColor;
+//    maskLayer.frame = self.profileView.bounds;
+//    maskLayer.path = path.CGPath;
+//    
+//    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+//    gradientLayer.frame = self.profileView.bounds;
+//    [gradientLayer setMask:maskLayer];
+//    UIColor *firstColor = [UIColor colorWithRed:36.f/255.f green:67.f/255.f blue:243.f/255.f alpha:1.f];
+//    UIColor *secondColor = [UIColor colorWithRed:86.f/255.f green:255.f/255.f blue:162.f/255.f alpha:1.f];
+//    gradientLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
+//    gradientLayer.startPoint = CGPointMake(0.f, 0.f);
+//    gradientLayer.endPoint = CGPointMake(1.f, 1.f);
+//    
+//    [containerLayer addSublayer:maskLayer];
+//    [self.profileView.layer addSublayer:containerLayer];
+    
     self.profileView.layer.cornerRadius = 100.f;
     
     self.profileView.layer.shadowColor = [UIColor colorWithRed:78.f/255.f green:215.f/255.f blue:235.f/255.f alpha:1.f].CGColor;
@@ -52,10 +78,17 @@
     UIColor *firstColor = [UIColor colorWithRed:36.f/255.f green:67.f/255.f blue:243.f/255.f alpha:1.f];
     UIColor *secondColor = [UIColor colorWithRed:86.f/255.f green:255.f/255.f blue:162.f/255.f alpha:1.f];
     gradientLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
-    gradientLayer.startPoint = CGPointMake(0.f, 0.f);
-    gradientLayer.endPoint = CGPointMake(1.f, 1.f);
+//    gradientLayer.startPoint = CGPointMake(0.f, 0.f);
+//    gradientLayer.endPoint = CGPointMake(1.f, 1.f);
     gradientLayer.cornerRadius = 100.f;
     [self.profileView.layer insertSublayer:gradientLayer atIndex:0];
+    
+    CAGradientLayer *helperGradient = [CAGradientLayer layer];
+    helperGradient.frame = self.helperView.bounds;
+    helperGradient.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
+//    helperGradient.startPoint = CGPointMake(0.f, 0.f);
+//    helperGradient.endPoint = CGPointMake(1.f, 1.f);
+    [self.helperView.layer insertSublayer:helperGradient atIndex:0];
 //    CAGradientLayer *gradientHelperLayer = [CAGradientLayer layer];
 //    gradientHelperLayer.frame = self.helperView.bounds;
 //    gradientHelperLayer.colors = @[(__bridge id)firstColor.CGColor, (__bridge id)secondColor.CGColor];
