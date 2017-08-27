@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5829B00D1F5314F3009406E9 /* VAKDataStorageUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */; };
 		58604DEE1F1F60F000073B2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DED1F1F60F000073B2D /* main.m */; };
 		58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF01F1F60F000073B2D /* AppDelegate.m */; };
 		58604DF41F1F60F000073B2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF31F1F60F000073B2D /* ViewController.m */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5829B00B1F5314F3009406E9 /* VAKDataStorageUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKDataStorageUpdater.h; sourceTree = "<group>"; };
+		5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKDataStorageUpdater.m; sourceTree = "<group>"; };
 		58604DE91F1F60F000073B2D /* ShoppingCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58604DED1F1F60F000073B2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58604DEF1F1F60F000073B2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 			children = (
 				58E695631F2367FA00E57C7E /* VAKNetManager.h */,
 				58E695641F2367FA00E57C7E /* VAKNetManager.m */,
+				5829B00B1F5314F3009406E9 /* VAKDataStorageUpdater.h */,
+				5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5829B00D1F5314F3009406E9 /* VAKDataStorageUpdater.m in Sources */,
 				589E270E1F261EAB00C3D42D /* VAKUserInfoViewController.m in Sources */,
 				58604DF41F1F60F000073B2D /* ViewController.m in Sources */,
 				58F9148A1F254627009EF5BC /* VAKNSDate+Formatters.m in Sources */,
