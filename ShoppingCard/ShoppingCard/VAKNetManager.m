@@ -97,4 +97,15 @@
     }] resume];
 }
 
+- (void)loadImageWithPath:(NSString *)path completion:(void (^)(UIImage *, NSError *))completion {
+    NSURL *url = [NSURL URLWithString:path];
+    NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           completion(image, error); 
+        });
+    }];
+    [task resume];
+}
+
 @end

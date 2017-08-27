@@ -121,7 +121,13 @@
         cell.phoneColor.text = currentGood.color;
         cell.basketButton.hidden = YES;
         cell.topConstraintIndicator.constant = cell.bounds.size.height / 2.f - cell.topConstraintIndicator.constant;
-        [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
+
+        [[VAKNetManager sharedManager] loadImageWithPath:currentGood.image completion:^(UIImage *image, NSError *error) {
+            if (!error) {
+                cell.phoneImage.image = image;
+            }
+        }];
+        
         cell.phonePrice.text = currentGood.price.stringValue;
         return cell;
     }
@@ -131,7 +137,13 @@
         cell.phoneName.text = currentGood.name;
         cell.phoneColor.text = currentGood.color;
         cell.phonePrice.text = @"Товар отсутствует на складе";
-        [self loadAndSetImageForIndexPath:indexPath path:currentGood.image];
+
+        [[VAKNetManager sharedManager] loadImageWithPath:currentGood.image completion:^(UIImage *image, NSError *error) {
+            if (!error) {
+                cell.phoneImage.image = image;
+            }
+        }];
+        
         return cell;
     }
 }
@@ -148,26 +160,6 @@
         [[VAKNetManager sharedManager] updateRequestWithPath:[NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId] info:[self formattedDictionaryWithOrder:self.order] completion:nil];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
-}
-
-#pragma mark - load and set image
-
-- (void)loadAndSetImageForIndexPath:(NSIndexPath *)indexPath path:(NSString *)path {
-    __block UIImage *image = nil;
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(queue, ^{
-        NSURL *url = [NSURL URLWithString:path];
-        NSURLSessionDownloadTask *task = [[NSURLSession sharedSession] downloadTaskWithURL:url completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            dispatch_sync(queue, ^{
-                image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
-            });
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                VAKCustomTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-                cell.phoneImage.image = image;
-            });
-        }];
-        [task resume];
-    });
 }
 
 @end
