@@ -49,7 +49,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_cart" id="qTI-lI-mkl">
                             <connections>
-                                <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="1ih-XN-osi"/>
+                                <segue destination="Sct-P2-AGq" kind="show" id="ka6-zs-Q1D"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -149,7 +149,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="AdK-DB-zLN" kind="show" identifier="VAKBasketIdentifier" id="9hK-e4-MkJ"/>
+                                                            <segue destination="Sct-P2-AGq" kind="show" id="cyD-VC-Kuk"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -241,33 +241,6 @@
             </objects>
             <point key="canvasLocation" x="1957.9710144927537" y="-1339.4021739130435"/>
         </scene>
-        <!--Корзина-->
-        <scene sceneID="y2T-J4-sbN">
-            <objects>
-                <tableViewController storyboardIdentifier="VAKBasketTableViewControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yeh-av-aE0" customClass="VAKBasketTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" id="byc-tn-jL7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="separatorColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Yeh-av-aE0" id="Ujp-Lr-7QY"/>
-                            <outlet property="delegate" destination="Yeh-av-aE0" id="Zov-Lb-h2k"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Корзина" id="Rut-y8-TfD">
-                        <barButtonItem key="leftBarButtonItem" image="arrowLeft" style="done" id="J75-PJ-9gb">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="backButtonPressed:" destination="Yeh-av-aE0" id="sZu-iT-Mrk"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oeM-Ik-etW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2766" y="-134"/>
-        </scene>
         <!--Заказы-->
         <scene sceneID="wKm-0G-7Vx">
             <objects>
@@ -308,6 +281,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nXo-mE-HTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2914" y="-911"/>
+        </scene>
+        <!--Корзина-->
+        <scene sceneID="8RD-wE-Tir">
+            <objects>
+                <viewController storyboardIdentifier="VAKBasketTableViewControllerIdentifier" id="VLs-mV-iXw" customClass="VAKBasketTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="h2G-s3-NBO"/>
+                        <viewControllerLayoutGuide type="bottom" id="dko-tY-Dsj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="frW-Ya-qhh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="35" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ilq-63-xpn">
+                                <rect key="frame" x="0.0" y="20" width="414" height="626"/>
+                                <color key="backgroundColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VLs-mV-iXw" id="XWT-jh-KmG"/>
+                                    <outlet property="delegate" destination="VLs-mV-iXw" id="A1I-95-l0Q"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59E-RM-510">
+                                <rect key="frame" x="40" y="666" width="334" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Zab-U1-cHx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Оформить заказ">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkoutButtonPressed:" destination="VLs-mV-iXw" eventType="touchUpInside" id="wlj-UN-CSq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.22352941179999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ilq-63-xpn" secondAttribute="trailing" id="2xh-I2-2wY"/>
+                            <constraint firstItem="Ilq-63-xpn" firstAttribute="top" secondItem="frW-Ya-qhh" secondAttribute="top" constant="20" symbolic="YES" id="72y-Jb-0LB"/>
+                            <constraint firstItem="Ilq-63-xpn" firstAttribute="leading" secondItem="frW-Ya-qhh" secondAttribute="leading" id="Fq7-rO-OdW"/>
+                            <constraint firstAttribute="trailing" secondItem="59E-RM-510" secondAttribute="trailing" constant="40" id="HEt-tK-CWK"/>
+                            <constraint firstItem="59E-RM-510" firstAttribute="leading" secondItem="frW-Ya-qhh" secondAttribute="leading" constant="40" id="RSU-wi-Yru"/>
+                            <constraint firstItem="dko-tY-Dsj" firstAttribute="top" secondItem="59E-RM-510" secondAttribute="bottom" constant="20" id="bzO-MZ-7eU"/>
+                            <constraint firstItem="59E-RM-510" firstAttribute="top" secondItem="Ilq-63-xpn" secondAttribute="bottom" constant="20" id="lFM-lf-rUL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Корзина" id="cQy-9y-FLS">
+                        <barButtonItem key="leftBarButtonItem" image="arrowLeft" id="zyA-jb-g6y">
+                            <connections>
+                                <action selector="backButtonPressed:" destination="VLs-mV-iXw" id="GW7-yz-BNx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="checkoutButton" destination="59E-RM-510" id="O7q-0I-K4c"/>
+                        <outlet property="tableView" destination="Ilq-63-xpn" id="B1e-IV-sOT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpd-tu-dEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3328.985507246377" y="-49.728260869565219"/>
         </scene>
         <!--Welcome to Shopping Card-->
         <scene sceneID="eVq-gN-Bn5">
@@ -375,7 +409,7 @@
                                                 <rect key="frame" x="187" y="0.0" width="187" height="65.333333333333371"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="tMz-36-nsm" id="BTM-8Y-18d"/>
                                                 </connections>
@@ -398,7 +432,7 @@
                                                 <rect key="frame" x="187" y="0.0" width="187" height="52.666666666666629"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="tMz-36-nsm" id="Bxt-hY-YKD"/>
                                                 </connections>
@@ -450,22 +484,6 @@
             <point key="canvasLocation" x="-564" y="-545"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="YSc-an-GoC">
-            <objects>
-                <navigationController id="AdK-DB-zLN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AOx-hQ-o1r">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Yeh-av-aE0" kind="relationship" relationship="rootViewController" id="0Mf-lg-LUU"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jIX-GS-Qkv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1959" y="-135"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="JGx-Ps-CAg">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dZV-AW-Lxw" sceneMemberID="viewController">
@@ -501,6 +519,24 @@
             </objects>
             <point key="canvasLocation" x="-1300" y="-545"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="F9V-xn-xBm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Sct-P2-AGq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hGp-de-Bd3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VLs-mV-iXw" kind="relationship" relationship="rootViewController" id="Zt9-Xc-y3M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nyC-LK-vv4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2421.739130434783" y="-49.728260869565219"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrowLeft" width="20" height="27"/>
@@ -513,7 +549,7 @@
         <image name="menu_signOut" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9hK-e4-MkJ"/>
+        <segue reference="ka6-zs-Q1D"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.21579572559999999" green="0.43955786120000001" blue="0.93835263319999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

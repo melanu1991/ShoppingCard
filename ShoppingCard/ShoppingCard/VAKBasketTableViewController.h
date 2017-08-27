@@ -2,7 +2,7 @@
 
 @class Order;
 
-@interface VAKBasketTableViewController : UITableViewController
+@interface VAKBasketTableViewController : UIViewController
 
 @property (strong, nonatomic) Order *order;
 

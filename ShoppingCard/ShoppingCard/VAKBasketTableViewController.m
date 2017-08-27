@@ -13,6 +13,8 @@
 @interface VAKBasketTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *goodsOfOrder;
+@property (weak, nonatomic) IBOutlet UIButton *checkoutButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -59,29 +61,25 @@
         else {
             self.order = currentOrder[0];
         }
-        UIButton *checkoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        CGFloat pointX = self.view.bounds.size.width / 2.f;
-        CGFloat pointY = self.view.bounds.size.height - 64.f - 9.f - 29.f;
-        checkoutButton.frame = CGRectMake(0.f, 0.f, 278.f, 58.f);
-        checkoutButton.center = CGPointMake(pointX, pointY);
-        checkoutButton.backgroundColor = [UIColor colorWithRed:184.f/255.f green:233.f/255.f blue:134.f/255.f alpha:1.f];
-        [checkoutButton setTitle:@"Оформить заказ" forState:UIControlStateNormal];
-        [checkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [checkoutButton setFont:[UIFont systemFontOfSize:20.f]];
-        checkoutButton.layer.cornerRadius = 6.f;
-        checkoutButton.layer.shadowOffset = CGSizeMake(5.f, 5.f);
-        checkoutButton.layer.shadowOpacity = 0.7f;
-        checkoutButton.layer.shadowRadius = 6.f;
-        checkoutButton.layer.shadowColor = [UIColor grayColor].CGColor;
-        [checkoutButton addTarget:self action:@selector(checkoutButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:checkoutButton];
+
+        self.checkoutButton.backgroundColor = [UIColor colorWithRed:184.f/255.f green:233.f/255.f blue:134.f/255.f alpha:1.f];
+        self.checkoutButton.layer.cornerRadius = 6.f;
+        self.checkoutButton.layer.shadowOffset = CGSizeMake(5.f, 5.f);
+        self.checkoutButton.layer.shadowOpacity = 0.7f;
+        self.checkoutButton.layer.shadowRadius = 6.f;
+        self.checkoutButton.layer.shadowColor = [UIColor grayColor].CGColor;
+
     }
+    else {
+        self.checkoutButton.hidden = YES;
+    }
+    
     self.goodsOfOrder = [self.order.goods allObjects];
 }
 
 #pragma mark - action
 
-- (void)checkoutButtonPressed:(UIButton *)sender {
+- (IBAction)checkoutButtonPressed:(UIButton *)sender {
     if (self.goodsOfOrder.count < 1) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ошибка" message:@"Нельзя оформить заказ без наличия хотя бы одного товара!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
@@ -109,14 +107,6 @@
 }
 
 #pragma mark - UITableViewDataSource
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.f;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    view.tintColor = [UIColor colorWithRed:57.f/255.f green:151.f/255.f blue:255.f/255.f alpha:1.f];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.goodsOfOrder.count;
