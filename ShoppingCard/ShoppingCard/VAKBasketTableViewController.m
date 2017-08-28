@@ -43,6 +43,12 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (NSNumber *)newPriceWithDiscount:(NSNumber *)discount price:(NSNumber *)price {
+    NSInteger money = (discount.integerValue * price.integerValue) / 100.f;
+    NSInteger newPrice = price.integerValue - money;
+    return [NSNumber numberWithInteger:newPrice];
+}
+
 #pragma mark - life cycle uiviewcontroller
 
 - (void)viewDidLoad {
@@ -135,6 +141,18 @@
         cell.phoneColor.text = currentGood.color;
         cell.basketButton.hidden = YES;
         cell.topConstraintIndicator.constant = cell.bounds.size.height / 2.f - cell.topConstraintIndicator.constant;
+        
+        if (currentGood.discount.integerValue > 0) {
+            NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:currentGood.price.stringValue];
+            [attributeString addAttribute:NSStrikethroughStyleAttributeName
+                                    value:@2
+                                    range:NSMakeRange(0, [attributeString length])];
+            [cell.phonePrice setAttributedText:attributeString];
+            cell.discountPrice.text = [self newPriceWithDiscount:currentGood.discount price:currentGood.price].stringValue;
+        }
+        else {
+            cell.phonePrice.text = currentGood.price.stringValue;
+        }
 
         [[VAKNetManager sharedManager] loadImageWithPath:currentGood.image completion:^(UIImage *image, NSError *error) {
             if (!error) {
@@ -142,7 +160,6 @@
             }
         }];
         
-        cell.phonePrice.text = currentGood.price.stringValue;
         return cell;
     }
     else {

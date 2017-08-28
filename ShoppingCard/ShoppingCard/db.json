@@ -114,9 +114,13 @@
       "date": "28.08.2017"
     },
     {
-      "status": 0,
+      "status": 1,
       "id": 300,
-      "catalog": [],
+      "catalog": [
+        {
+          "id": 1
+        }
+      ],
       "userId": 1,
       "date": "28.08.2017"
     }
