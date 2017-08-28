@@ -36,6 +36,13 @@
     return info;
 }
 
+- (void)alertWithTitle:(NSString *)title message:(NSString *)message {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alert addAction:ok];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - life cycle uiviewcontroller
 
 - (void)viewDidLoad {
@@ -81,19 +88,26 @@
 
 - (IBAction)checkoutButtonPressed:(UIButton *)sender {
     if (self.goodsOfOrder.count < 1) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Ошибка" message:@"Нельзя оформить заказ без наличия хотя бы одного товара!" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-        [alert addAction:ok];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self alertWithTitle:@"Ошибка" message:@"Нельзя оформить заказ без наличия хотя бы одного товара!"];
         return;
     }
-    NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
-    NSString *date = [[NSDate date] formattedString:VAKDateFormat];
-    self.order.date = [NSDate dateWithString:date format:VAKDateFormat];
-    self.order.status = @1;
-    
-    [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:[self formattedDictionaryWithOrder:self.order] completion:nil];
-    [[VAKCoreDataManager sharedManager] saveContext];
+    else {
+        NSString *pathToCurrentOrder = [NSString stringWithFormat:@"%@%@/%@", VAKLocalHostIdentifier, VAKOrderIdentifier, self.order.orderId];
+        NSString *date = [[NSDate date] formattedString:VAKDateFormat];
+        self.order.date = [NSDate dateWithString:date format:VAKDateFormat];
+        self.order.status = @1;
+        
+        NSArray *goods = [self.goodsOfOrder filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"count.integerValue > %ld", 0]];
+        
+        if (goods.count > 0) {
+            self.order.goods = [NSSet setWithArray:goods];
+            [[VAKNetManager sharedManager] updateRequestWithPath:pathToCurrentOrder info:[self formattedDictionaryWithOrder:self.order] completion:nil];
+            [[VAKCoreDataManager sharedManager] saveContext];
+        }
+        else {
+            [self alertWithTitle:@"Ошибка" message:@"Все товары из корзины отсутствуют на складе!"];
+        }
+    }
 }
 
 - (IBAction)backButtonPressed:(UIBarButtonItem *)sender {
