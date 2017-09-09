@@ -1,12 +1,5 @@
-//
-//  AppDelegate.m
-//  ShoppingCard
-//
-//  Created by melanu1991 on 19.07.17.
-//  Copyright © 2017 melanu1991. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import "VAKDataStorageUpdater.h"
 
 @interface AppDelegate ()
 
@@ -40,8 +33,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [VAKDataStorageUpdater updateData];
 }
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

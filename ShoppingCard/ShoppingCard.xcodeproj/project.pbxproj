@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5829B00D1F5314F3009406E9 /* VAKDataStorageUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */; };
 		58604DEE1F1F60F000073B2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DED1F1F60F000073B2D /* main.m */; };
 		58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF01F1F60F000073B2D /* AppDelegate.m */; };
 		58604DF41F1F60F000073B2D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF31F1F60F000073B2D /* ViewController.m */; };
@@ -14,9 +15,28 @@
 		58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */; };
 		58604DFC1F1F60F000073B2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFB1F1F60F000073B2D /* Assets.xcassets */; };
 		58604DFF1F1F60F000073B2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */; };
+		58604E0E1F1F699100073B2D /* VAKProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E0D1F1F699100073B2D /* VAKProfileViewController.m */; };
+		58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */; };
+		58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */; };
+		589E270E1F261EAB00C3D42D /* VAKUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */; };
+		58A17C9E1F26632C004BD1DB /* VAKBasketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */; };
+		58A17C9F1F26632C004BD1DB /* VAKBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */; };
+		58B371A91F323CF700CF944E /* VAKOrdersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B371A81F323CF700CF944E /* VAKOrdersTableViewController.m */; };
+		58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */; };
+		58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */; };
+		58DF237F1F3647B0000FC161 /* VAKRemovedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */; };
+		58DF23801F3647B0000FC161 /* VAKRemovedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */; };
+		58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58E695641F2367FA00E57C7E /* VAKNetManager.m */; };
+		58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914651F2517EC009EF5BC /* User+CoreDataClass.m */; };
+		58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */; };
+		58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */; };
+		58F914801F251DA6009EF5BC /* Object+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */; };
+		58F9148A1F254627009EF5BC /* VAKNSDate+Formatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F914891F254627009EF5BC /* VAKNSDate+Formatters.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5829B00B1F5314F3009406E9 /* VAKDataStorageUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKDataStorageUpdater.h; sourceTree = "<group>"; };
+		5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKDataStorageUpdater.m; sourceTree = "<group>"; };
 		58604DE91F1F60F000073B2D /* ShoppingCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58604DED1F1F60F000073B2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		58604DEF1F1F60F000073B2D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +48,38 @@
 		58604DFB1F1F60F000073B2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58604DFE1F1F60F000073B2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58604E001F1F60F000073B2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58604E0C1F1F699100073B2D /* VAKProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKProfileViewController.h; sourceTree = "<group>"; };
+		58604E0D1F1F699100073B2D /* VAKProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKProfileViewController.m; sourceTree = "<group>"; };
+		58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCoreDataManager.h; sourceTree = "<group>"; };
+		58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCoreDataManager.m; sourceTree = "<group>"; };
+		58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKBasketTableViewController.h; sourceTree = "<group>"; };
+		58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKBasketTableViewController.m; sourceTree = "<group>"; };
+		589E270C1F261EAB00C3D42D /* VAKUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKUserInfoViewController.h; sourceTree = "<group>"; };
+		589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKUserInfoViewController.m; sourceTree = "<group>"; };
+		58A17C9B1F26632C004BD1DB /* VAKBasketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKBasketTableViewCell.h; sourceTree = "<group>"; };
+		58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKBasketTableViewCell.m; sourceTree = "<group>"; };
+		58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKBasketTableViewCell.xib; sourceTree = "<group>"; };
+		58B371A71F323CF700CF944E /* VAKOrdersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKOrdersTableViewController.h; sourceTree = "<group>"; };
+		58B371A81F323CF700CF944E /* VAKOrdersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKOrdersTableViewController.m; sourceTree = "<group>"; };
+		58C482061F24D26B00E4D891 /* VAKCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKCustomTableViewCell.h; sourceTree = "<group>"; };
+		58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKCustomTableViewCell.m; sourceTree = "<group>"; };
+		58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKCustomTableViewCell.xib; sourceTree = "<group>"; };
+		58DF237C1F3647B0000FC161 /* VAKRemovedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKRemovedTableViewCell.h; sourceTree = "<group>"; };
+		58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKRemovedTableViewCell.m; sourceTree = "<group>"; };
+		58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VAKRemovedTableViewCell.xib; sourceTree = "<group>"; };
+		58E695631F2367FA00E57C7E /* VAKNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAKNetManager.h; sourceTree = "<group>"; };
+		58E695641F2367FA00E57C7E /* VAKNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VAKNetManager.m; sourceTree = "<group>"; };
+		58F914641F2517EC009EF5BC /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F914651F2517EC009EF5BC /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F914681F2517EC009EF5BC /* Order+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Order+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Order+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F9146C1F2517EC009EF5BC /* Good+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Good+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Good+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F9147C1F251DA6009EF5BC /* Object+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Object+CoreDataClass.h"; sourceTree = "<group>"; };
+		58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Object+CoreDataClass.m"; sourceTree = "<group>"; };
+		58F914821F25235A009EF5BC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		58F914881F254627009EF5BC /* VAKNSDate+Formatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VAKNSDate+Formatters.h"; sourceTree = "<group>"; };
+		58F914891F254627009EF5BC /* VAKNSDate+Formatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VAKNSDate+Formatters.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +112,18 @@
 		58604DEB1F1F60F000073B2D /* ShoppingCard */ = {
 			isa = PBXGroup;
 			children = (
+				58F914871F2545C0009EF5BC /* Helpers */,
+				58F914831F252370009EF5BC /* Constants */,
+				58C482041F24AFFD00E4D891 /* Cell */,
+				58604E081F1F694D00073B2D /* CoreData */,
+				58604E071F1F694500073B2D /* Server */,
+				58604E061F1F693600073B2D /* Controllers */,
 				58604DEF1F1F60F000073B2D /* AppDelegate.h */,
 				58604DF01F1F60F000073B2D /* AppDelegate.m */,
-				58604DF21F1F60F000073B2D /* ViewController.h */,
-				58604DF31F1F60F000073B2D /* ViewController.m */,
 				58604DF51F1F60F000073B2D /* Main.storyboard */,
 				58604DFB1F1F60F000073B2D /* Assets.xcassets */,
 				58604DFD1F1F60F000073B2D /* LaunchScreen.storyboard */,
 				58604E001F1F60F000073B2D /* Info.plist */,
-				58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */,
 				58604DEC1F1F60F000073B2D /* Supporting Files */,
 			);
 			path = ShoppingCard;
@@ -80,6 +135,93 @@
 				58604DED1F1F60F000073B2D /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58604E061F1F693600073B2D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58604DF21F1F60F000073B2D /* ViewController.h */,
+				58604DF31F1F60F000073B2D /* ViewController.m */,
+				58604E121F1F75E800073B2D /* VAKBasketTableViewController.h */,
+				58604E131F1F75E800073B2D /* VAKBasketTableViewController.m */,
+				589E270C1F261EAB00C3D42D /* VAKUserInfoViewController.h */,
+				589E270D1F261EAB00C3D42D /* VAKUserInfoViewController.m */,
+				58604E0C1F1F699100073B2D /* VAKProfileViewController.h */,
+				58604E0D1F1F699100073B2D /* VAKProfileViewController.m */,
+				58B371A71F323CF700CF944E /* VAKOrdersTableViewController.h */,
+				58B371A81F323CF700CF944E /* VAKOrdersTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		58604E071F1F694500073B2D /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				58E695631F2367FA00E57C7E /* VAKNetManager.h */,
+				58E695641F2367FA00E57C7E /* VAKNetManager.m */,
+				5829B00B1F5314F3009406E9 /* VAKDataStorageUpdater.h */,
+				5829B00C1F5314F3009406E9 /* VAKDataStorageUpdater.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		58604E081F1F694D00073B2D /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				58604DF81F1F60F000073B2D /* ShoppingCard.xcdatamodeld */,
+				58604E0F1F1F6AB300073B2D /* VAKCoreDataManager.h */,
+				58604E101F1F6AB300073B2D /* VAKCoreDataManager.m */,
+				58C482051F24B05800E4D891 /* Models */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		58C482041F24AFFD00E4D891 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				58C482061F24D26B00E4D891 /* VAKCustomTableViewCell.h */,
+				58C482071F24D26B00E4D891 /* VAKCustomTableViewCell.m */,
+				58C482081F24D26B00E4D891 /* VAKCustomTableViewCell.xib */,
+				58A17C9B1F26632C004BD1DB /* VAKBasketTableViewCell.h */,
+				58A17C9C1F26632C004BD1DB /* VAKBasketTableViewCell.m */,
+				58A17C9D1F26632C004BD1DB /* VAKBasketTableViewCell.xib */,
+				58DF237C1F3647B0000FC161 /* VAKRemovedTableViewCell.h */,
+				58DF237D1F3647B0000FC161 /* VAKRemovedTableViewCell.m */,
+				58DF237E1F3647B0000FC161 /* VAKRemovedTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		58C482051F24B05800E4D891 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58F9147C1F251DA6009EF5BC /* Object+CoreDataClass.h */,
+				58F9147D1F251DA6009EF5BC /* Object+CoreDataClass.m */,
+				58F914641F2517EC009EF5BC /* User+CoreDataClass.h */,
+				58F914651F2517EC009EF5BC /* User+CoreDataClass.m */,
+				58F914681F2517EC009EF5BC /* Order+CoreDataClass.h */,
+				58F914691F2517EC009EF5BC /* Order+CoreDataClass.m */,
+				58F9146C1F2517EC009EF5BC /* Good+CoreDataClass.h */,
+				58F9146D1F2517EC009EF5BC /* Good+CoreDataClass.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		58F914831F252370009EF5BC /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				58F914821F25235A009EF5BC /* Constants.h */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		58F914871F2545C0009EF5BC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				58F914881F254627009EF5BC /* VAKNSDate+Formatters.h */,
+				58F914891F254627009EF5BC /* VAKNSDate+Formatters.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +250,7 @@
 		58604DE11F1F60EF00073B2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VAK;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = melanu1991;
 				TargetAttributes = {
@@ -143,6 +286,9 @@
 				58604DFF1F1F60F000073B2D /* LaunchScreen.storyboard in Resources */,
 				58604DFC1F1F60F000073B2D /* Assets.xcassets in Resources */,
 				58604DF71F1F60F000073B2D /* Main.storyboard in Resources */,
+				58DF23801F3647B0000FC161 /* VAKRemovedTableViewCell.xib in Resources */,
+				58C4820A1F24D26B00E4D891 /* VAKCustomTableViewCell.xib in Resources */,
+				58A17C9F1F26632C004BD1DB /* VAKBasketTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,9 +299,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5829B00D1F5314F3009406E9 /* VAKDataStorageUpdater.m in Sources */,
+				589E270E1F261EAB00C3D42D /* VAKUserInfoViewController.m in Sources */,
 				58604DF41F1F60F000073B2D /* ViewController.m in Sources */,
+				58F9148A1F254627009EF5BC /* VAKNSDate+Formatters.m in Sources */,
+				58C482091F24D26B00E4D891 /* VAKCustomTableViewCell.m in Sources */,
+				58604E111F1F6AB300073B2D /* VAKCoreDataManager.m in Sources */,
+				58F914701F2517EC009EF5BC /* User+CoreDataClass.m in Sources */,
+				58604E0E1F1F699100073B2D /* VAKProfileViewController.m in Sources */,
+				58B371A91F323CF700CF944E /* VAKOrdersTableViewController.m in Sources */,
+				58604E141F1F75E800073B2D /* VAKBasketTableViewController.m in Sources */,
 				58604DF11F1F60F000073B2D /* AppDelegate.m in Sources */,
+				58A17C9E1F26632C004BD1DB /* VAKBasketTableViewCell.m in Sources */,
+				58DF237F1F3647B0000FC161 /* VAKRemovedTableViewCell.m in Sources */,
+				58F914741F2517EC009EF5BC /* Good+CoreDataClass.m in Sources */,
 				58604DEE1F1F60F000073B2D /* main.m in Sources */,
+				58F914801F251DA6009EF5BC /* Object+CoreDataClass.m in Sources */,
+				58F914721F2517EC009EF5BC /* Order+CoreDataClass.m in Sources */,
+				58E695651F2367FA00E57C7E /* VAKNetManager.m in Sources */,
 				58604DFA1F1F60F000073B2D /* ShoppingCard.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShoppingCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VAK.ShoppingCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -288,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShoppingCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VAK.ShoppingCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -313,6 +476,7 @@
 				58604E051F1F60F000073B2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
